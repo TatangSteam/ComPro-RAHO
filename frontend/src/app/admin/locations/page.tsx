@@ -1,0 +1,150 @@
+'use client';
+
+import { useEffect, useState } from 'react';
+import { useRouter } from 'next/navigation';
+import axios from 'axios';
+import Link from 'next/link';
+
+interface Location {
+  id: string;
+  name: string;
+  city: string;
+  address: string;
+  phone?: string;
+  mapUrl?: string;
+  createdAt: string;
+  updatedAt: string;
+}
+
+export default function AdminLocations() {
+  const router = useRouter();
+  const [locations, setLocations] = useState<Location[]>([]);
+  const [loading, setLoading] = useState(true);
+
+  useEffect(() => {
+    const token = localStorage.getItem('adminToken');
+    if (!token) {
+      router.push('/admin/login');
+      return;
+    }
+    fetchLocations();
+  }, [router]);
+
+  const fetchLocations = async () => {
+    try {
+      const res = await axios.get<Location[]>(`${process.env.NEXT_PUBLIC_API_URL}/locations`);
+      setLocations(res.data);
+    } catch (error) {
+      console.error('Error fetching locations:', error);
+    } finally {
+      setLoading(false);
+    }
+  };
+
+  const handleDelete = async (id: string) => {
+    if (!confirm('Apakah Anda yakin ingin menghapus lokasi ini?')) return;
+
+    try {
+      await axios.delete(`${process.env.NEXT_PUBLIC_API_URL}/locations/${id}`);
+      setLocations(locations.filter(l => l.id !== id));
+      alert('Lokasi berhasil dihapus');
+    } catch (error) {
+      console.error('Error deleting location:', error);
+      alert('Gagal menghapus lokasi');
+    }
+  };
+
+  return (
+    <div className="min-h-screen bg-gray-50">
+      {/* Header */}
+      <header className="bg-white shadow-sm">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-4">
+          <div className="flex justify-between items-center">
+            <div>
+              <Link href="/admin/dashboard" className="text-yellow-600 hover:text-yellow-700 text-sm mb-2 inline-block">
+                ← Kembali ke Dashboard
+              </Link>
+              <h1 className="text-2xl font-bold text-gray-900">Kelola Lokasi</h1>
+            </div>
+            <Link
+              href="/admin/locations/create"
+              className="bg-yellow-600 hover:bg-yellow-700 text-white px-4 py-2 rounded-lg font-medium transition-colors"
+            >
+              + Tambah Lokasi
+            </Link>
+          </div>
+        </div>
+      </header>
+
+      {/* Main Content */}
+      <main className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
+        {loading ? (
+          <div className="text-center py-12">
+            <div className="text-gray-600">Loading...</div>
+          </div>
+        ) : locations.length === 0 ? (
+          <div className="bg-white rounded-lg shadow-sm p-12 text-center">
+            <div className="text-4xl mb-4">📍</div>
+            <h3 className="text-lg font-medium text-gray-900 mb-2">Belum ada lokasi</h3>
+            <p className="text-gray-600 mb-4">Mulai dengan menambahkan lokasi klinik pertama Anda</p>
+            <Link
+              href="/admin/locations/create"
+              className="inline-block bg-yellow-600 hover:bg-yellow-700 text-white px-6 py-2 rounded-lg font-medium transition-colors"
+            >
+              + Tambah Lokasi
+            </Link>
+          </div>
+        ) : (
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+            {locations.map((location) => (
+              <div key={location.id} className="bg-white rounded-lg shadow-sm p-6 hover:shadow-md transition-shadow">
+                <div className="flex items-start justify-between mb-4">
+                  <div className="w-12 h-12 bg-purple-100 rounded-lg flex items-center justify-center text-2xl">
+                    🏥
+                  </div>
+                  <div className="flex gap-2">
+                    <Link
+                      href={`/admin/locations/edit/${location.id}`}
+                      className="text-yellow-600 hover:text-yellow-700 text-sm font-medium"
+                    >
+                      Edit
+                    </Link>
+                    <button
+                      onClick={() => handleDelete(location.id)}
+                      className="text-red-600 hover:text-red-700 text-sm font-medium"
+                    >
+                      Hapus
+                    </button>
+                  </div>
+                </div>
+
+                <h3 className="text-lg font-bold text-gray-900 mb-2">{location.name}</h3>
+                <p className="text-sm text-gray-600 mb-3">
+                  <span className="font-medium">📍 {location.city}</span>
+                </p>
+                <p className="text-sm text-gray-600 mb-3 line-clamp-2">
+                  {location.address}
+                </p>
+                {location.phone && (
+                  <p className="text-sm text-gray-600 mb-3">
+                    📞 {location.phone}
+                  </p>
+                )}
+                {location.mapUrl && (
+                  <a
+                    href={location.mapUrl}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="text-sm text-blue-600 hover:text-blue-700 font-medium"
+                  >
+                    Lihat di Maps →
+                  </a>
+                )}
+              </div>
+            ))}
+          </div>
+        )}
+      </main>
+    </div>
+  );
+}

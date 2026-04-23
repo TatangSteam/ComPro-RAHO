@@ -1,0 +1,163 @@
+import { PrismaClient } from '@prisma/client';
+import * as Minio from 'minio';
+import * as fs from 'fs';
+import * as path from 'path';
+import dotenv from 'dotenv';
+import { penyakitArticles, tindakanMedisArticles, kisahPasienArticles } from './seedData/articles';
+import { locations } from './seedData/locations';
+
+dotenv.config();
+
+const prisma = new PrismaClient();
+
+const minioClient = new Minio.Client({
+  endPoint: process.env.MINIO_ENDPOINT || 'localhost',
+  port: parseInt(process.env.MINIO_PORT || '9000'),
+  useSSL: process.env.MINIO_USE_SSL === 'true',
+  accessKey: process.env.MINIO_ACCESS_KEY || '',
+  secretKey: process.env.MINIO_SECRET_KEY || '',
+});
+
+const bucketName = process.env.MINIO_BUCKET || 'raho-uploads';
+
+async function uploadLogoToMinio(fileName: string): Promise<string> {
+  try {
+    const logoPath = path.join(__dirname, '../../../frontend/public/assets/LOGORAHO.png');
+    
+    if (!fs.existsSync(logoPath)) {
+      console.log('Logo file not found, skipping image upload');
+      return '';
+    }
+
+    const fileBuffer = fs.readFileSync(logoPath);
+    const uniqueFileName = `${Date.now()}-${fileName}.png`;
+
+    await minioClient.putObject(
+      bucketName,
+      uniqueFileName,
+      fileBuffer,
+      fileBuffer.length,
+      {
+        'Content-Type': 'image/png',
+      }
+    );
+
+    const publicUrl = `${process.env.MINIO_PUBLIC_URL}/${bucketName}/${uniqueFileName}`;
+    console.log(`Uploaded image: ${publicUrl}`);
+    return publicUrl;
+  } catch (error) {
+    console.error('Error uploading to MinIO:', error);
+    return '';
+  }
+}
+
+async function seedArticles() {
+  console.log('Seeding articles...');
+  
+  // Clear existing articles
+  await prisma.article.deleteMany({});
+  console.log('Cleared existing articles');
+
+  // Seed Penyakit Articles
+  for (const article of penyakitArticles) {
+    const imageUrl = await uploadLogoToMinio(article.slug);
+    await prisma.article.create({
+      data: {
+        ...article,
+        imageUrl: imageUrl || null,
+        published: true,
+      },
+    });
+    console.log(`✓ Created article: ${article.title}`);
+  }
+
+  // Seed Tindakan Medis Articles
+  for (const article of tindakanMedisArticles) {
+    const imageUrl = await uploadLogoToMinio(article.slug);
+    await prisma.article.create({
+      data: {
+        ...article,
+        imageUrl: imageUrl || null,
+        published: true,
+      },
+    });
+    console.log(`✓ Created article: ${article.title}`);
+  }
+
+  // Seed Kisah Pasien Articles
+  for (const article of kisahPasienArticles) {
+    const imageUrl = await uploadLogoToMinio(article.slug);
+    await prisma.article.create({
+      data: {
+        ...article,
+        imageUrl: imageUrl || null,
+        published: true,
+      },
+    });
+    console.log(`✓ Created article: ${article.title}`);
+  }
+
+  console.log(`\n✓ Total articles created: ${penyakitArticles.length + tindakanMedisArticles.length + kisahPasienArticles.length}\n`);
+}
+
+async function seedLocations() {
+  console.log('Seeding locations...');
+
+  // Clear existing locations
+  await (prisma as any).location.deleteMany({});
+  console.log('Cleared existing locations');
+
+  for (const location of locations) {
+    await (prisma as any).location.create({
+      data: location,
+    });
+    console.log(`✓ Created location: ${location.name} - ${location.city}`);
+  }
+
+  console.log(`\n✓ Total locations created: ${locations.length}\n`);
+}
+
+async function seedCompanyProfile() {
+  console.log('Seeding company profile...');
+  
+  const existingCompany = await prisma.companyProfile.findFirst();
+  if (!existingCompany) {
+    const logoUrl = await uploadLogoToMinio('company-logo');
+    await prisma.companyProfile.create({
+      data: {
+        name: 'RAHO Club Premier',
+        description: 'Ekosistem riset kesehatan & pemulihan seluler berbasis bioteknologi molekuler dengan Teknologi Nano Bubble. Solusi aging sehat & regenerasi tubuh alami hingga akar masalah.',
+        email: 'info@rahoclub.com',
+        phone: '+62 812-3456-7890',
+        address: 'Jakarta, Indonesia',
+        logoUrl: logoUrl || null,
+      },
+    });
+    console.log('✓ Created company profile\n');
+  } else {
+    console.log('✓ Company profile already exists\n');
+  }
+}
+
+async function seed() {
+  console.log('========================================');
+  console.log('Starting database seeding...');
+  console.log('========================================\n');
+
+  try {
+    await seedArticles();
+    await seedLocations();
+    await seedCompanyProfile();
+
+    console.log('========================================');
+    console.log('✓ Seed completed successfully!');
+    console.log('========================================');
+  } catch (error) {
+    console.error('❌ Error seeding database:', error);
+    throw error;
+  } finally {
+    await prisma.$disconnect();
+  }
+}
+
+seed();

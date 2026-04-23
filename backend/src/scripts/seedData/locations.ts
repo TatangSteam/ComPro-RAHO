@@ -1,0 +1,51 @@
+export const locations = [
+  {
+    name: 'Attya Reverse Aging',
+    city: 'Jakarta Selatan',
+    address: 'Jl. Lamandau IV No.8, RT.3/RW.1, Kramat Pela, Kec. Kby. Baru, Kota Jakarta Selatan, Daerah Khusus Ibukota Jakarta 12130',
+    phone: '+62 21 7209 8899',
+    mapUrl: 'https://maps.google.com/?q=Attya+Reverse+Aging+Jakarta+Selatan',
+  },
+  {
+    name: 'Klinik Utama 02',
+    city: 'Jakarta Utara',
+    address: 'Rukan No.70 blok a, RT.7/RW.2, Kamal Muara, Penjaringan, North Jakarta City, Jakarta 14470',
+    phone: '+62 21 5555 1234',
+    mapUrl: 'https://maps.google.com/?q=Klinik+Utama+02+Jakarta+Utara',
+  },
+  {
+    name: 'Raho Club Premier',
+    city: 'Jakarta Pusat',
+    address: 'Komplek Duta Merlin E no. 5-6, Petojo Utara, Kecamatan Gambir, Kota Jakarta Pusat, Daerah Khusus Ibukota Jakarta 10130',
+    phone: '+62 21 6385 8899',
+    mapUrl: 'https://maps.google.com/?q=Raho+Club+Premier+Duta+Merlin+Jakarta',
+  },
+  {
+    name: 'Raho Club Premier',
+    city: 'Menara Batavia',
+    address: 'Jl. K.H. Mas Mansyur No.Kav. 126, Karet Tengsin, Kecamatan Tanah Abang, Kota Jakarta Pusat, Daerah Khusus Ibukota Jakarta 10250',
+    phone: '+62 21 5785 0088',
+    mapUrl: 'https://maps.google.com/?q=Raho+Club+Premier+Menara+Batavia+Jakarta',
+  },
+  {
+    name: 'Raho Club Premier',
+    city: 'Bandung',
+    address: 'Jl. L. L. R.E. Martadinata No.168, Merdeka, Kec. Sumur Bandung, Kota Bandung, Jawa Barat 40113',
+    phone: '+62 22 4232 1234',
+    mapUrl: 'https://maps.google.com/?q=Raho+Club+Premier+Bandung',
+  },
+  {
+    name: 'Apotek Hannah',
+    city: 'Bali',
+    address: 'Jl Gatot Subroto Barat no 18 a-b Kerobokan Kaja, Kuta Utara, Kab Badung, Provinsi Bali',
+    phone: '+62 361 847 5678',
+    mapUrl: 'https://maps.google.com/?q=Apotek+Hannah+Bali',
+  },
+  {
+    name: 'Attya Reverse Aging',
+    city: 'Semarang',
+    address: 'Jl. Tumpang Raya no 48, Kel. Gajah mungkur, Kec. Gajah mungkur, Kota Semarang, Jawa Tengah',
+    phone: '+62 24 8624 5678',
+    mapUrl: 'https://maps.google.com/?q=Attya+Reverse+Aging+Semarang',
+  },
+];
