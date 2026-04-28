@@ -7,3 +7,9 @@ build/
 *.log
 .DS_Store
 uploads/
+
+secrets
+Dockerfile
+entrypoint.sh
+*prod*
+temp
