@@ -9,7 +9,4 @@ build/
 uploads/
 
 secrets
-Dockerfile
-entrypoint.sh
-*prod*
 temp
