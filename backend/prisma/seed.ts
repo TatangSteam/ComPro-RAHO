@@ -3,8 +3,13 @@ import * as Minio from 'minio';
 import * as fs from 'fs';
 import * as path from 'path';
 import dotenv from 'dotenv';
-import { penyakitArticles, tindakanMedisArticles, kisahPasienArticles } from './seedData/articles';
-import { locations } from './seedData/locations';
+import { 
+  penyakitArticles, 
+  tindakanMedisArticles, 
+  kisahPasienArticles,
+  locations
+} from './seeds';
+// import { locations } from './seedData/locations';
 
 dotenv.config();
 
