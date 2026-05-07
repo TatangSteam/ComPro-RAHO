@@ -5,6 +5,7 @@ import { initializeMinio } from './config/minio';
 import articlesRouter from './routes/articles';
 import companyRouter from './routes/company';
 import locationsRouter from './routes/locations';
+import authRouter from './routes/auth';
 
 dotenv.config();
 
@@ -18,6 +19,7 @@ app.use(express.urlencoded({ extended: true }));
 app.use('/api/articles', articlesRouter);
 app.use('/api/company', companyRouter);
 app.use('/api/locations', locationsRouter);
+app.use('/api/auth', authRouter);
 
 app.get('/api/health', (req, res) => {
   res.json({ status: 'ok' });

@@ -4,8 +4,7 @@ import Link from 'next/link';
 import Image from 'next/image';
 
 export default function HeroSection() {
-  const whatsappNumber = '6281234567890'; // Ganti dengan nomor WhatsApp yang sebenarnya
-  const whatsappLink = `https://wa.me/${whatsappNumber}`;
+  const whatsappLink = 'https://wa.link/h2uyet';
 
   return (
     <section className="bg-gradient-to-br from-gray-50 to-gray-100 py-16 md:py-24">
@@ -41,15 +40,17 @@ export default function HeroSection() {
               >
                 Hubungi Kami
               </a>
-              <Link
-                href="/tentang-kami"
+              <a
+                href="https://wa.link/h2uyet"
+                target="_blank"
+                rel="noopener noreferrer"
                 className="bg-white hover:bg-gray-50 text-gray-900 px-8 py-3 rounded-full font-medium transition-colors border-2 border-gray-300 flex items-center gap-2"
               >
                 Pelajari
                 <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                   <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M17 8l4 4m0 0l-4 4m4-4H3" />
                 </svg>
-              </Link>
+              </a>
             </div>
           </div>
 

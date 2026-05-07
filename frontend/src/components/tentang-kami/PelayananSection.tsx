@@ -8,9 +8,14 @@ export default function PelayananSection() {
             <p className="text-base md:text-lg text-gray-700 leading-relaxed mb-4 md:mb-6">
               Layanan homecare RAHO Club Premier menghadirkan solusi perawatan kesehatan langsung ke rumah dengan pendekatan wellness modern dan pemulihan seluler. Termasuk dukungan teknologi seperti monitoring kesehatan dan membuka kesempatan untuk berkonsultasi, energi, dan keseimbangan tubuh. Didukung tenaga profesional, layanan ini dirancang praktis, aman, dan personal untuk membantu Anda menjaga kesehatan, mempercepat pemulihan, serta menjalani gaya hidup sehat tanpa harus ke fasilitas kesehatan.
             </p>
-            <button className="bg-yellow-600 hover:bg-yellow-700 text-white px-6 md:px-8 py-2.5 md:py-3 rounded-full font-medium transition-colors text-sm md:text-base">
+            <a 
+              href="https://wa.link/h2uyet"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="bg-yellow-600 hover:bg-yellow-700 text-white px-6 md:px-8 py-2.5 md:py-3 rounded-full font-medium transition-colors text-sm md:text-base"
+            >
               Konsultasi
-            </button>
+            </a>
           </div>
           <div className="rounded-3xl overflow-hidden shadow-xl order-2">
             <img 

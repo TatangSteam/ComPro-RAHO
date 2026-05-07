@@ -19,6 +19,7 @@ export default function SolusiSection({ articles }: SolusiSectionProps) {
       imageUrl: '/assets/nano-bubble.jpg',
       category: 'tindakan-medis',
       published: true,
+      author: 'Tim Medis RAHO',
       createdAt: new Date().toISOString(),
       updatedAt: new Date().toISOString(),
     },
@@ -31,6 +32,7 @@ export default function SolusiSection({ articles }: SolusiSectionProps) {
       imageUrl: null,
       category: 'tindakan-medis',
       published: true,
+      author: 'Tim Medis RAHO',
       createdAt: new Date().toISOString(),
       updatedAt: new Date().toISOString(),
     },
@@ -43,6 +45,7 @@ export default function SolusiSection({ articles }: SolusiSectionProps) {
       imageUrl: null,
       category: 'tindakan-medis',
       published: true,
+      author: 'Tim Medis RAHO',
       createdAt: new Date().toISOString(),
       updatedAt: new Date().toISOString(),
     },
@@ -90,7 +93,7 @@ export default function SolusiSection({ articles }: SolusiSectionProps) {
 
                 {/* Image */}
                 {firstArticle.imageUrl && (
-                  <div className="rounded-xl sm:rounded-2xl overflow-hidden bg-green-400 h-48 sm:h-56 md:h-64">
+                  <div className="rounded-xl sm:rounded-2xl overflow-hidden h-48 sm:h-56 md:h-64">
                     <img 
                       src={firstArticle.imageUrl} 
                       alt={firstArticle.title}

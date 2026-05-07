@@ -15,9 +15,14 @@ export default function UmumSection() {
             <p className="text-base md:text-lg text-gray-700 leading-relaxed mb-4 md:mb-6">
               Reverse Aging & Homeostasis Club adalah komunitas kesehatan yang berfokus pada pola hidup sehat, peningkatan kualitas hidup, dan keseimbangan tubuh (homeostasis) melalui pendekatan wellness modern. Dipimpin oleh Bapak Ken Eddy sebagai Ketua Umum RAHO Club, komunitas ini menghadirkan berbagai kegiatan edukasi dan suportif untuk membantu anggota menjalani hidup lebih sehat, bertenaga, dan optimal secara berkelanjutan.
             </p>
-            <button className="bg-yellow-600 hover:bg-yellow-700 text-white px-6 md:px-8 py-2.5 md:py-3 rounded-full font-medium transition-colors text-sm md:text-base">
+            <a 
+              href="https://wa.link/h2uyet"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="bg-yellow-600 hover:bg-yellow-700 text-white px-6 md:px-8 py-2.5 md:py-3 rounded-full font-medium transition-colors text-sm md:text-base"
+            >
               Pelajari
-            </button>
+            </a>
           </div>
         </div>
       </div>

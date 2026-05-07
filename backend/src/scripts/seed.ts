@@ -5,6 +5,7 @@ import * as path from 'path';
 import dotenv from 'dotenv';
 import { penyakitArticles, tindakanMedisArticles, kisahPasienArticles } from './seedData/articles';
 import { locations } from './seedData/locations';
+import { admins, hashPassword } from './seedData/admins';
 
 dotenv.config();
 
@@ -139,22 +140,59 @@ async function seedCompanyProfile() {
   }
 }
 
+async function seedAdmins() {
+  console.log('Seeding admin users...');
+
+  // Clear existing admins
+  await prisma.admin.deleteMany({});
+  console.log('Cleared existing admins');
+
+  for (const admin of admins) {
+    const hashedPassword = await hashPassword(admin.password);
+    await prisma.admin.create({
+      data: {
+        ...admin,
+        password: hashedPassword,
+      },
+    });
+    console.log(`✓ Created admin: ${admin.username} (${admin.role})`);
+  }
+
+  console.log(`\n✓ Total admins created: ${admins.length}\n`);
+}
+
 async function seed() {
   console.log('========================================');
   console.log('Starting database seeding...');
   console.log('========================================\n');
 
   try {
+    // Check if MinIO is available
+    try {
+      await minioClient.bucketExists(bucketName);
+      console.log('✓ MinIO connection successful\n');
+    } catch (error) {
+      console.log('⚠️  MinIO not available, seeding without images\n');
+    }
+
     await seedArticles();
     await seedLocations();
     await seedCompanyProfile();
+    await seedAdmins();
 
     console.log('========================================');
     console.log('✓ Seed completed successfully!');
     console.log('========================================');
+    
+    console.log('\n📋 ADMIN CREDENTIALS:');
+    console.log('Username: admin | Password: admin123');
+    console.log('Username: superadmin | Password: super123');
+    console.log('\n🌐 ACCESS ADMIN PANEL:');
+    console.log('URL: http://localhost:3000/admin/login');
+    console.log('========================================\n');
   } catch (error) {
     console.error('❌ Error seeding database:', error);
-    throw error;
+    process.exit(1);
   } finally {
     await prisma.$disconnect();
   }

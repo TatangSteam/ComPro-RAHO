@@ -4,9 +4,11 @@ import { useState } from 'react';
 import { useRouter } from 'next/navigation';
 import axios from 'axios';
 import Link from 'next/link';
+import { useRequireAuth } from '@/hooks/useAuth';
 
 export default function CreateArticle() {
   const router = useRouter();
+  const { isAuthenticated, loading: authLoading } = useRequireAuth();
   const [loading, setLoading] = useState(false);
   const [imageFile, setImageFile] = useState<File | null>(null);
   const [imagePreview, setImagePreview] = useState<string>('');
@@ -99,6 +101,23 @@ export default function CreateArticle() {
       slug: generateSlug(title),
     });
   };
+
+  // Show loading while checking authentication
+  if (authLoading) {
+    return (
+      <div className="min-h-screen bg-gray-50 flex items-center justify-center">
+        <div className="text-center">
+          <div className="animate-spin rounded-full h-12 w-12 border-b-2 border-yellow-600 mx-auto mb-4"></div>
+          <p className="text-gray-600">Memuat halaman...</p>
+        </div>
+      </div>
+    );
+  }
+
+  // Don't render if not authenticated (useRequireAuth will handle redirect)
+  if (!isAuthenticated) {
+    return null;
+  }
 
   return (
     <div className="min-h-screen bg-gray-50">

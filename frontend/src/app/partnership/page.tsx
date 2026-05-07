@@ -59,7 +59,7 @@ export default function PartnershipPage() {
                 </div>
                 <div className="mt-8">
                   <a
-                    href="https://wa.me/6281234567890"
+                    href="https://wa.link/h2uyet"
                     target="_blank"
                     rel="noopener noreferrer"
                     className="inline-block bg-yellow-600 hover:bg-yellow-700 text-white font-medium px-8 py-3 rounded-full transition-colors"
@@ -96,7 +96,7 @@ export default function PartnershipPage() {
                   </div>
                   <div className="mt-8">
                     <a
-                      href="https://wa.me/6281234567890"
+                      href="https://wa.link/h2uyet"
                       target="_blank"
                       rel="noopener noreferrer"
                       className="inline-block bg-yellow-600 hover:bg-yellow-700 text-white font-medium px-8 py-3 rounded-full transition-colors"
@@ -137,7 +137,7 @@ export default function PartnershipPage() {
                 </div>
                 <div className="mt-8">
                   <a
-                    href="https://wa.me/6281234567890"
+                    href="https://wa.link/h2uyet"
                     target="_blank"
                     rel="noopener noreferrer"
                     className="inline-block bg-yellow-600 hover:bg-yellow-700 text-white font-medium px-8 py-3 rounded-full transition-colors"

@@ -1,41 +1,81 @@
 'use client';
 
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import { useRouter } from 'next/navigation';
+import { useAuth } from '@/hooks/useAuth';
 
 export default function AdminLogin() {
   const router = useRouter();
+  const { isAuthenticated, loading: authLoading, login } = useAuth();
   const [credentials, setCredentials] = useState({
-    username: '',
+    email: '',
     password: '',
   });
   const [error, setError] = useState('');
   const [loading, setLoading] = useState(false);
+
+  // Redirect if already authenticated
+  useEffect(() => {
+    if (!authLoading && isAuthenticated) {
+      router.push('/admin/dashboard');
+    }
+  }, [isAuthenticated, authLoading, router]);
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
     setError('');
     setLoading(true);
 
-    // Simple authentication (replace with actual API call)
-    if (credentials.username === 'admin' && credentials.password === 'admin123') {
-      // Store auth token (in production, use proper JWT)
-      localStorage.setItem('adminToken', 'authenticated');
-      router.push('/admin/dashboard');
-    } else {
-      setError('Username atau password salah');
+    try {
+      const response = await fetch(`${process.env.NEXT_PUBLIC_API_URL}/auth/login`, {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify(credentials),
+      });
+
+      const data = await response.json();
+
+      if (response.ok && data.success) {
+        // Use the auth hook to handle login
+        login(data.token, data.admin);
+        router.push('/admin/dashboard');
+      } else {
+        setError(data.error || 'Login gagal');
+      }
+    } catch (error) {
+      console.error('Login error:', error);
+      setError('Terjadi kesalahan saat login');
+    } finally {
+      setLoading(false);
     }
-    
-    setLoading(false);
   };
+
+  // Show loading while checking auth
+  if (authLoading) {
+    return (
+      <div className="min-h-screen bg-gradient-to-br from-yellow-50 to-yellow-100 flex items-center justify-center">
+        <div className="text-center">
+          <div className="animate-spin rounded-full h-12 w-12 border-b-2 border-yellow-600 mx-auto mb-4"></div>
+          <p className="text-gray-600">Memeriksa status login...</p>
+        </div>
+      </div>
+    );
+  }
+
+  // Don't render login form if already authenticated
+  if (isAuthenticated) {
+    return null;
+  }
 
   return (
     <div className="min-h-screen bg-gradient-to-br from-yellow-50 to-yellow-100 flex items-center justify-center py-12 px-4 sm:px-6 lg:px-8">
       <div className="max-w-md w-full">
         {/* Logo/Header */}
         <div className="text-center mb-8">
-          <h1 className="text-4xl font-bold text-gray-900 mb-2">RAHO Club</h1>
-          <p className="text-gray-600">Admin Panel</p>
+          <h1 className="text-4xl font-bold text-gray-900 mb-2">RAHO Club Admin</h1>
+          <p className="text-gray-600">Admin Panel - Updated</p>
         </div>
 
         {/* Login Card */}
@@ -51,19 +91,19 @@ export default function AdminLogin() {
           )}
 
           <form onSubmit={handleSubmit} className="space-y-6">
-            {/* Username */}
+            {/* Email */}
             <div>
-              <label htmlFor="username" className="block text-sm font-medium text-gray-700 mb-2">
-                Username
+              <label htmlFor="email" className="block text-sm font-medium text-gray-700 mb-2">
+                Email Address
               </label>
               <input
-                id="username"
-                type="text"
+                id="email"
+                type="email"
                 required
-                value={credentials.username}
-                onChange={(e) => setCredentials({ ...credentials, username: e.target.value })}
+                value={credentials.email}
+                onChange={(e) => setCredentials({ ...credentials, email: e.target.value })}
                 className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-yellow-600 focus:border-transparent outline-none transition"
-                placeholder="Masukkan username"
+                placeholder="admin@raho.com"
               />
             </div>
 
@@ -97,7 +137,7 @@ export default function AdminLogin() {
           <div className="mt-6 p-4 bg-gray-50 rounded-lg">
             <p className="text-xs text-gray-600 text-center">
               <strong>Demo Credentials:</strong><br />
-              Username: admin<br />
+              Email: admin@raho.com<br />
               Password: admin123
             </p>
           </div>

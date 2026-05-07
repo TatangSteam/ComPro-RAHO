@@ -5,21 +5,20 @@ import { useRouter } from 'next/navigation';
 import axios from 'axios';
 import Link from 'next/link';
 import { Article } from '@/types';
+import { useRequireAuth } from '@/hooks/useAuth';
 
 export default function AdminArticles() {
   const router = useRouter();
+  const { isAuthenticated, loading: authLoading } = useRequireAuth();
   const [articles, setArticles] = useState<Article[]>([]);
   const [loading, setLoading] = useState(true);
   const [filter, setFilter] = useState<string>('all');
 
   useEffect(() => {
-    const token = localStorage.getItem('adminToken');
-    if (!token) {
-      router.push('/admin/login');
-      return;
+    if (isAuthenticated && !authLoading) {
+      fetchArticles();
     }
-    fetchArticles();
-  }, [router]);
+  }, [isAuthenticated, authLoading]);
 
   const fetchArticles = async () => {
     try {
@@ -66,6 +65,23 @@ export default function AdminArticles() {
     };
     return colors[category] || 'bg-gray-100 text-gray-800';
   };
+
+  // Show loading while checking authentication
+  if (authLoading || loading) {
+    return (
+      <div className="min-h-screen bg-gray-50 flex items-center justify-center">
+        <div className="text-center">
+          <div className="animate-spin rounded-full h-12 w-12 border-b-2 border-yellow-600 mx-auto mb-4"></div>
+          <p className="text-gray-600">Memuat artikel...</p>
+        </div>
+      </div>
+    );
+  }
+
+  // Don't render if not authenticated (useRequireAuth will handle redirect)
+  if (!isAuthenticated) {
+    return null;
+  }
 
   return (
     <div className="min-h-screen bg-gray-50">
