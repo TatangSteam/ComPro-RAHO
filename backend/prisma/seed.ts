@@ -3,9 +3,19 @@ import * as Minio from 'minio';
 import * as fs from 'fs';
 import * as path from 'path';
 import dotenv from 'dotenv';
+<<<<<<< HEAD:backend/src/scripts/seed.ts
 import { penyakitArticles, tindakanMedisArticles, kisahPasienArticles } from './seedData/articles';
 import { locations } from './seedData/locations';
 import { admins, hashPassword } from './seedData/admins';
+=======
+import { 
+  penyakitArticles, 
+  tindakanMedisArticles, 
+  kisahPasienArticles,
+  locations
+} from './seeds';
+// import { locations } from './seedData/locations';
+>>>>>>> 32037d47481dd78a9d64a682ce05d2b863d80f6f:backend/prisma/seed.ts
 
 dotenv.config();
 

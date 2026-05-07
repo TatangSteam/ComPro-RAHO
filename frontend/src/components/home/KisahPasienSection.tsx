@@ -23,9 +23,9 @@ export default function KisahPasienSection({ articles }: KisahPasienSectionProps
       imageUrl: '/assets/patient-1.jpg',
       category: 'kisah-pasien',
       published: true,
+      author: 'Pasien RAHO Club',
       createdAt: new Date().toISOString(),
       updatedAt: new Date().toISOString(),
-      author: 'Pasien RAHO Club'
     },
     {
       id: '2',
@@ -36,9 +36,9 @@ export default function KisahPasienSection({ articles }: KisahPasienSectionProps
       imageUrl: '/assets/patient-2.jpg',
       category: 'kisah-pasien',
       published: true,
+      author: 'Pasien RAHO Club',
       createdAt: new Date().toISOString(),
       updatedAt: new Date().toISOString(),
-      author: 'Pasien RAHO Club'
     },
     {
       id: '3',
@@ -49,9 +49,9 @@ export default function KisahPasienSection({ articles }: KisahPasienSectionProps
       imageUrl: '/assets/patient-3.jpg',
       category: 'kisah-pasien',
       published: true,
+      author: 'Pasien RAHO Club',
       createdAt: new Date().toISOString(),
       updatedAt: new Date().toISOString(),
-      author: 'Pasien RAHO Club'
     },
     {
       id: '4',
