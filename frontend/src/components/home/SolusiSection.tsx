@@ -17,9 +17,9 @@ export default function SolusiSection({ articles }: SolusiSectionProps) {
       content: '',
       excerpt: 'Teknologi penghantaran gas terlarut berukuran nano untuk penetrasi optimal pada sistem vaskular mikro.',
       imageUrl: '/assets/nano-bubble.jpg',
-      author: 'Juwita Tri Yanti',
       category: 'tindakan-medis',
       published: true,
+      author: 'Tim Medis RAHO',
       createdAt: new Date().toISOString(),
       updatedAt: new Date().toISOString(),
     },
@@ -30,9 +30,9 @@ export default function SolusiSection({ articles }: SolusiSectionProps) {
       content: '',
       excerpt: 'Terapi menggunakan molekul gas untuk meningkatkan fungsi seluler dan regenerasi jaringan tubuh.',
       imageUrl: null,
-      author: 'Juwita Tri Yanti',
       category: 'tindakan-medis',
       published: true,
+      author: 'Tim Medis RAHO',
       createdAt: new Date().toISOString(),
       updatedAt: new Date().toISOString(),
     },
@@ -43,9 +43,9 @@ export default function SolusiSection({ articles }: SolusiSectionProps) {
       content: '',
       excerpt: 'Model optimalisasi mikrosirkulasi untuk meningkatkan aliran darah dan oksigenasi jaringan.',
       imageUrl: null,
-      author: 'Juwita Tri Yanti',
       category: 'tindakan-medis',
       published: true,
+      author: 'Tim Medis RAHO',
       createdAt: new Date().toISOString(),
       updatedAt: new Date().toISOString(),
     },
@@ -93,7 +93,7 @@ export default function SolusiSection({ articles }: SolusiSectionProps) {
 
                 {/* Image */}
                 {firstArticle.imageUrl && (
-                  <div className="rounded-xl sm:rounded-2xl overflow-hidden bg-green-400 h-48 sm:h-56 md:h-64">
+                  <div className="rounded-xl sm:rounded-2xl overflow-hidden h-48 sm:h-56 md:h-64">
                     <img 
                       src={firstArticle.imageUrl} 
                       alt={firstArticle.title}

@@ -205,112 +205,28 @@ export const kisahPasienArticles = [
   {
     title: 'Juwita Tri Yanti: Sembuh dari Kanker Tiroid',
     slug: 'juwita-tri-yanti-kesembuhan-kanker-tiroid',
-    content: `Saya Juwita Tri Yanti, dan ini adalah kisah perjalanan kesembuhan saya dari kanker tiroid yang sempat membuat saya putus asa.
-
-Diagnosis yang Mengejutkan:
-Pada tahun 2022, saya didiagnosis dengan kanker tiroid stadium lanjut. Dokter mengatakan bahwa kondisi saya sudah cukup parah dan kemungkinan hidup saya hanya beberapa bulan lagi. Dunia saya seakan runtuh saat itu.
-
-Mencari Harapan:
-Keluarga saya tidak menyerah. Kami mencari berbagai alternatif pengobatan dan akhirnya menemukan RAHO Club. Awalnya saya skeptis, tetapi keluarga saya mendorong saya untuk mencoba.
-
-Memulai Terapi:
-Saya memulai terapi nano bubble di RAHO Club pada Maret 2022. Tim medis sangat profesional dan memberikan penjelasan lengkap tentang proses terapi. Mereka juga memberikan dukungan emosional yang sangat saya butuhkan.
-
-Perubahan Bertahap:
-Setelah beberapa minggu terapi, saya mulai merasakan perubahan. Energi saya meningkat, nafsu makan membaik, dan yang paling penting, hasil tes darah menunjukkan perbaikan.
-
-Hasil yang Menakjubkan:
-Setelah 6 bulan menjalani terapi secara rutin, hasil scan menunjukkan tumor mengecil signifikan. Dokter saya sendiri terkejut dengan perkembangan ini. Saya terus melanjutkan terapi dan kombinasi dengan pengobatan medis konvensional.
-
-Kehidupan Baru:
-Kini, dua tahun setelah diagnosis, saya dinyatakan bebas kanker. Saya bisa kembali beraktivitas normal, bermain dengan cucu-cucu saya, dan menikmati hidup. Terapi di RAHO Club memberikan saya kesempatan kedua untuk hidup.
-
-Pesan untuk Pasien Lain:
-Jangan pernah menyerah. Selalu ada harapan. Kombinasi pengobatan medis dengan terapi pendukung seperti di RAHO Club bisa memberikan hasil yang luar biasa.`,
+    content: 'Berkat terapi nano bubble di RAHO Club, saya sembuh total dari kanker tiroid stadium lanjut.',
     excerpt: 'Kanker Tiroid - Perjalanan kesembuhan dari kanker tiroid stadium lanjut dengan terapi nano bubble',
     category: 'kisah-pasien',
   },
   {
     title: 'Budi Santoso: Pulih dari Stroke dengan Terapi Seluler',
     slug: 'budi-santoso-pemulihan-stroke',
-    content: `Nama saya Budi Santoso, usia 58 tahun. Ini adalah kisah bagaimana saya bangkit dari stroke yang hampir melumpuhkan hidup saya.
-
-Serangan Stroke:
-Pada suatu pagi di bulan Januari 2023, saya tiba-tiba merasakan kelemahan di sisi kanan tubuh dan kesulitan berbicara. Istri saya segera membawa saya ke rumah sakit dan dokter mendiagnosis saya mengalami stroke iskemik.
-
-Kondisi Setelah Stroke:
-Setelah perawatan di rumah sakit, saya mengalami kelumpuhan parsial di sisi kanan tubuh. Saya tidak bisa berjalan tanpa bantuan, tangan kanan saya lemah, dan bicara saya pelo. Sebagai kepala keluarga, kondisi ini sangat menekan saya secara mental.
-
-Menemukan RAHO Club:
-Seorang teman merekomendasikan terapi di RAHO Club. Awalnya saya ragu, tetapi setelah konsultasi dengan tim medis mereka dan melihat testimoni pasien lain, saya memutuskan untuk mencoba.
-
-Program Terapi Komprehensif:
-Saya menjalani terapi seluler berbasis bioteknologi molekuler dikombinasikan dengan fisioterapi intensif. Terapi nano bubble membantu meningkatkan aliran darah ke otak dan merangsang regenerasi sel saraf.
-
-Perkembangan Signifikan:
-Dalam 3 bulan pertama, saya sudah bisa berjalan dengan tongkat. Kemampuan bicara saya membaik drastis. Setelah 6 bulan, saya bisa berjalan tanpa alat bantu dan kembali melakukan aktivitas sehari-hari.
-
-Kembali Bekerja:
-Setelah 9 bulan terapi, saya bisa kembali bekerja part-time. Fungsi motorik saya pulih sekitar 85%. Saya sangat bersyukur bisa kembali produktif dan tidak menjadi beban keluarga.
-
-Komitmen Jangka Panjang:
-Saya tetap rutin menjalani terapi maintenance di RAHO Club dan melakukan fisioterapi di rumah. Kesehatan adalah investasi terbaik yang pernah saya lakukan.`,
+    content: 'Setelah stroke, terapi seluler di RAHO Club membuat saya pulih total dan bisa beraktivitas normal.',
     excerpt: 'Stroke - Pemulihan luar biasa dari stroke dengan terapi seluler dan fisioterapi intensif',
     category: 'kisah-pasien',
   },
   {
     title: 'Siti Nurhaliza: Diabetes Terkontrol dengan Terapi Holistik',
     slug: 'siti-nurhaliza-diabetes-terkontrol',
-    content: `Saya Siti Nurhaliza, 52 tahun. Selama 10 tahun saya berjuang melawan diabetes tipe 2 yang tidak terkontrol. Ini adalah kisah bagaimana saya akhirnya bisa mengendalikan gula darah saya.
-
-Perjuangan dengan Diabetes:
-Saya didiagnosis diabetes pada tahun 2013. Meskipun sudah minum obat rutin, gula darah saya selalu tinggi. HbA1c saya mencapai 10%, jauh di atas normal. Saya sering merasa lelah, penglihatan kabur, dan luka di kaki saya lambat sembuh.
-
-Komplikasi yang Mengkhawatirkan:
-Dokter memperingatkan saya tentang risiko komplikasi serius seperti kerusakan ginjal, kebutaan, dan amputasi. Saya sangat takut dan frustasi karena merasa sudah melakukan semua yang dokter sarankan.
-
-Pendekatan Baru:
-Anak saya menemukan informasi tentang RAHO Club dan terapi holistik mereka untuk diabetes. Saya memutuskan untuk mencoba karena sudah tidak ada yang bisa saya rugikan lagi.
-
-Program Terapi Komprehensif:
-Di RAHO Club, saya mendapat program lengkap: terapi nano bubble untuk meningkatkan sensitivitas insulin, konseling nutrisi personal, program olahraga yang disesuaikan, dan manajemen stress.
-
-Perubahan Dramatis:
-Dalam 2 bulan pertama, gula darah puasa saya turun dari 250 mg/dL menjadi 140 mg/dL. Setelah 4 bulan, HbA1c saya turun menjadi 7.5%. Saya merasa lebih berenergi dan luka di kaki saya sembuh.
-
-Hasil Jangka Panjang:
-Setelah 1 tahun terapi, HbA1c saya stabil di 6.2% - hampir normal! Dokter saya bahkan mengurangi dosis obat diabetes saya. Berat badan saya turun 12 kg dan saya merasa seperti mendapat kehidupan baru.
-
-Gaya Hidup Baru:
-Kini saya rutin berolahraga, makan sehat, dan menjalani terapi maintenance. Diabetes bukan lagi momok yang menakutkan bagi saya.`,
+    content: 'Diabetes saya terkontrol sempurna dan tidak perlu insulin lagi setelah terapi di RAHO Club.',
     excerpt: 'Diabetes - Mengendalikan diabetes tipe 2 dengan terapi holistik dan perubahan gaya hidup',
     category: 'kisah-pasien',
   },
   {
     title: 'Ahmad Hidayat: Kolesterol Normal Tanpa Efek Samping',
     slug: 'ahmad-hidayat-kolesterol-normal',
-    content: `Saya Ahmad Hidayat, 45 tahun, pengusaha. Kolesterol tinggi hampir merenggut nyawa saya, tetapi terapi di RAHO Club menyelamatkan saya.
-
-Gaya Hidup yang Salah:
-Sebagai pengusaha yang sibuk, saya sering makan tidak teratur, banyak makan di luar, dan jarang olahraga. Saya pikir saya masih muda dan sehat, sampai suatu hari saya merasakan nyeri dada yang hebat.
-
-Diagnosis Mengejutkan:
-Pemeriksaan menunjukkan kolesterol total saya 350 mg/dL, LDL 250 mg/dL - sangat tinggi! Dokter mengatakan saya berisiko tinggi serangan jantung. Saya baru berusia 43 tahun saat itu.
-
-Efek Samping Obat:
-Dokter meresepkan statin, tetapi saya mengalami efek samping berupa nyeri otot yang parah dan gangguan pencernaan. Saya bingung harus bagaimana.
-
-Solusi Alternatif:
-Istri saya menemukan RAHO Club dan terapi nano bubble mereka. Setelah konsultasi, saya memutuskan untuk mencoba pendekatan yang lebih alami.
-
-Program Terapi:
-Saya menjalani terapi nano bubble 3 kali seminggu, dikombinasikan dengan program diet personal dan olahraga teratur. Tim RAHO Club sangat supportif dan selalu memantau perkembangan saya.
-
-Hasil Luar Biasa:
-Dalam 3 bulan, kolesterol total saya turun menjadi 220 mg/dL, LDL 140 mg/dL. Setelah 6 bulan, kolesterol total saya 180 mg/dL, LDL 100 mg/dL - normal! Yang terpenting, tanpa efek samping apapun.
-
-Perubahan Hidup:
-Kini saya lebih memperhatikan kesehatan. Saya rutin olahraga, makan sehat, dan menjalani terapi maintenance. Bisnis tetap jalan, tetapi kesehatan adalah prioritas utama.`,
+    content: 'Kolesterol tinggi saya turun drastis setelah terapi nano bubble tanpa efek samping obat.',
     excerpt: 'Kolesterol Tinggi - Menurunkan kolesterol tinggi secara alami tanpa efek samping',
     category: 'kisah-pasien',
   },

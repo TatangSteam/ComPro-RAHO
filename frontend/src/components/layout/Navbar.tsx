@@ -47,12 +47,14 @@ export default function Navbar() {
           </div>
 
           {/* Desktop CTA Button */}
-          <Link
-            href="/hubungi-kami"
+          <a
+            href="https://wa.link/h2uyet"
+            target="_blank"
+            rel="noopener noreferrer"
             className="hidden md:block bg-yellow-600 hover:bg-yellow-700 text-white px-6 py-2.5 rounded-full text-sm font-medium transition-colors"
           >
             Hubungi Kami
-          </Link>
+          </a>
 
           {/* Mobile Menu Button */}
           <button 
@@ -88,13 +90,15 @@ export default function Navbar() {
                   {link.label}
                 </Link>
               ))}
-              <Link
-                href="/hubungi-kami"
+              <a
+                href="https://wa.link/h2uyet"
+                target="_blank"
+                rel="noopener noreferrer"
                 onClick={() => setIsMobileMenuOpen(false)}
                 className="bg-yellow-600 hover:bg-yellow-700 text-white px-6 py-2.5 rounded-full text-sm font-medium transition-colors text-center"
               >
                 Hubungi Kami
-              </Link>
+              </a>
             </div>
           </div>
         )}

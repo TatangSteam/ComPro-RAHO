@@ -21,9 +21,9 @@ export default function TerapiPendukungSection({ articles }: TerapiPendukungSect
       content: '',
       excerpt: 'Terapi pendukung untuk mengatasi kolesterol tinggi dengan pendekatan holistik dan teknologi nano bubble.',
       imageUrl: null,
-      author: 'Juwita Tri Yanti',
       category: 'penyakit',
       published: true,
+      author: 'Tim Medis RAHO',
       createdAt: new Date().toISOString(),
       updatedAt: new Date().toISOString(),
     },
@@ -34,9 +34,9 @@ export default function TerapiPendukungSection({ articles }: TerapiPendukungSect
       content: '',
       excerpt: 'Pemulihan dan pencegahan stroke dengan terapi seluler berbasis bioteknologi molekuler.',
       imageUrl: null,
-      author: 'Juwita Tri Yanti',
       category: 'penyakit',
       published: true,
+      author: 'Tim Medis RAHO',
       createdAt: new Date().toISOString(),
       updatedAt: new Date().toISOString(),
     },
@@ -47,9 +47,9 @@ export default function TerapiPendukungSection({ articles }: TerapiPendukungSect
       content: '',
       excerpt: 'Terapi pendukung untuk pasien kanker dengan fokus pada regenerasi sel dan peningkatan imunitas.',
       imageUrl: null,
-      author: 'Juwita Tri Yanti',
       category: 'penyakit',
       published: true,
+      author: 'Tim Medis RAHO',
       createdAt: new Date().toISOString(),
       updatedAt: new Date().toISOString(),
     },
@@ -60,9 +60,9 @@ export default function TerapiPendukungSection({ articles }: TerapiPendukungSect
       content: '',
       excerpt: 'Manajemen diabetes dengan pendekatan komprehensif untuk kontrol gula darah optimal.',
       imageUrl: null,
-      author: 'Juwita Tri Yanti',
       category: 'penyakit',
       published: true,
+      author: 'Tim Medis RAHO',
       createdAt: new Date().toISOString(),
       updatedAt: new Date().toISOString(),
     },
@@ -73,9 +73,9 @@ export default function TerapiPendukungSection({ articles }: TerapiPendukungSect
       content: '',
       excerpt: 'Terapi pendukung untuk kesehatan jantung dengan teknologi regenerasi seluler.',
       imageUrl: null,
-      author: 'Juwita Tri Yanti',
       category: 'penyakit',
       published: true,
+      author: 'Tim Medis RAHO',
       createdAt: new Date().toISOString(),
       updatedAt: new Date().toISOString(),
     },
@@ -86,9 +86,9 @@ export default function TerapiPendukungSection({ articles }: TerapiPendukungSect
       content: '',
       excerpt: 'Pengelolaan tekanan darah tinggi dengan terapi holistik dan pemulihan seluler.',
       imageUrl: null,
-      author: 'Juwita Tri Yanti',
       category: 'penyakit',
       published: true,
+      author: 'Tim Medis RAHO',
       createdAt: new Date().toISOString(),
       updatedAt: new Date().toISOString(),
     },
@@ -168,15 +168,17 @@ export default function TerapiPendukungSection({ articles }: TerapiPendukungSect
                 </p>
 
                 {/* CTA Link */}
-                <Link 
-                  href={`/artikel-kesehatan/${article.slug}`}
+                <a 
+                  href="https://wa.link/h2uyet"
+                  target="_blank"
+                  rel="noopener noreferrer"
                   className="text-yellow-600 hover:text-yellow-700 font-medium flex items-center gap-2 text-sm sm:text-base"
                 >
                   Pelajari
                   <svg className="w-3 h-3 sm:w-4 sm:h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                     <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M17 8l4 4m0 0l-4 4m4-4H3" />
                   </svg>
-                </Link>
+                </a>
               </div>
             ))}
           </div>

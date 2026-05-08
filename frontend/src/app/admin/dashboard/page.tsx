@@ -3,22 +3,33 @@
 import { useEffect } from 'react';
 import { useRouter } from 'next/navigation';
 import Link from 'next/link';
+import { useRequireAuth, useAuth } from '@/hooks/useAuth';
 
 export default function AdminDashboard() {
   const router = useRouter();
-
-  useEffect(() => {
-    // Check authentication
-    const token = localStorage.getItem('adminToken');
-    if (!token) {
-      router.push('/admin/login');
-    }
-  }, [router]);
+  const { isAuthenticated, loading } = useRequireAuth();
+  const { logout, admin } = useAuth();
 
   const handleLogout = () => {
-    localStorage.removeItem('adminToken');
-    router.push('/admin/login');
+    logout();
   };
+
+  // Show loading while checking authentication
+  if (loading) {
+    return (
+      <div className="min-h-screen bg-gray-50 flex items-center justify-center">
+        <div className="text-center">
+          <div className="animate-spin rounded-full h-12 w-12 border-b-2 border-yellow-600 mx-auto mb-4"></div>
+          <p className="text-gray-600">Memuat dashboard...</p>
+        </div>
+      </div>
+    );
+  }
+
+  // Don't render if not authenticated (useRequireAuth will handle redirect)
+  if (!isAuthenticated) {
+    return null;
+  }
 
   const menuItems = [
     {
@@ -49,6 +60,12 @@ export default function AdminDashboard() {
             </div>
             <div className="flex items-center gap-4">
               <Link
+                href="/admin/profile"
+                className="text-gray-600 hover:text-gray-900 font-medium text-sm"
+              >
+                Profile
+              </Link>
+              <Link
                 href="/"
                 className="text-gray-600 hover:text-gray-900 font-medium text-sm"
               >
@@ -69,8 +86,13 @@ export default function AdminDashboard() {
       <main className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
         {/* Welcome Card */}
         <div className="bg-gradient-to-r from-yellow-500 to-yellow-600 rounded-2xl p-8 mb-8 text-white">
-          <h2 className="text-3xl font-bold mb-2">Selamat Datang, Admin!</h2>
+          <h2 className="text-3xl font-bold mb-2">
+            Selamat Datang{admin?.name ? `, ${admin.name}` : ', Admin'}!
+          </h2>
           <p className="text-yellow-100">Kelola konten website RAHO Club dari dashboard ini</p>
+          {admin?.email && (
+            <p className="text-yellow-200 text-sm mt-2">Logged in as: {admin.email}</p>
+          )}
         </div>
 
         {/* Menu Grid */}

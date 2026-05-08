@@ -5,7 +5,7 @@ export default function Footer() {
   return (
     <footer className="bg-[#1a1a1a] text-white">
       <div className="max-w-7xl mx-auto px-4 py-12">
-        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-8">
+        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-5 gap-8">
           {/* Logo & Description */}
           <div className="sm:col-span-2 lg:col-span-1">
             <Image 
@@ -115,6 +115,24 @@ export default function Footer() {
                 </Link>
               </li>
             </ul>
+          </div>
+
+          {/* Hubungi Kami */}
+          <div>
+            <h3 className="font-bold text-lg mb-4">Hubungi Kami</h3>
+            <div className="space-y-3">
+              <a
+                href="https://wa.link/h2uyet"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="inline-block bg-yellow-600 hover:bg-yellow-700 text-white px-4 py-2 rounded-full text-sm font-medium transition-colors"
+              >
+                Konsultasi Gratis
+              </a>
+              <p className="text-gray-400 text-xs">
+                Hubungi kami untuk konsultasi kesehatan gratis
+              </p>
+            </div>
           </div>
         </div>
 
