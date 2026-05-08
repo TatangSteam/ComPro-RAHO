@@ -91,8 +91,8 @@ services:
     build:
       context: ./backend
       dockerfile: Dockerfile
-    image: raho-backend:latest
-    container_name: raho-backend
+    image: raho-compro-api:latest
+    container_name: raho-compro-api
     restart: unless-stopped
     environment:
       NODE_ENV: production
@@ -103,7 +103,7 @@ services:
       MINIO_BUCKET: raho-uploads
       MINIO_PUBLIC_URL: http://minio:9000
       MINIO_USE_SSL: "false"
-      CORS_ORIGIN: ${CORS_ORIGIN:-http://38.147.122.167}
+      CORS_ORIGIN: ${CORS_ORIGIN:-https://profile.rahopremier.id,http://38.147.122.167}
       JWT_ACCESS_EXPIRES: 15m
       JWT_REFRESH_EXPIRES: 7d
       RATE_LIMIT_WINDOW_MS: 60000
@@ -137,8 +137,8 @@ services:
         NEXT_PUBLIC_API_URL: ${WEB_NEXT_PUBLIC_API_URL:-/api/v1}
         NEXT_PUBLIC_APP_NAME: ${WEB_NEXT_PUBLIC_APP_NAME:-RAHO Klinik}
         NEXT_PUBLIC_APP_VERSION: ${WEB_NEXT_PUBLIC_APP_VERSION:-1.0.0}
-    image: raho-frontend:latest
-    container_name: raho-frontend
+    image: raho-compro-web:latest
+    container_name: raho-compro-web
     restart: unless-stopped
     environment:
       NODE_ENV: production
@@ -166,8 +166,8 @@ services:
     build:
       context: ./backend
       dockerfile: Dockerfile
-    image: raho-backend:latest
-    container_name: raho-migrate
+    image: raho-compro-api:latest
+    container_name: raho-compro-migrate
     restart: "no"
     # depends_on:
     #   - postgres
@@ -186,8 +186,8 @@ services:
       context: ./backend
       dockerfile: Dockerfile
       target: builder
-    image: raho-seed-builder:latest
-    container_name: raho-seed
+    image: raho-compro-seed-builder:latest
+    container_name: raho-compro-seed
     restart: "no"
     # depends_on:
     #   - postgres
