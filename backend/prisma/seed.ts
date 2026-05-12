@@ -3,26 +3,21 @@ import * as Minio from 'minio';
 import * as fs from 'fs';
 import * as path from 'path';
 import dotenv from 'dotenv';
-<<<<<<< HEAD:backend/src/scripts/seed.ts
-import { penyakitArticles, tindakanMedisArticles, kisahPasienArticles } from './seedData/articles';
-import { locations } from './seedData/locations';
-import { admins, hashPassword } from './seedData/admins';
-=======
 import { 
   penyakitArticles, 
   tindakanMedisArticles, 
   kisahPasienArticles,
-  locations
+  locations,
+  admins,
+  hashPassword,
 } from './seeds';
-// import { locations } from './seedData/locations';
->>>>>>> 32037d47481dd78a9d64a682ce05d2b863d80f6f:backend/prisma/seed.ts
 
 dotenv.config();
 
 const prisma = new PrismaClient();
 
 const minioClient = new Minio.Client({
-  endPoint: process.env.MINIO_ENDPOINT || 'localhost',
+  endPoint: process.env.MINIO_ENDPOINT || 'minio',
   port: parseInt(process.env.MINIO_PORT || '9000'),
   useSSL: process.env.MINIO_USE_SSL === 'true',
   accessKey: process.env.MINIO_ACCESS_KEY || '',
@@ -33,7 +28,7 @@ const bucketName = process.env.MINIO_BUCKET || 'raho-uploads';
 
 async function uploadLogoToMinio(fileName: string): Promise<string> {
   try {
-    const logoPath = path.join(__dirname, '../../../frontend/public/assets/LOGORAHO.png');
+    const logoPath = path.join(__dirname, '../frontend/public/assets/LOGORAHO.png');
     
     if (!fs.existsSync(logoPath)) {
       console.log('Logo file not found, skipping image upload');

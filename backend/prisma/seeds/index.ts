@@ -6,3 +6,4 @@
 
 export { penyakitArticles, tindakanMedisArticles, kisahPasienArticles, } from './articles';
 export { locations } from './locations';
+export { admins, hashPassword, verifyPassword } from './admins';
