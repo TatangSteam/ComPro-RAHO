@@ -26,4 +26,17 @@ export const initializeMinio = async (): Promise<void> => {
   }
 };
 
+export const extractKeyFromUrl = (fileUrl?: string): string | undefined => {
+  if (!fileUrl) return undefined;
+  try {
+    const url = new URL(fileUrl);
+    const parts = url.pathname.split('/').filter(Boolean);
+    return parts.pop();
+  } catch (e) {
+    // not an absolute URL — fall back to simple split
+    const parts = fileUrl.split('/').filter(Boolean);
+    return parts.pop();
+  }
+};
+
 export { minioClient, bucketName };

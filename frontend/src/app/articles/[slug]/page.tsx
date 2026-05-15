@@ -4,6 +4,7 @@ import { useEffect, useState } from 'react';
 import axios from 'axios';
 import { useParams } from 'next/navigation';
 import Link from 'next/link';
+import AuthImage from '@/components/Shared/AuthImage';
 import { Article } from '@/types';
 
 export default function ArticlePage() {
@@ -45,9 +46,9 @@ export default function ArticlePage() {
         
         <article className="bg-white rounded-lg shadow-md overflow-hidden">
           {article.imageUrl && (
-            <img 
-              src={article.imageUrl} 
-              alt={article.title} 
+            <AuthImage
+              src={article.imageUrl}
+              alt={article.title}
               className="w-full h-96 object-cover"
             />
           )}

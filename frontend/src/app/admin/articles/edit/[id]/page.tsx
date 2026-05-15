@@ -4,6 +4,7 @@ import { useEffect, useState } from 'react';
 import { useRouter, useParams } from 'next/navigation';
 import axios from 'axios';
 import Link from 'next/link';
+import AuthImage from '@/components/Shared/AuthImage';
 import { Article } from '@/types';
 
 export default function EditArticle() {
@@ -239,7 +240,7 @@ export default function EditArticle() {
               <label className="block text-sm font-medium text-gray-700 mb-2">
                 Gambar Saat Ini
               </label>
-              <img
+              <AuthImage
                 src={currentImageUrl}
                 alt="Current"
                 className="w-full max-w-md h-48 object-cover rounded-lg"

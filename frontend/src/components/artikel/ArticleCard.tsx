@@ -1,4 +1,5 @@
 import Link from 'next/link';
+import AuthImage from '@/components/Shared/AuthImage';
 import { Article } from '@/types';
 
 interface ArticleCardProps {
@@ -23,9 +24,9 @@ export default function ArticleCard({ article }: ArticleCardProps) {
       {/* Image */}
       <div className="relative h-48 sm:h-56 bg-gray-200 overflow-hidden">
         {article.imageUrl ? (
-          <img 
-            src={article.imageUrl} 
-            alt={article.title} 
+          <AuthImage
+            src={article.imageUrl}
+            alt={article.title}
             className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-300"
           />
         ) : (

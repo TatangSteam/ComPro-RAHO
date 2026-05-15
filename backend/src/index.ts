@@ -6,6 +6,7 @@ import articlesRouter from './routes/articles';
 import companyRouter from './routes/company';
 import locationsRouter from './routes/locations';
 import authRouter from './routes/auth';
+import filesRouter from './routes/files';
 
 dotenv.config();
 
@@ -20,6 +21,7 @@ app.use('/api/articles', articlesRouter);
 app.use('/api/company', companyRouter);
 app.use('/api/locations', locationsRouter);
 app.use('/api/auth', authRouter);
+app.use('/api/files', filesRouter);
 
 app.get('/api/health', (req, res) => {
   res.json({ status: 'ok' });

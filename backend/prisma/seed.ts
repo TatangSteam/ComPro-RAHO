@@ -48,9 +48,10 @@ async function uploadLogoToMinio(fileName: string): Promise<string> {
       }
     );
 
-    const publicUrl = `${process.env.MINIO_PUBLIC_URL}/${bucketName}/${uniqueFileName}`;
-    console.log(`Uploaded image: ${publicUrl}`);
-    return publicUrl;
+    const apiPrefix = process.env.API_PREFIX || '/api';
+    const filePath = `${apiPrefix}/files/${uniqueFileName}`;
+    console.log(`Uploaded image: ${filePath}`);
+    return filePath;
   } catch (error) {
     console.error('Error uploading to MinIO:', error);
     return '';

@@ -5,6 +5,7 @@ import { useRouter } from 'next/navigation';
 import axios from 'axios';
 import Link from 'next/link';
 import { Article } from '@/types';
+import AuthImage from '@/components/Shared/AuthImage';
 import { useRequireAuth } from '@/hooks/useAuth';
 
 export default function AdminArticles() {
@@ -198,7 +199,7 @@ export default function AdminArticles() {
                     <td className="px-6 py-4">
                       <div className="flex items-center">
                         {article.imageUrl && (
-                          <img
+                          <AuthImage
                             src={article.imageUrl}
                             alt={article.title}
                             className="w-12 h-12 rounded-lg object-cover mr-4"

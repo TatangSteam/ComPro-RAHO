@@ -97,13 +97,13 @@ services:
     environment:
       NODE_ENV: production
       PORT: 5000
-      API_PREFIX: /api/v1
+      API_PREFIX: /api
       MINIO_ENDPOINT: minio
       MINIO_PORT: 9000
       MINIO_BUCKET: raho-uploads
       MINIO_PUBLIC_URL: http://minio:9000
       MINIO_USE_SSL: "false"
-      CORS_ORIGIN: ${CORS_ORIGIN:-https://profile.rahopremier.id,http://38.147.122.167}
+      CORS_ORIGIN: ${CORS_ORIGIN:-https://rahopremier.id,http://38.147.122.167}
       JWT_ACCESS_EXPIRES: 15m
       JWT_REFRESH_EXPIRES: 7d
       RATE_LIMIT_WINDOW_MS: 60000
@@ -134,7 +134,7 @@ services:
       context: ./frontend
       dockerfile: Dockerfile
       args:
-        NEXT_PUBLIC_API_URL: ${WEB_NEXT_PUBLIC_API_URL:-/api/v1}
+        NEXT_PUBLIC_API_URL: ${WEB_NEXT_PUBLIC_API_URL:-https://rahopremier.id/api}
         NEXT_PUBLIC_APP_NAME: ${WEB_NEXT_PUBLIC_APP_NAME:-RAHO Klinik}
         NEXT_PUBLIC_APP_VERSION: ${WEB_NEXT_PUBLIC_APP_VERSION:-1.0.0}
     image: raho-compro-web:latest
@@ -143,7 +143,7 @@ services:
     environment:
       NODE_ENV: production
       PORT: 3001
-      NEXT_PUBLIC_API_URL: ${WEB_NEXT_PUBLIC_API_URL:-/api/v1}
+      NEXT_PUBLIC_API_URL: ${WEB_NEXT_PUBLIC_API_URL:-https://rahopremier.id/api}
       NEXT_PUBLIC_APP_NAME: ${WEB_NEXT_PUBLIC_APP_NAME:-RAHO Klinik}
       NEXT_PUBLIC_APP_VERSION: ${WEB_NEXT_PUBLIC_APP_VERSION:-1.0.0}
     depends_on:

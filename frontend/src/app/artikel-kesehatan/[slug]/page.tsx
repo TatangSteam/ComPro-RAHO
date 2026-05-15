@@ -6,6 +6,7 @@ import { useParams } from 'next/navigation';
 import Link from 'next/link';
 import { Article } from '@/types';
 import RelatedArticlesSection from '@/components/artikel/RelatedArticlesSection';
+import AuthImage from '@/components/Shared/AuthImage';
 
 export default function ArtikelDetailPage() {
   const params = useParams();
@@ -73,9 +74,9 @@ export default function ArtikelDetailPage() {
           {/* Featured Image */}
           {article.imageUrl && (
             <div className="rounded-2xl overflow-hidden mb-8 sm:mb-12 shadow-lg">
-              <img 
-                src={article.imageUrl} 
-                alt={article.title} 
+              <AuthImage
+                src={article.imageUrl}
+                alt={article.title}
                 className="w-full h-64 sm:h-96 md:h-[500px] object-cover"
               />
             </div>

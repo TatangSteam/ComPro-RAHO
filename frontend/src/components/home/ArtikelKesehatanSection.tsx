@@ -2,6 +2,7 @@
 
 import { useState } from 'react';
 import Link from 'next/link';
+import AuthImage from '@/components/Shared/AuthImage';
 import { Article } from '@/types';
 
 interface ArtikelKesehatanSectionProps {
@@ -68,8 +69,8 @@ export default function ArtikelKesehatanSection({ articles }: ArtikelKesehatanSe
                   {/* Image */}
                   <div className="rounded-xl sm:rounded-2xl overflow-hidden mb-3 sm:mb-4 h-48 sm:h-52 md:h-56 bg-gray-200">
                     {article.imageUrl ? (
-                      <img 
-                        src={article.imageUrl} 
+                      <AuthImage
+                        src={article.imageUrl}
                         alt={article.title}
                         className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-300"
                       />
