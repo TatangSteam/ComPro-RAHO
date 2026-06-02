@@ -62,9 +62,9 @@ export default function RootLayout({
       availableLanguage: ['id', 'en']
     },
     sameAs: [
-      'https://www.linkedin.com/company/rahoclub',
-      'https://www.instagram.com/rahoclub',
-      'https://www.youtube.com/@rahoclub'
+      'https://www.linkedin.com/company/raho-premier/',
+      'https://www.instagram.com/rahopremier/',
+      'https://www.tiktok.com/@rahopremier?_r=1&_t=ZS-96s3j7lRpHb'
     ]
   };
 
