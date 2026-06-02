@@ -28,7 +28,7 @@ const bucketName = process.env.MINIO_BUCKET || 'raho-uploads';
 
 async function uploadLogoToMinio(fileName: string): Promise<string> {
   try {
-    const logoPath = path.join(__dirname, '../frontend/public/assets/LOGORAHO.png');
+    const logoPath = path.join(__dirname, '../frontend/public/assets/icon.png');
     
     if (!fs.existsSync(logoPath)) {
       console.log('Logo file not found, skipping image upload');

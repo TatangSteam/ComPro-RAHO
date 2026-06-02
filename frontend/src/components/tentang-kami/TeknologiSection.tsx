@@ -5,8 +5,9 @@ export default function TeknologiSection() {
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 lg:gap-12 items-center">
           <div className="rounded-3xl overflow-hidden shadow-xl order-2 lg:order-1">
             <img 
-              src="/assets/technology.jpg" 
+              src="/assets/technology.png" 
               alt="Nano Bubble Technology"
+              loading="lazy"
               className="w-full h-64 md:h-80 lg:h-96 object-cover"
             />
           </div>

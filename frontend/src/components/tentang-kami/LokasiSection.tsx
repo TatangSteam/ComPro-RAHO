@@ -28,7 +28,23 @@ export default function LokasiSection({ locations }: LokasiSectionProps) {
           {locations.map((location) => (
             <div key={location.id} className="bg-white rounded-2xl p-5 md:p-6 shadow-lg">
               <h3 className="text-lg md:text-xl font-bold text-gray-900 mb-1">{location.name}</h3>
-              <p className="text-base md:text-lg text-gray-900 font-semibold mb-3">{location.city}</p>
+              <p className="text-base md:text-lg text-gray-900 font-semibold mb-2">{location.city}</p>
+              
+              {/* Phone Number */}
+              {location.phone && (
+                <div className="flex items-center gap-2 mb-3">
+                  <svg className="w-4 h-4 md:w-5 md:h-5 text-yellow-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M3 5a2 2 0 012-2h3.28a1 1 0 01.948.684l1.498 4.493a1 1 0 01-.502 1.21l-2.257 1.13a11.042 11.042 0 005.516 5.516l1.13-2.257a1 1 0 011.21-.502l4.493 1.498a1 1 0 01.684.949V19a2 2 0 01-2 2h-1C9.716 21 3 14.284 3 6V5z" />
+                  </svg>
+                  <a 
+                    href={`tel:${location.phone}`}
+                    className="text-sm md:text-base text-gray-700 hover:text-yellow-600 font-medium transition-colors"
+                  >
+                    {location.phone}
+                  </a>
+                </div>
+              )}
+              
               <p className="text-sm md:text-base text-gray-600 mb-4 md:mb-6 leading-relaxed">
                 {location.address}
               </p>

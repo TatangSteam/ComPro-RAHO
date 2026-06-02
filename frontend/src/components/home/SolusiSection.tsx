@@ -97,6 +97,7 @@ export default function SolusiSection({ articles }: SolusiSectionProps) {
                     <img 
                       src={firstArticle.imageUrl} 
                       alt={firstArticle.title}
+                      loading="lazy"
                       className="w-full h-full object-cover"
                     />
                   </div>

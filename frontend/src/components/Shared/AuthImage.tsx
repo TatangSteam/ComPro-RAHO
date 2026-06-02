@@ -37,5 +37,12 @@ export default function AuthImage({ src, alt, ...rest }: Props) {
 
   if (!src) return null;
 
-  return <img src={objectUrl || ''} alt={alt} {...rest} />;
+  return (
+    <img 
+      src={objectUrl || ''} 
+      alt={alt} 
+      loading="lazy"
+      {...rest} 
+    />
+  );
 }

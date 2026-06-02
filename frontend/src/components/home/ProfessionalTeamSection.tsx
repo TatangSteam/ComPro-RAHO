@@ -9,7 +9,7 @@ export default function ProfessionalTeamSection() {
           <div className="relative order-2 lg:order-1">
             <div className="rounded-3xl overflow-hidden shadow-xl">
               <Image
-                src="/assets/team-doctors.jpg"
+                src="/assets/team-doctors.png"
                 alt="Professional Medical Team"
                 width={600}
                 height={400}

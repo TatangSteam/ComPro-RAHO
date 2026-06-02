@@ -73,6 +73,7 @@ export default function PartnershipPage() {
                   <img
                     src="/assets/building.jpg"
                     alt="Partnership untuk Dokter"
+                    loading="lazy"
                     className="w-full h-64 sm:h-80 md:h-96 object-cover"
                   />
                 </div>
@@ -108,8 +109,9 @@ export default function PartnershipPage() {
                 <div className="order-1 md:order-2">
                   <div className="rounded-2xl overflow-hidden shadow-xl">
                     <img
-                      src="/assets/homecare.jpg"
+                      src="/assets/UntukKlinik.png"
                       alt="Partnership untuk Klinik"
+                      loading="lazy"
                       className="w-full h-64 sm:h-80 md:h-96 object-cover"
                     />
                   </div>
@@ -149,8 +151,9 @@ export default function PartnershipPage() {
               <div>
                 <div className="rounded-2xl overflow-hidden shadow-xl bg-blue-50 p-8">
                   <img
-                    src="/assets/homecare.jpg"
+                    src="/assets/UntukKlinik.png"
                     alt="Partnership untuk Klinik"
+                    loading="lazy"
                     className="w-full h-64 sm:h-80 object-contain"
                   />
                 </div>

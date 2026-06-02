@@ -4,6 +4,7 @@ import { useEffect, useState } from 'react';
 import axios from 'axios';
 import { useParams } from 'next/navigation';
 import Link from 'next/link';
+import Script from 'next/script';
 import { Article } from '@/types';
 import RelatedArticlesSection from '@/components/artikel/RelatedArticlesSection';
 import AuthImage from '@/components/Shared/AuthImage';
@@ -46,8 +47,42 @@ export default function ArtikelDetailPage() {
     );
   }
 
+  // Schema.org Article structured data for SEO
+  const articleJsonLd = {
+    '@context': 'https://schema.org',
+    '@type': 'Article',
+    headline: article.title,
+    image: article.imageUrl ? `${process.env.NEXT_PUBLIC_API_URL?.replace('/api', '')}${article.imageUrl}` : undefined,
+    author: {
+      '@type': 'Person',
+      name: article.author,
+    },
+    publisher: {
+      '@type': 'Organization',
+      name: 'RAHO Club Premier',
+      logo: {
+        '@type': 'ImageObject',
+        url: 'https://rahopremier.id/assets/icon.png',
+      },
+    },
+    datePublished: article.createdAt,
+    dateModified: article.updatedAt,
+    description: article.content.substring(0, 160),
+    mainEntityOfPage: {
+      '@type': 'WebPage',
+      '@id': `https://rahopremier.id/artikel-kesehatan/${article.slug}`,
+    },
+  };
+
   return (
     <>
+      {/* Schema.org Article Structured Data */}
+      <Script
+        id="article-json-ld"
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(articleJsonLd) }}
+      />
+      
       <div className="min-h-screen bg-white">
         {/* Breadcrumb */}
         <div className="bg-gray-50 py-4 border-b">

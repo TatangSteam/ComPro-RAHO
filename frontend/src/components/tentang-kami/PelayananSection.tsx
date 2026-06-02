@@ -19,8 +19,9 @@ export default function PelayananSection() {
           </div>
           <div className="rounded-3xl overflow-hidden shadow-xl order-2">
             <img 
-              src="/assets/homecare.jpg" 
+              src="/assets/homecare.png" 
               alt="Homecare Service"
+              loading="lazy"
               className="w-full h-64 md:h-80 lg:h-96 object-cover"
             />
           </div>

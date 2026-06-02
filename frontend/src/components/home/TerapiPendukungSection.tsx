@@ -168,17 +168,15 @@ export default function TerapiPendukungSection({ articles }: TerapiPendukungSect
                 </p>
 
                 {/* CTA Link */}
-                <a 
-                  href="https://wa.link/h2uyet"
-                  target="_blank"
-                  rel="noopener noreferrer"
+                <Link 
+                  href="/artikel-kesehatan"
                   className="text-yellow-600 hover:text-yellow-700 font-medium flex items-center gap-2 text-sm sm:text-base"
                 >
                   Pelajari
                   <svg className="w-3 h-3 sm:w-4 sm:h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                     <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M17 8l4 4m0 0l-4 4m4-4H3" />
                   </svg>
-                </a>
+                </Link>
               </div>
             ))}
           </div>

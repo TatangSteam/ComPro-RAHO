@@ -121,16 +121,24 @@ export default function Footer() {
           <div>
             <h3 className="font-bold text-lg mb-4">Hubungi Kami</h3>
             <div className="space-y-3">
-              <a
-                href="https://wa.link/h2uyet"
-                target="_blank"
-                rel="noopener noreferrer"
-                className="inline-block bg-yellow-600 hover:bg-yellow-700 text-white px-4 py-2 rounded-full text-sm font-medium transition-colors"
-              >
-                Konsultasi Gratis
-              </a>
+              <div className="flex flex-col gap-2">
+                <Link
+                  href="/artikel-kesehatan"
+                  className="inline-block bg-gray-700 hover:bg-gray-600 text-white px-4 py-2 rounded-full text-sm font-medium transition-colors text-center"
+                >
+                  Pelajari
+                </Link>
+                <a
+                  href="https://wa.link/h2uyet"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="inline-block bg-yellow-600 hover:bg-yellow-700 text-white px-4 py-2 rounded-full text-sm font-medium transition-colors text-center"
+                >
+                  Konsultasi Gratis
+                </a>
+              </div>
               <p className="text-gray-400 text-xs">
-                Hubungi kami untuk konsultasi kesehatan gratis
+                Pelajari artikel kesehatan atau hubungi kami untuk konsultasi gratis
               </p>
             </div>
           </div>

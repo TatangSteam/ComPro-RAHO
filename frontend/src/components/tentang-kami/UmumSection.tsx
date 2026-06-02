@@ -7,6 +7,7 @@ export default function UmumSection() {
             <img 
               src="/assets/building.jpg" 
               alt="RAHO Club Building"
+              loading="lazy"
               className="w-full h-64 md:h-80 lg:h-96 object-cover"
             />
           </div>
