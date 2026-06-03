@@ -12,14 +12,47 @@ export default function KisahPasienSection({ articles }: KisahPasienSectionProps
   const [currentIndex, setCurrentIndex] = useState(0);
   const itemsPerPage = 2;
 
+  // Helper function untuk mendapatkan excerpt singkat
+  const getShortExcerpt = (article: Article): string => {
+    // Jika ada excerpt dan tidak terlalu panjang, gunakan excerpt
+    if (article.excerpt && article.excerpt.length <= 150) {
+      return article.excerpt;
+    }
+    
+    // Jika tidak ada excerpt atau terlalu panjang, ambil dari content
+    const content = article.content;
+    
+    // Coba ambil kalimat pertama
+    const firstSentence = content.split(/[.!?]/)[0];
+    
+    // Jika kalimat pertama terlalu panjang (>150 karakter), potong
+    if (firstSentence.length > 150) {
+      return firstSentence.substring(0, 147) + '...';
+    }
+    
+    // Jika kalimat pertama terlalu pendek (<50 karakter), ambil 2 kalimat
+    if (firstSentence.length < 50) {
+      const sentences = content.split(/[.!?]/);
+      const twoSentences = sentences.slice(0, 2).join('. ');
+      
+      if (twoSentences.length > 150) {
+        return twoSentences.substring(0, 147) + '...';
+      }
+      
+      return twoSentences + (sentences.length > 2 ? '...' : '.');
+    }
+    
+    return firstSentence + '...';
+  };
+
   // Dummy data jika belum ada artikel
   const dummyArticles: Article[] = [
     {
       id: '1',
       title: 'Juwita Tri Yanti',
       slug: 'juwita-tri-yanti',
-      content: 'Berkat terapi di RAHO Club, saya sembuh total dari kanker tiroid.',
-      excerpt: 'Kanker Tiroid',
+      content: 'Berkat terapi di RAHO Club, saya sembuh total dari kanker tiroid. Setelah menjalani terapi nano bubble selama 6 bulan, kondisi saya membaik drastis.',
+      excerpt: 'Berkat terapi di RAHO Club, saya sembuh total dari kanker tiroid.',
       imageUrl: '/assets/patient-1.jpg',
       category: 'kisah-pasien',
       published: true,
@@ -31,8 +64,8 @@ export default function KisahPasienSection({ articles }: KisahPasienSectionProps
       id: '2',
       title: 'Budi Santoso',
       slug: 'budi-santoso',
-      content: 'Setelah stroke, terapi seluler di RAHO Club membuat saya pulih total.',
-      excerpt: 'Stroke & Pemulihan Saraf',
+      content: 'Setelah stroke, terapi seluler di RAHO Club membuat saya pulih total. Kini saya bisa beraktivitas normal kembali tanpa bantuan.',
+      excerpt: 'Setelah stroke, terapi seluler di RAHO Club membuat saya pulih total.',
       imageUrl: '/assets/patient-2.jpg',
       category: 'kisah-pasien',
       published: true,
@@ -44,8 +77,8 @@ export default function KisahPasienSection({ articles }: KisahPasienSectionProps
       id: '3',
       title: 'Siti Nurhaliza',
       slug: 'siti-nurhaliza',
-      content: 'Diabetes saya terkontrol dan tidak perlu insulin lagi.',
-      excerpt: 'Diabetes Tipe 2',
+      content: 'Diabetes saya terkontrol dan tidak perlu insulin lagi. Gula darah stabil dan hidup lebih berkualitas.',
+      excerpt: 'Diabetes saya terkontrol dan tidak perlu insulin lagi.',
       imageUrl: '/assets/patient-3.jpg',
       category: 'kisah-pasien',
       published: true,
@@ -57,8 +90,8 @@ export default function KisahPasienSection({ articles }: KisahPasienSectionProps
       id: '4',
       title: 'Ahmad Hidayat',
       slug: 'ahmad-hidayat',
-      content: 'Kolesterol tinggi saya turun drastis setelah terapi nano bubble.',
-      excerpt: 'Kolesterol Tinggi',
+      content: 'Kolesterol tinggi saya turun drastis setelah terapi nano bubble. Dari 280 menjadi 180 dalam 3 bulan.',
+      excerpt: 'Kolesterol tinggi saya turun drastis setelah terapi nano bubble.',
       imageUrl: '/assets/patient-4.jpg',
       category: 'kisah-pasien',
       published: true,
@@ -127,7 +160,7 @@ export default function KisahPasienSection({ articles }: KisahPasienSectionProps
 
                   {/* Testimonial Content */}
                   <blockquote className="text-gray-700 text-base md:text-lg leading-relaxed mb-6 italic">
-                    "{article.content}"
+                    "{getShortExcerpt(article)}"
                   </blockquote>
 
                   {/* Patient Info */}
@@ -137,7 +170,7 @@ export default function KisahPasienSection({ articles }: KisahPasienSectionProps
                     </div>
                     <div>
                       <h4 className="font-bold text-gray-900 text-lg">{article.title}</h4>
-                      <p className="text-yellow-600 font-medium text-sm">{article.excerpt}</p>
+                      <p className="text-yellow-600 font-medium text-sm">{article.category === 'kisah-pasien' ? 'Pasien RAHO Club' : article.category}</p>
                       <div className="flex items-center gap-2 mt-1">
                         <div className="w-2 h-2 bg-green-500 rounded-full"></div>
                         <span className="text-green-600 text-xs font-medium">Verified Patient</span>
