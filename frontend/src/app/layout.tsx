@@ -14,10 +14,15 @@ const poppins = Poppins({
 });
 
 export const metadata: Metadata = {
+  metadataBase: new URL('https://rahopremier.id'),
   title: 'RAHO Club Premier - Ekosistem Riset Kesehatan & Pemulihan Seluler',
   description: 'RAHO Club Premier adalah ekosistem riset kesehatan & pemulihan seluler berbasis bioteknologi molekuler dengan Teknologi Nano Bubble untuk aging sehat & regenerasi tubuh alami.',
   keywords: ['RAHO Club', 'terapi nano bubble', 'pemulihan seluler', 'bioteknologi', 'kesehatan', 'regenerasi tubuh', 'wellness'],
   authors: [{ name: 'RAHO Club Premier' }],
+  icons: {
+    icon: '/assets/icon.png',
+    apple: '/assets/LOGORAHO.png',
+  },
   openGraph: {
     title: 'RAHO Club Premier - Ekosistem Riset Kesehatan & Pemulihan Seluler',
     description: 'Solusi aging sehat & regenerasi tubuh alami hingga akar masalah dengan teknologi nano bubble.',
@@ -25,7 +30,7 @@ export const metadata: Metadata = {
     siteName: 'RAHO Club Premier',
     images: [
       {
-        url: '/assets/icon.png',
+        url: '/assets/LOGORAHO.png',
         width: 1200,
         height: 630,
         alt: 'RAHO Club Premier Logo',
@@ -38,7 +43,7 @@ export const metadata: Metadata = {
     card: 'summary_large_image',
     title: 'RAHO Club Premier',
     description: 'Ekosistem riset kesehatan & pemulihan seluler berbasis bioteknologi molekuler',
-    images: ['/assets/icon.png'],
+    images: ['/assets/LOGORAHO.png'],
   },
 };
 
@@ -53,7 +58,8 @@ export default function RootLayout({
     name: 'RAHO Club Premier',
     description: 'Ekosistem riset kesehatan & pemulihan seluler berbasis bioteknologi molekuler dengan Teknologi Nano Bubble',
     url: 'https://rahopremier.id',
-    logo: 'https://rahopremier.id/assets/icon.png',
+    logo: 'https://rahopremier.id/assets/LOGORAHO.png',
+    image: 'https://rahopremier.id/assets/LOGORAHO.png',
     contactPoint: {
       '@type': 'ContactPoint',
       telephone: '+62-812-3456-7890',
