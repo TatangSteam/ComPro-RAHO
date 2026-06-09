@@ -2,9 +2,7 @@ import './globals.css';
 import type { Metadata } from 'next';
 import { Poppins } from 'next/font/google';
 import Script from 'next/script';
-import Navbar from '@/components/layout/Navbar';
-import CTASection from '@/components/layout/CTASection';
-import Footer from '@/components/layout/Footer';
+import LayoutContent from '@/components/layout/LayoutContent';
 
 const poppins = Poppins({
   subsets: ['latin'],
@@ -77,15 +75,28 @@ export default function RootLayout({
   return (
     <html lang="id">
       <body className={`${poppins.variable} font-sans`}>
+        {/* Google Analytics */}
+        <Script
+          src="https://www.googletagmanager.com/gtag/js?id=G-EL5D2YY7PQ"
+          strategy="afterInteractive"
+        />
+        <Script id="google-analytics" strategy="afterInteractive">
+          {`
+            window.dataLayer = window.dataLayer || [];
+            function gtag(){dataLayer.push(arguments);}
+            gtag('js', new Date());
+            gtag('config', 'G-EL5D2YY7PQ');
+          `}
+        </Script>
+
+        {/* Structured Data (Schema.org) */}
         <Script
           id="json-ld"
           type="application/ld+json"
           dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
         />
-        <Navbar />
-        {children}
-        <CTASection />
-        <Footer />
+        
+        <LayoutContent>{children}</LayoutContent>
       </body>
     </html>
   );
