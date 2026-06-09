@@ -1,0 +1,85 @@
+name: Deploy ComPro-RAHO
+
+on:
+  push:
+    branches:
+      - main
+    paths:
+      - '.github/workflows/deploy.yml'
+      - 'docker-compose.prod.yml'
+      - 'backend/Dockerfile'
+      - 'backend/entrypoint.sh'
+      - 'backend/package.json'
+      - 'backend/package-lock.json'
+      - 'backend/prisma/**'
+      - 'backend/src/**'
+      - 'backend/tsconfig*.json'
+      - 'frontend/Dockerfile'
+      - 'frontend/entrypoint.sh'
+      - 'frontend/package.json'
+      - 'frontend/package-lock.json'
+      - 'frontend/public/**'
+      - 'frontend/src/**'
+      - 'frontend/next.config.*'
+      - 'frontend/postcss.config.*'
+      - 'frontend/tailwind.config.*'
+      - 'frontend/tsconfig.json'
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+concurrency:
+  group: deploy-compro-raho-${{ github.ref }}
+  cancel-in-progress: true
+
+jobs:
+  deploy:
+    runs-on: self-hosted
+    timeout-minutes: 60
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v5
+        with:
+          clean: true
+          fetch-depth: 0
+
+      - name: Set up Node
+        uses: actions/setup-node@v4
+        with:
+          node-version: 20
+
+      - name: Refresh lockfiles
+        shell: bash
+        run: |
+          set -euo pipefail
+
+          cd "${GITHUB_WORKSPACE}"
+          refresh_lockfiles=false
+          if [[ "${GITHUB_EVENT_NAME}" == "workflow_dispatch" ]]; then
+            refresh_lockfiles=true
+          else
+            changed_files="$(git diff --name-only "${{ github.event.before }}" "${{ github.sha }}")"
+            if printf '%s\n' "$changed_files" | grep -Eq '(^|/)(package\.json|package-lock\.json|package-lock\.yaml)$'; then
+              refresh_lockfiles=true
+            fi
+          fi
+
+          if [[ "$refresh_lockfiles" == true ]]; then
+            (cd backend && npm install --package-lock-only --no-workspaces)
+            (cd frontend && npm install --package-lock-only --no-workspaces)
+          fi
+
+      - name: Build and deploy
+        shell: bash
+        run: |
+          set -euo pipefail
+
+          cd "${GITHUB_WORKSPACE}"
+          docker system prune -a -f
+          if ! docker compose -f docker-compose.prod.yml build --pull backend frontend; then
+            echo "Primary Docker Compose build failed, retrying with --no-cache..."
+            docker compose -f docker-compose.prod.yml build --pull --no-cache backend frontend
+          fi
+          docker compose -f docker-compose.prod.yml up -d backend frontend
