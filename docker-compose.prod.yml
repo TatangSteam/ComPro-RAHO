@@ -98,10 +98,10 @@ services:
       NODE_ENV: production
       PORT: 5000
       API_PREFIX: /api
-      MINIO_ENDPOINT: minio
+      MINIO_ENDPOINT: raho-minio
       MINIO_PORT: 9000
       MINIO_BUCKET: raho-uploads
-      MINIO_PUBLIC_URL: http://minio:9000
+      MINIO_PUBLIC_URL: http://raho-minio:9000
       MINIO_USE_SSL: "false"
       CORS_ORIGIN: ${CORS_ORIGIN:-https://rahopremier.id,http://38.147.122.167}
       JWT_ACCESS_EXPIRES: 15m
@@ -118,6 +118,8 @@ services:
       - MINIO_SECRET_KEY
       - JWT_ACCESS_SECRET
       - JWT_REFRESH_SECRET
+    volumes:
+      - ./frontend/public/assets:/usr/src/app/frontend/public/assets:ro
     deploy:
       resources:
         limits:
@@ -194,10 +196,10 @@ services:
     command: ["sh", "-c", "export DATABASE_URL=$(cat /run/secrets/DATABASE_URL) && export MINIO_ACCESS_KEY=$(cat /run/secrets/MINIO_ACCESS_KEY) && export MINIO_SECRET_KEY=$(cat /run/secrets/MINIO_SECRET_KEY) && npx prisma db seed"]
     environment:
       NODE_ENV: production
-      MINIO_ENDPOINT: minio
+      MINIO_ENDPOINT: raho-minio
       MINIO_PORT: 9000
       MINIO_BUCKET: raho-uploads
-      MINIO_PUBLIC_URL: http://minio:9000
+      MINIO_PUBLIC_URL: http://raho-minio:9000
       MINIO_USE_SSL: "false"
     secrets:
       - DATABASE_URL
@@ -220,6 +222,7 @@ services:
 
 networks:
   raho_network:
+    external: true
     name: raho_network
     driver: bridge
 
