@@ -11,54 +11,76 @@ export default function Navbar() {
 
   const navLinks = [
     { href: '/', label: 'Beranda' },
-    { href: '/tentang-kami', label: 'Tentang Kami' },
-    { href: '/artikel-kesehatan', label: 'Artikel Kesehatan' },
+    { href: '/tentang-kami', label: 'Tentang Kami dan Partnership' },
     { href: '/partnership', label: 'Partnership' },
+    { href: '/artikel-kesehatan', label: 'Artikel Kesehatan' },
   ];
 
   return (
-    <nav className="bg-[#1a1a1a] text-white sticky top-0 z-50">
-      <div className="max-w-7xl mx-auto px-4">
+    <nav className="relative text-white sticky top-0 z-50">
+      {/* Background Image */}
+      <div className="absolute inset-0 w-full h-full">
+        <Image 
+          src="/assets/Navbar.png" 
+          alt="Navbar Background" 
+          fill
+          className="object-cover"
+          priority
+          quality={100}
+        />
+        {/* Dark overlay for better text contrast */}
+        <div className="absolute inset-0 bg-black/30"></div>
+      </div>
+
+      {/* Navbar Content */}
+      <div className="relative max-w-7xl mx-auto px-6">
         <div className="flex items-center justify-between h-20">
           {/* Logo */}
-          <Link href="/" className="flex items-center py-2">
+          <Link href="/" className="flex items-center py-2 z-10">
             <Image 
               src="/assets/LOGORAHO.png" 
               alt="RAHO CLUB" 
               width={100} 
-              height={50}
+              height={20}
               className="object-contain"
+              priority
             />
           </Link>
 
           {/* Desktop Navigation Links */}
-          <div className="hidden md:flex items-center space-x-8">
+          <div className="hidden lg:flex items-center space-x-8 z-10">
             {navLinks.map((link) => (
               <Link
                 key={link.href}
                 href={link.href}
-                className={`text-sm font-medium transition-colors hover:text-yellow-500 ${
-                  pathname === link.href ? 'text-yellow-500' : 'text-gray-300'
+                className={`text-sm font-medium transition-all duration-300 hover:text-[#D6B85A] relative ${
+                  pathname === link.href ? 'text-[#D6B85A]' : 'text-gray-100'
                 }`}
               >
                 {link.label}
+                {pathname === link.href && (
+                  <span className="absolute -bottom-1 left-0 w-full h-0.5 bg-[#D6B85A]"></span>
+                )}
               </Link>
             ))}
           </div>
 
-          {/* Desktop CTA Button */}
+          {/* Desktop CTA Button with Phone Icon */}
           <a
             href="https://wa.link/h2uyet"
             target="_blank"
             rel="noopener noreferrer"
-            className="hidden md:block bg-yellow-600 hover:bg-yellow-700 text-white px-6 py-2.5 rounded-full text-sm font-medium transition-colors"
+            className="hidden lg:flex items-center gap-2 bg-gradient-to-r from-[#B69133] to-[#D6B85A] hover:from-[#D6B85A] hover:to-[#B69133] text-white px-6 py-2.5 rounded-full text-sm font-medium transition-all duration-300 shadow-lg hover:shadow-xl hover:scale-105 z-10"
           >
+            <svg className="w-5 h-5" fill="currentColor" viewBox="0 0 24 24">
+              <path d="M20.01 15.38c-1.23 0-2.42-.2-3.53-.56a.977.977 0 00-1.01.24l-1.57 1.97c-2.83-1.35-5.48-3.9-6.89-6.83l1.95-1.66c.27-.28.35-.67.24-1.02-.37-1.11-.56-2.3-.56-3.53 0-.54-.45-.99-.99-.99H4.19C3.65 3 3 3.24 3 3.99 3 13.28 10.73 21 20.01 21c.71 0 .99-.63.99-1.18v-3.45c0-.54-.45-.99-.99-.99z"/>
+            </svg>
             Hubungi Kami
           </a>
 
           {/* Mobile Menu Button */}
           <button 
-            className="md:hidden text-white p-2"
+            className="lg:hidden text-white p-2 z-10 hover:bg-white/10 rounded-lg transition-colors"
             onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
             aria-label="Toggle menu"
           >
@@ -76,29 +98,34 @@ export default function Navbar() {
 
         {/* Mobile Menu */}
         {isMobileMenuOpen && (
-          <div className="md:hidden pb-4 border-t border-gray-800">
-            <div className="flex flex-col space-y-4 pt-4">
-              {navLinks.map((link) => (
-                <Link
-                  key={link.href}
-                  href={link.href}
+          <div className="lg:hidden pb-4 relative">
+            <div className="bg-black/50 backdrop-blur-md rounded-lg p-4 mt-2">
+              <div className="flex flex-col space-y-4">
+                {navLinks.map((link) => (
+                  <Link
+                    key={link.href}
+                    href={link.href}
+                    onClick={() => setIsMobileMenuOpen(false)}
+                    className={`text-sm font-medium transition-colors hover:text-[#D6B85A] py-2 px-3 rounded-lg hover:bg-white/5 ${
+                      pathname === link.href ? 'text-[#D6B85A] bg-white/10' : 'text-gray-100'
+                    }`}
+                  >
+                    {link.label}
+                  </Link>
+                ))}
+                <a
+                  href="https://wa.link/h2uyet"
+                  target="_blank"
+                  rel="noopener noreferrer"
                   onClick={() => setIsMobileMenuOpen(false)}
-                  className={`text-sm font-medium transition-colors hover:text-yellow-500 ${
-                    pathname === link.href ? 'text-yellow-500' : 'text-gray-300'
-                  }`}
+                  className="flex items-center justify-center gap-2 bg-gradient-to-r from-[#B69133] to-[#D6B85A] hover:from-[#D6B85A] hover:to-[#B69133] text-white px-6 py-2.5 rounded-full text-sm font-medium transition-all duration-300 shadow-lg"
                 >
-                  {link.label}
-                </Link>
-              ))}
-              <a
-                href="https://wa.link/h2uyet"
-                target="_blank"
-                rel="noopener noreferrer"
-                onClick={() => setIsMobileMenuOpen(false)}
-                className="bg-yellow-600 hover:bg-yellow-700 text-white px-6 py-2.5 rounded-full text-sm font-medium transition-colors text-center"
-              >
-                Hubungi Kami
-              </a>
+                  <svg className="w-5 h-5" fill="currentColor" viewBox="0 0 24 24">
+                    <path d="M20.01 15.38c-1.23 0-2.42-.2-3.53-.56a.977.977 0 00-1.01.24l-1.57 1.97c-2.83-1.35-5.48-3.9-6.89-6.83l1.95-1.66c.27-.28.35-.67.24-1.02-.37-1.11-.56-2.3-.56-3.53 0-.54-.45-.99-.99-.99H4.19C3.65 3 3 3.24 3 3.99 3 13.28 10.73 21 20.01 21c.71 0 .99-.63.99-1.18v-3.45c0-.54-.45-.99-.99-.99z"/>
+                  </svg>
+                  Hubungi Kami
+                </a>
+              </div>
             </div>
           </div>
         )}

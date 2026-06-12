@@ -5,5 +5,6 @@
  */
 
 export { penyakitArticles, tindakanMedisArticles, kisahPasienArticles, } from './articles';
+export { seedPartnerships } from './partnerships';
 export { locations } from './locations';
 export { admins, hashPassword, verifyPassword } from './admins';

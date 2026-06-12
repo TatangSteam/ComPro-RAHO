@@ -1,0 +1,3 @@
+-- Add partnership category to existing articles schema
+-- No schema changes needed as category is already a String type
+-- This migration is for documentation purposes

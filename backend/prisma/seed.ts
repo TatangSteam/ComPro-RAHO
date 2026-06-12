@@ -7,6 +7,7 @@ import {
   penyakitArticles, 
   tindakanMedisArticles, 
   kisahPasienArticles,
+  seedPartnerships,
   locations,
   admins,
   hashPassword,
@@ -182,6 +183,7 @@ async function seed() {
     }
 
     await seedArticles();
+    await seedPartnerships();
     await seedLocations();
     await seedCompanyProfile();
     await seedAdmins();

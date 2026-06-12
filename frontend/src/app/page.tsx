@@ -2,26 +2,19 @@
 
 import { useEffect, useState } from 'react';
 import axios from 'axios';
-import Link from 'next/link';
-import { Article, CompanyProfile } from '@/types';
+import { Article } from '@/types';
 import HeroSection from '@/components/home/HeroSection';
-import ProfessionalTeamSection from '@/components/home/ProfessionalTeamSection';
-import TerapiPendukungSection from '@/components/home/TerapiPendukungSection';
-import SolusiSection from '@/components/home/SolusiSection';
-import KisahPasienSection from '@/components/home/KisahPasienSection';
-import ArtikelKesehatanSection from '@/components/home/ArtikelKesehatanSection';
+import HeroSection2 from '@/components/home/HeroSection2';
+import HeroSection3 from '@/components/home/HeroSection3';
+import HeroSection4 from '@/components/home/HeroSection4';
+import HeroSection5 from '@/components/home/HeroSection5';
+import HeroSection6 from '@/components/home/HeroSection6';
 
 export default function Home() {
-  const [articles, setArticles] = useState<Article[]>([]);
-  const [penyakitArticles, setPenyakitArticles] = useState<Article[]>([]);
   const [tindakanMedisArticles, setTindakanMedisArticles] = useState<Article[]>([]);
-  const [kisahPasienArticles, setKisahPasienArticles] = useState<Article[]>([]);
-  const [latestArticles, setLatestArticles] = useState<Article[]>([]);
-  const [company, setCompany] = useState<CompanyProfile | null>(null);
 
   useEffect(() => {
     fetchArticles();
-    fetchCompany();
   }, []);
 
   const fetchArticles = async () => {
@@ -29,44 +22,15 @@ export default function Home() {
       const res = await axios.get<Article[]>(`${process.env.NEXT_PUBLIC_API_URL}/articles`);
       const publishedArticles = res.data.filter(a => a.published);
       
-      // Filter artikel kategori penyakit (15 terbaru)
-      const penyakit = publishedArticles
-        .filter(a => a.category === 'penyakit')
-        .sort((a, b) => new Date(b.createdAt).getTime() - new Date(a.createdAt).getTime())
-        .slice(0, 15);
-      
-      // Filter artikel kategori tindakan medis (3 terbaru)
+      // Filter artikel kategori tindakan medis (6 terbaru untuk Section 5)
       const tindakanMedis = publishedArticles
         .filter(a => a.category === 'tindakan-medis')
         .sort((a, b) => new Date(b.createdAt).getTime() - new Date(a.createdAt).getTime())
-        .slice(0, 3);
+        .slice(0, 6);
       
-      // Filter artikel kategori kisah pasien
-      const kisahPasien = publishedArticles
-        .filter(a => a.category === 'kisah-pasien')
-        .sort((a, b) => new Date(b.createdAt).getTime() - new Date(a.createdAt).getTime());
-      
-      // Artikel terbaru (semua kategori)
-      const latest = publishedArticles
-        .sort((a, b) => new Date(b.createdAt).getTime() - new Date(a.createdAt).getTime())
-        .slice(0, 9);
-      
-      setPenyakitArticles(penyakit);
       setTindakanMedisArticles(tindakanMedis);
-      setKisahPasienArticles(kisahPasien);
-      setLatestArticles(latest);
-      setArticles(publishedArticles);
     } catch (error) {
       console.error('Error fetching articles:', error);
-    }
-  };
-
-  const fetchCompany = async () => {
-    try {
-      const res = await axios.get<CompanyProfile>(`${process.env.NEXT_PUBLIC_API_URL}/company`);
-      setCompany(res.data);
-    } catch (error) {
-      console.error('Error fetching company:', error);
     }
   };
 
@@ -75,20 +39,20 @@ export default function Home() {
       {/* Hero Section */}
       <HeroSection />
 
-      {/* Terapi Pendukung Section */}
-      <TerapiPendukungSection articles={penyakitArticles} />
+      {/* Hero Section 2 */}
+      <HeroSection2 />
 
-      {/* Professional Team Section */}
-      <ProfessionalTeamSection />
+      {/* Hero Section 3 */}
+      <HeroSection3 />
 
-      {/* Solusi Section */}
-      <SolusiSection articles={tindakanMedisArticles} />
+      {/* Hero Section 4 - Testimonials */}
+      <HeroSection4 />
 
-      {/* Kisah Pasien Section */}
-      <KisahPasienSection articles={kisahPasienArticles} />
+      {/* Hero Section 5 - Tindakan Medis Articles */}
+      <HeroSection5 articles={tindakanMedisArticles} />
 
-      {/* Artikel Kesehatan Section */}
-      <ArtikelKesehatanSection articles={latestArticles} />
+      {/* Hero Section 6 - Solusi yang Kami Gunakan */}
+      <HeroSection6 />
     </div>
   );
 }
