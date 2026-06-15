@@ -12,7 +12,7 @@ export default function HeroSection4() {
       name: 'Dr. Sarah Wijaya',
       role: 'Founder, Klinik Sehat Bersama',
       avatar: '/assets/Hero2/Rectangle 158.png',
-      text: 'Bergabung dengan Raho Premier telah mengubah cara kami melayani pasien. Teknologi Nano Bubble memberikan hasil yang luar biasa, dan dukungan tim Raho sangat profesional. Partnership ini benar-benar win-win solution.',
+      text: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris.',
       rating: 5,
       bgColor: 'white',
     },
@@ -21,7 +21,7 @@ export default function HeroSection4() {
       name: 'Prof. Dr. Ahmad Hidayat',
       role: 'Direktur, Wellness Center Jakarta',
       avatar: '/assets/Hero2/Rectangle 159.png',
-      text: 'Sebagai praktisi kesehatan holistik, saya sangat menghargai pendekatan inovatif Raho Premier. Edukasi yang diberikan sangat berkualitas dan membantu kami meningkatkan kualitas layanan kepada klien.',
+      text: 'Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt.',
       rating: 5,
       bgColor: 'red',
     },
@@ -30,7 +30,7 @@ export default function HeroSection4() {
       name: 'dr. Maria Angelina, Sp.GK',
       role: 'Owner, Nutrition & Health Clinic',
       avatar: '/assets/Hero2/Rectangle 161.png',
-      text: 'Program partnership Raho Premier sangat mendukung pengembangan praktik saya. Dari harga khusus hingga dukungan marketing, semuanya dirancang untuk membantu partner tumbuh bersama.',
+      text: 'Sed ut perspiciatis unde omnis iste natus error sit voluptatem accusantium doloremque laudantium, totam rem aperiam, eaque ipsa quae ab illo inventore veritatis et quasi architecto.',
       rating: 5,
       bgColor: 'white',
     },
@@ -89,11 +89,16 @@ export default function HeroSection4() {
 
         {/* Subtitle */}
         <div className="text-center mb-16">
+          <div className="bg-yellow-50 border-l-4 border-yellow-600 p-4 mb-6 max-w-4xl mx-auto rounded-r-lg">
+            <p className="text-sm font-medium text-yellow-800">
+              This section is temporarily unavailable while we update our partner testimonials and success stories. We appreciate your patience and look forward to sharing them with you soon.
+            </p>
+          </div>
           <p className="text-xl text-gray-800 font-medium max-w-3xl mx-auto">
-            Pengalaman nyata dari partner yang telah bergabung dan berkembang
+            Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor
           </p>
           <p className="text-xl text-gray-800 font-medium max-w-3xl mx-auto mb-4">
-            bersama Raho Premier dalam edukasi dan pengembangan komunitas kesehatan.
+            incididunt ut labore et dolore magna aliqua.
           </p>
         </div>
 
