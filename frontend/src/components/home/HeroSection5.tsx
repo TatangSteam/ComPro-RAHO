@@ -68,11 +68,16 @@ export default function HeroSection5({ articles }: HeroSection5Props) {
               Area Fokus Kesehatan{' '}
               <span className="text-yellow-500">Kami</span>
             </h2>
+            <div className="bg-yellow-600/20 border-l-4 border-yellow-500 p-4 mb-4 max-w-3xl rounded-r-lg backdrop-blur-sm">
+              <p className="text-sm font-medium text-yellow-300">
+                This section is temporarily unavailable while we update our partner testimonials and success stories. We appreciate your patience and look forward to sharing them with you soon.
+              </p>
+            </div>
             <p className="text-lg text-gray-300 max-w-3xl">
-              Kami membahas berbagai topik kesehatan penting secara ilmiah dan mudah dipahami
+              Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt
             </p>
             <p className="text-lg text-gray-300 max-w-3xl">
-              untuk membantu Anda dan keluarga hidup lebih sehat setiap hari.
+              ut labore et dolore magna aliqua.
             </p>
           </div>
 
@@ -214,10 +219,10 @@ export default function HeroSection5({ articles }: HeroSection5Props) {
             </div>
             <div>
               <p className="text-gray-300 leading-relaxed">
-                Informasi kami bersumber dari penelitian ilmiah dan pengalaman praktis
+                Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor
               </p>
               <p className="text-gray-300 leading-relaxed">
-                untuk memberikan edukasi yang terpercaya bagi Anda dan keluarga.
+                incididunt ut labore et dolore magna aliqua.
               </p>
             </div>
           </div>
