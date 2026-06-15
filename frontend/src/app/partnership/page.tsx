@@ -50,11 +50,16 @@ export default function PartnershipPage() {
                   Untuk Dokter
                 </h2>
                 <div className="prose prose-lg text-gray-700 leading-relaxed space-y-4">
+                  <div className="bg-yellow-50 border-l-4 border-yellow-600 p-4 mb-6">
+                    <p className="text-sm font-medium text-yellow-800">
+                      This section is temporarily unavailable while we update our partner testimonials and success stories. We appreciate your patience and look forward to sharing them with you soon.
+                    </p>
+                  </div>
                   <p>
-                    Partnership RAHO Premier untuk Dokter (Research Partner) menghadirkan kolaborasi inovatif dalam bentuk co-management pasien dengan pendekatan terapi pendukung berbasis bioteknologi, termasuk pemanfaatan teknologi nano bubble sebagai bagian dari strategi wellness dan regenerasi seluler.
+                    Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.
                   </p>
                   <p>
-                    Program ini dirancang untuk mendukung dokter dalam memberikan terapi pendukung yang terstruktur, mengikat forum edukasi dan diskusi ilmiah serta pengembangan pengetahuan, serta berpartisipasi dalam riset berbasis komunitias dan pengalaman data klinis guna meredukung praktik medis yang lebih komprehensif, kolaboratif, dan berbasis bukti.
+                    Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum. Sed ut perspiciatis unde omnis iste natus error sit voluptatem accusantium doloremque laudantium.
                   </p>
                 </div>
                 <div className="mt-8">
@@ -88,11 +93,16 @@ export default function PartnershipPage() {
                     Untuk Klinik
                   </h2>
                   <div className="prose prose-lg text-gray-700 leading-relaxed space-y-4">
+                    <div className="bg-yellow-50 border-l-4 border-yellow-600 p-4 mb-6">
+                      <p className="text-sm font-medium text-yellow-800">
+                        This section is temporarily unavailable while we update our partner testimonials and success stories. We appreciate your patience and look forward to sharing them with you soon.
+                      </p>
+                    </div>
                     <p>
-                      Partnership RAHO Premier untuk Klinik & Instansi Kesehatan menawarkan kolaborasi strategis melalui integrasi layanan berbasis wellness modern dan pemulihan seluler, termasuk dukungan teknologi seperti nano bubble sebagai terapi pendukung.
+                      Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.
                     </p>
                     <p>
-                      Kemitraan ini memungkinkan pengembangan wellness center atau health center bersama yang terintegrasi dengan layanan existing, menciptakan ekosistem kesehatan holistik yang komprehensif. Program ini serta menghadirkan solusi yang lebih komprehensif bagi pasien dengan pendekatan preventif, promotif, dan suportif.
+                      Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum. Sed ut perspiciatis unde omnis iste natus error sit voluptatem accusantium doloremque laudantium.
                     </p>
                   </div>
                   <div className="mt-8">
@@ -130,11 +140,16 @@ export default function PartnershipPage() {
                   Untuk Klinik, Instansi atau Rumah Sakit
                 </h2>
                 <div className="prose prose-lg text-gray-700 leading-relaxed space-y-4">
+                  <div className="bg-yellow-50 border-l-4 border-yellow-600 p-4 mb-6">
+                    <p className="text-sm font-medium text-yellow-800">
+                      This section is temporarily unavailable while we update our partner testimonials and success stories. We appreciate your patience and look forward to sharing them with you soon.
+                    </p>
+                  </div>
                   <p>
-                    Partnership RAHO Premier untuk Klinik & Instansi Kesehatan menawarkan kolaborasi strategis melalui integrasi layanan berbasis wellness modern dan pemulihan seluler, termasuk dukungan teknologi seperti nano bubble sebagai terapi pendukung.
+                    Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.
                   </p>
                   <p>
-                    Kemitraan ini memungkinkan pengembangan wellness center atau health center bersama yang terintegrasi dengan layanan existing, menciptakan ekosistem kesehatan holistik yang komprehensif. Program ini serta menghadirkan solusi yang lebih komprehensif bagi pasien dengan pendekatan preventif, promotif, dan suportif.
+                    Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum. Sed ut perspiciatis unde omnis iste natus error sit voluptatem accusantium doloremque laudantium.
                   </p>
                 </div>
                 <div className="mt-8">

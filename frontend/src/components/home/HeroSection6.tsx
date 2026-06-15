@@ -6,7 +6,7 @@ import Image from 'next/image';
 export default function HeroSection6() {
   const mainSolution = {
     title: 'IGDS: Ketika Nanobubble dan Gasotransmitter Bekerja Bersama untuk Mendukung Kesehatan',
-    description: 'IGDS atau Intelligent Gas Delivery System adalah teknologi penghantaran gas terapeutik menggunakan nanobubble berukuran ultra-kecil yang mampu membawa berbagai jenis gas biologis ke area target secara terkontrol.',
+    description: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.',
     image: '/assets/Section6/Rectangle 66.png',
     icon: '📋',
     link: '/artikel-kesehatan/igds-nanobubble-gasotransmitter',
@@ -65,11 +65,16 @@ export default function HeroSection6() {
               Kami Gunakan
             </span>
           </h2>
+          <div className="bg-yellow-50 border-l-4 border-yellow-600 p-4 mb-6 max-w-4xl mx-auto">
+            <p className="text-sm font-medium text-yellow-800">
+              This section is temporarily unavailable while we update our partner testimonials and success stories. We appreciate your patience and look forward to sharing them with you soon.
+            </p>
+          </div>
           <p className="text-lg text-gray-700 max-w-4xl mx-auto">
-            Kami menghadirkan teknologi inovatif dan pendekatan ilmiah untuk mendukung kesehatan sel dan sirkulasi
+            Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore
           </p>
           <p className="text-lg text-gray-700 max-w-4xl mx-auto">
-            tubuh secara optimal.
+            et dolore magna aliqua.
           </p>
         </div>
 
