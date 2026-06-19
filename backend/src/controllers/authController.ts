@@ -25,13 +25,16 @@ export const login = async (req: Request, res: Response) => {
       });
     }
 
-    // Find admin by email (case insensitive)
+    // Find admin by email (case insensitive) and include location
     const admin = await prisma.admin.findFirst({
       where: { 
         email: {
           equals: email,
           mode: 'insensitive'
         }
+      },
+      include: {
+        location: true, // Include location data
       },
     });
 
@@ -59,7 +62,7 @@ export const login = async (req: Request, res: Response) => {
       }
     });
 
-    // Generate JWT token with more claims
+    // Generate JWT token with location info
     const token = jwt.sign(
       { 
         adminId: admin.id, 
@@ -67,6 +70,7 @@ export const login = async (req: Request, res: Response) => {
         username: admin.username, 
         role: admin.role,
         name: admin.name,
+        locationId: admin.locationId, // Include locationId in token
         iat: Math.floor(Date.now() / 1000)
       },
       process.env.JWT_SECRET || 'your-secret-key',
@@ -104,7 +108,7 @@ export const verifyToken = async (req: Request, res: Response) => {
 
     const decoded = jwt.verify(token, process.env.JWT_SECRET || 'your-secret-key') as any;
     
-    // Get fresh admin data
+    // Get fresh admin data with location
     const admin = await prisma.admin.findUnique({
       where: { id: decoded.adminId },
       select: {
@@ -114,6 +118,8 @@ export const verifyToken = async (req: Request, res: Response) => {
         name: true,
         role: true,
         isActive: true,
+        locationId: true, // Include locationId
+        location: true,   // Include location data
         createdAt: true,
         updatedAt: true,
       },
@@ -250,6 +256,8 @@ export const getProfile = async (req: Request, res: Response) => {
         name: true,
         role: true,
         isActive: true,
+        locationId: true, // Include locationId
+        location: true,   // Include location data
         createdAt: true,
         updatedAt: true,
       },

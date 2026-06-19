@@ -1,0 +1,122 @@
+// RAHO Club Premier - Database Schema
+// Use this file with https://dbdiagram.io/ to visualize the ERD
+// Copy and paste this content to dbdiagram.io
+
+Project RahoClubPremier {
+  database_type: 'PostgreSQL'
+  Note: '''
+    # RAHO Club Premier - Health Technology Platform
+    Database schema for content management system
+    including articles, locations, and admin management
+  '''
+}
+
+// Article Entity - Stores all health articles
+Table Article {
+  id uuid [pk, not null, note: 'Primary key - UUID']
+  title varchar [not null, note: 'Article title']
+  slug varchar [unique, not null, note: 'URL-friendly identifier']
+  content text [not null, note: 'Article content (Markdown)']
+  excerpt text [null, note: 'Short summary']
+  imageUrl varchar [null, note: 'Article image URL']
+  author varchar [not null, default: 'Admin', note: 'Author name']
+  category varchar [not null, default: 'umum', note: 'Category: penyakit, tindakan-medis, kisah-pasien, partnership']
+  published boolean [not null, default: false, note: 'Publication status']
+  createdAt timestamp [not null, default: `now()`, note: 'Creation timestamp']
+  updatedAt timestamp [not null, default: `now()`, note: 'Last update timestamp']
+  
+  indexes {
+    slug [unique, name: 'Article_slug_idx']
+    category [name: 'Article_category_idx']
+    published [name: 'Article_published_idx']
+    createdAt [name: 'Article_createdAt_idx']
+  }
+  
+  Note: '''
+    Stores health articles including:
+    - penyakit (diseases)
+    - tindakan-medis (medical procedures)
+    - kisah-pasien (patient stories)
+    - partnership (partnership articles)
+  '''
+}
+
+// CompanyProfile Entity - Stores company information
+Table CompanyProfile {
+  id uuid [pk, not null, note: 'Primary key - UUID']
+  name varchar [not null, note: 'Company name']
+  description text [not null, note: 'Company description']
+  email varchar [null, note: 'Contact email']
+  phone varchar [null, note: 'Contact phone']
+  address text [null, note: 'Company address']
+  logoUrl varchar [null, note: 'Company logo URL']
+  createdAt timestamp [not null, default: `now()`, note: 'Creation timestamp']
+  updatedAt timestamp [not null, default: `now()`, note: 'Last update timestamp']
+  
+  Note: '''
+    Company profile information
+    Usually contains only 1 record
+    Used for footer and about page
+  '''
+}
+
+// Location Entity - Stores branch/clinic locations
+Table Location {
+  id uuid [pk, not null, note: 'Primary key - UUID']
+  name varchar [not null, note: 'Location/branch name']
+  city varchar [not null, note: 'City name']
+  address text [not null, note: 'Full address']
+  phone varchar [null, note: 'Branch phone number']
+  mapUrl varchar [null, note: 'Google Maps link']
+  createdAt timestamp [not null, default: `now()`, note: 'Creation timestamp']
+  updatedAt timestamp [not null, default: `now()`, note: 'Last update timestamp']
+  
+  indexes {
+    city [name: 'Location_city_idx']
+    (name, city) [name: 'Location_name_city_idx']
+  }
+  
+  Note: '''
+    Branch/clinic locations across Indonesia:
+    - Jakarta (multiple locations)
+    - Bandung
+    - Bali
+    - Semarang
+  '''
+}
+
+// Admin Entity - Stores admin user information
+Table Admin {
+  id uuid [pk, not null, note: 'Primary key - UUID']
+  username varchar [unique, not null, note: 'Login username']
+  password varchar [not null, note: 'Hashed password (bcrypt)']
+  email varchar [null, note: 'Admin email']
+  name varchar [null, note: 'Full name']
+  role varchar [not null, default: 'admin', note: 'Role: superadmin, admin, editor']
+  isActive boolean [not null, default: true, note: 'Active status']
+  createdAt timestamp [not null, default: `now()`, note: 'Creation timestamp']
+  updatedAt timestamp [not null, default: `now()`, note: 'Last update timestamp']
+  
+  indexes {
+    username [unique, name: 'Admin_username_idx']
+    role [name: 'Admin_role_idx']
+    isActive [name: 'Admin_isActive_idx']
+  }
+  
+  Note: '''
+    Admin users for system management
+    
+    Roles:
+    - superadmin: Full system access
+    - admin: Content management
+    - editor: Article editing only
+    
+    Default accounts:
+    - admin / admin123
+    - superadmin / super123
+    - editor / editor123
+  '''
+}
+
+// NOTES: No foreign key relationships
+// All entities are independent for flexibility

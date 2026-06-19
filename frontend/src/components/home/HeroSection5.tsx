@@ -12,12 +12,12 @@ interface HeroSection5Props {
 export default function HeroSection5({ articles }: HeroSection5Props) {
   const [currentIndex, setCurrentIndex] = useState(0);
   
-  // Filter only tindakan medis articles
-  const tindakanMedisArticles = articles.filter(a => a.category === 'tindakan-medis').slice(0, 6);
+  // Filter only penyakit articles instead of tindakan-medis
+  const penyakitArticles = articles.filter(a => a.category === 'penyakit').slice(0, 6);
   
   // Show 4 cards at a time on desktop, 1 on mobile
   const cardsPerView = 4;
-  const maxIndex = Math.max(0, tindakanMedisArticles.length - cardsPerView);
+  const maxIndex = Math.max(0, penyakitArticles.length - cardsPerView);
 
   const handlePrevious = () => {
     setCurrentIndex(prev => Math.max(0, prev - 1));
@@ -83,7 +83,7 @@ export default function HeroSection5({ articles }: HeroSection5Props) {
 
           {/* View All Button */}
           <Link
-            href="/artikel-kesehatan?category=tindakan-medis"
+            href="/artikel-kesehatan?category=penyakit"
             className="inline-flex items-center gap-2 bg-transparent hover:bg-yellow-500/10 text-yellow-500 px-6 py-3 rounded-full text-base font-medium transition-all duration-300 border-2 border-yellow-500 whitespace-nowrap"
           >
             Lihat Semua
@@ -136,7 +136,7 @@ export default function HeroSection5({ articles }: HeroSection5Props) {
               className="flex transition-transform duration-500 ease-in-out gap-4"
               style={{ transform: `translateX(-${currentIndex * (100 / cardsPerView)}%)` }}
             >
-              {tindakanMedisArticles.map((article, index) => (
+              {penyakitArticles.map((article) => (
                 <Link
                   key={article.id}
                   href={`/artikel-kesehatan/${article.slug}`}

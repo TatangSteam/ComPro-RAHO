@@ -1,0 +1,218 @@
+╔═══════════════════════════════════════════════════════════════════════════╗
+║                    RAHO CLUB PREMIER - DATABASE ERD                       ║
+║                         Entity Relational Diagram                         ║
+╚═══════════════════════════════════════════════════════════════════════════╝
+
+┌─────────────────────────────────────────────────────────────────────────┐
+│                              ARTICLE                                    │
+├─────────────────────────────────────────────────────────────────────────┤
+│ PK  id              : UUID                                              │
+│ UK  slug            : String                                            │
+│     title           : String                                            │
+│     content         : String (Long Text/Markdown)                       │
+│     excerpt         : String (Nullable)                                 │
+│     imageUrl        : String (Nullable)                                 │
+│     author          : String (Default: "Admin")                         │
+│     category        : String (Default: "umum")                          │
+│                       • penyakit                                        │
+│                       • tindakan-medis                                  │
+│                       • kisah-pasien                                    │
+│                       • partnership                                     │
+│     published       : Boolean (Default: false)                          │
+│     createdAt       : DateTime (Auto)                                   │
+│     updatedAt       : DateTime (Auto)                                   │
+└─────────────────────────────────────────────────────────────────────────┘
+                                    │
+                                    │ (No FK Relations)
+                                    │
+                                    ▼
+
+
+┌─────────────────────────────────────────────────────────────────────────┐
+│                         COMPANY PROFILE                                 │
+├─────────────────────────────────────────────────────────────────────────┤
+│ PK  id              : UUID                                              │
+│     name            : String                                            │
+│     description     : String (Long Text)                                │
+│     email           : String (Nullable)                                 │
+│     phone           : String (Nullable)                                 │
+│     address         : String (Nullable)                                 │
+│     logoUrl         : String (Nullable)                                 │
+│     createdAt       : DateTime (Auto)                                   │
+│     updatedAt       : DateTime (Auto)                                   │
+│                                                                         │
+│ NOTE: Usually only 1 record exists                                      │
+└─────────────────────────────────────────────────────────────────────────┘
+
+
+┌─────────────────────────────────────────────────────────────────────────┐
+│                            LOCATION                                     │
+├─────────────────────────────────────────────────────────────────────────┤
+│ PK  id              : UUID                                              │
+│     name            : String                                            │
+│     city            : String                                            │
+│     address         : String                                            │
+│     phone           : String (Nullable)                                 │
+│     mapUrl          : String (Nullable)                                 │
+│     createdAt       : DateTime (Auto)                                   │
+│     updatedAt       : DateTime (Auto)                                   │
+│                                                                         │
+│ EXAMPLES:                                                               │
+│ • Attya Reverse Aging - Jakarta Selatan                                │
+│ • Raho Club Premier - Jakarta Pusat                                    │
+│ • Apotek Hannah - Bali                                                  │
+└─────────────────────────────────────────────────────────────────────────┘
+
+
+┌─────────────────────────────────────────────────────────────────────────┐
+│                              ADMIN                                      │
+├─────────────────────────────────────────────────────────────────────────┤
+│ PK  id              : UUID                                              │
+│ UK  username        : String                                            │
+│     password        : String (bcrypt hashed)                            │
+│     email           : String (Nullable)                                 │
+│     name            : String (Nullable)                                 │
+│     role            : String (Default: "admin")                         │
+│                       • superadmin - Full access                        │
+│                       • admin - Manage content                          │
+│                       • editor - Edit articles only                     │
+│     isActive        : Boolean (Default: true)                           │
+│     createdAt       : DateTime (Auto)                                   │
+│     updatedAt       : DateTime (Auto)                                   │
+│                                                                         │
+│ DEFAULT ACCOUNTS:                                                       │
+│ • admin / admin123 (admin)                                              │
+│ • superadmin / super123 (superadmin)                                    │
+│ • editor / editor123 (editor)                                           │
+└─────────────────────────────────────────────────────────────────────────┘
+
+
+═══════════════════════════════════════════════════════════════════════════
+                         CURRENT ARCHITECTURE
+═══════════════════════════════════════════════════════════════════════════
+
+╔═══════════════╗     ╔═══════════════╗     ╔═══════════════╗
+║   Article     ║     ║ CompanyProfile║     ║   Location    ║
+╠═══════════════╣     ╠═══════════════╣     ╠═══════════════╣
+║ • id (PK)     ║     ║ • id (PK)     ║     ║ • id (PK)     ║
+║ • slug (UK)   ║     ║ • name        ║     ║ • name        ║
+║ • title       ║     ║ • description ║     ║ • city        ║
+║ • content     ║     ║ • email       ║     ║ • address     ║
+║ • category    ║     ║ • phone       ║     ║ • phone       ║
+║ • published   ║     ║ • address     ║     ║ • mapUrl      ║
+║ • timestamps  ║     ║ • timestamps  ║     ║ • timestamps  ║
+╚═══════════════╝     ╚═══════════════╝     ╚═══════════════╝
+        │                                            │
+        │                                            │
+        │             ╔═══════════════╗              │
+        └─────────────║     Admin     ║──────────────┘
+                      ╠═══════════════╣
+                      ║ • id (PK)     ║
+                      ║ • username(UK)║
+                      ║ • password    ║
+                      ║ • role        ║
+                      ║ • isActive    ║
+                      ║ • timestamps  ║
+                      ╚═══════════════╝
+
+NOTE: No foreign key relationships - All entities are independent
+
+
+═══════════════════════════════════════════════════════════════════════════
+                           DATABASE INFORMATION
+═══════════════════════════════════════════════════════════════════════════
+
+Database Type    : PostgreSQL
+ORM              : Prisma 5.x
+ID Type          : UUID (v4)
+Timestamp        : Automatic (createdAt, updatedAt)
+Password Hash    : bcrypt (10 rounds)
+
+Total Entities   : 4
+Total Fields     : 36
+
+
+═══════════════════════════════════════════════════════════════════════════
+                              UNIQUE INDEXES
+═══════════════════════════════════════════════════════════════════════════
+
+Article.slug      - Unique URL identifier
+Admin.username    - Unique login identifier
+
+
+═══════════════════════════════════════════════════════════════════════════
+                          RECOMMENDED INDEXES
+═══════════════════════════════════════════════════════════════════════════
+
+For better query performance:
+
+Article:
+  - category (for filtering by category)
+  - published (for filtering published articles)
+  - createdAt DESC (for sorting by date)
+
+Location:
+  - city (for filtering by city)
+
+Admin:
+  - role (for filtering by role)
+  - isActive (for filtering active users)
+
+
+═══════════════════════════════════════════════════════════════════════════
+                            DATA FLOW DIAGRAM
+═══════════════════════════════════════════════════════════════════════════
+
+┌──────────────┐
+│   Frontend   │
+│  (Next.js)   │
+└──────┬───────┘
+       │
+       │ HTTP/REST API
+       │
+┌──────▼───────────────────────────────────────────┐
+│              Backend API (Express)               │
+│  ┌────────────────────────────────────────────┐  │
+│  │         Controllers                        │  │
+│  │  • articleController                       │  │
+│  │  • authController                          │  │
+│  │  • companyController                       │  │
+│  └─────────────────┬──────────────────────────┘  │
+│                    │                              │
+│  ┌─────────────────▼──────────────────────────┐  │
+│  │         Prisma ORM                         │  │
+│  └─────────────────┬──────────────────────────┘  │
+└────────────────────┼──────────────────────────────┘
+                     │
+┌────────────────────▼──────────────────────────────┐
+│          PostgreSQL Database                      │
+│  ┌─────────┐  ┌──────────┐  ┌─────────┐         │
+│  │ Article │  │ Location │  │  Admin  │         │
+│  └─────────┘  └──────────┘  └─────────┘         │
+│  ┌──────────────────┐                            │
+│  │ CompanyProfile   │                            │
+│  └──────────────────┘                            │
+└───────────────────────────────────────────────────┘
+
+
+═══════════════════════════════════════════════════════════════════════════
+                          ENTITY STATISTICS
+═══════════════════════════════════════════════════════════════════════════
+
+Entity            │ Typical Records │ Growth Rate │ Purpose
+──────────────────┼─────────────────┼─────────────┼──────────────────
+Article           │ 50-200          │ Medium      │ Content management
+CompanyProfile    │ 1               │ Static      │ Company info
+Location          │ 5-20            │ Low         │ Branch locations
+Admin             │ 3-10            │ Very Low    │ User management
+
+
+═══════════════════════════════════════════════════════════════════════════
+                            LEGEND
+═══════════════════════════════════════════════════════════════════════════
+
+PK   = Primary Key
+UK   = Unique Key
+FK   = Foreign Key (None in current schema)
+Auto = Automatically generated/updated
+

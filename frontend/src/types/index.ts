@@ -33,4 +33,20 @@ export interface Location {
   mapUrl: string | null;
   createdAt: string;
   updatedAt: string;
+  _count?: {
+    admins: number;
+  };
+}
+
+export interface Admin {
+  id: string;
+  username: string;
+  email: string | null;
+  name: string | null;
+  role: 'superadmin' | 'admin' | 'editor';
+  isActive: boolean;
+  locationId: string | null;   // NEW: FK to Location
+  location?: Location | null;  // NEW: Location data
+  createdAt: string;
+  updatedAt: string;
 }

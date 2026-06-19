@@ -61,68 +61,129 @@ async function uploadLogoToMinio(fileName: string): Promise<string> {
 
 async function seedArticles() {
   console.log('Seeding articles...');
-  
-  // Clear existing articles
-  await prisma.article.deleteMany({});
-  console.log('Cleared existing articles');
+
+  let createdCount = 0;
+  let updatedCount = 0;
 
   // Seed Penyakit Articles
   for (const article of penyakitArticles) {
-    const imageUrl = await uploadLogoToMinio(article.slug);
-    await prisma.article.create({
-      data: {
+    const existing = await prisma.article.findUnique({ where: { slug: article.slug } });
+    const imageUrl = existing?.imageUrl || await uploadLogoToMinio(article.slug);
+    
+    await prisma.article.upsert({
+      where: { slug: article.slug },
+      update: {
+        ...article,
+        imageUrl: imageUrl || null,
+        published: true,
+      },
+      create: {
         ...article,
         imageUrl: imageUrl || null,
         published: true,
       },
     });
-    console.log(`✓ Created article: ${article.title}`);
+    
+    if (existing) {
+      updatedCount++;
+      console.log(`✓ Updated article: ${article.title}`);
+    } else {
+      createdCount++;
+      console.log(`✓ Created article: ${article.title}`);
+    }
   }
 
   // Seed Tindakan Medis Articles
   for (const article of tindakanMedisArticles) {
-    const imageUrl = await uploadLogoToMinio(article.slug);
-    await prisma.article.create({
-      data: {
+    const existing = await prisma.article.findUnique({ where: { slug: article.slug } });
+    const imageUrl = existing?.imageUrl || await uploadLogoToMinio(article.slug);
+    
+    await prisma.article.upsert({
+      where: { slug: article.slug },
+      update: {
+        ...article,
+        imageUrl: imageUrl || null,
+        published: true,
+      },
+      create: {
         ...article,
         imageUrl: imageUrl || null,
         published: true,
       },
     });
-    console.log(`✓ Created article: ${article.title}`);
+    
+    if (existing) {
+      updatedCount++;
+      console.log(`✓ Updated article: ${article.title}`);
+    } else {
+      createdCount++;
+      console.log(`✓ Created article: ${article.title}`);
+    }
   }
 
   // Seed Kisah Pasien Articles
   for (const article of kisahPasienArticles) {
-    const imageUrl = await uploadLogoToMinio(article.slug);
-    await prisma.article.create({
-      data: {
+    const existing = await prisma.article.findUnique({ where: { slug: article.slug } });
+    const imageUrl = existing?.imageUrl || await uploadLogoToMinio(article.slug);
+    
+    await prisma.article.upsert({
+      where: { slug: article.slug },
+      update: {
+        ...article,
+        imageUrl: imageUrl || null,
+        published: true,
+      },
+      create: {
         ...article,
         imageUrl: imageUrl || null,
         published: true,
       },
     });
-    console.log(`✓ Created article: ${article.title}`);
+    
+    if (existing) {
+      updatedCount++;
+      console.log(`✓ Updated article: ${article.title}`);
+    } else {
+      createdCount++;
+      console.log(`✓ Created article: ${article.title}`);
+    }
   }
 
-  console.log(`\n✓ Total articles created: ${penyakitArticles.length + tindakanMedisArticles.length + kisahPasienArticles.length}\n`);
+  console.log(`\n✓ Articles processed: ${createdCount} created, ${updatedCount} updated\n`);
 }
 
 async function seedLocations() {
   console.log('Seeding locations...');
 
-  // Clear existing locations
-  await (prisma as any).location.deleteMany({});
-  console.log('Cleared existing locations');
+  let createdCount = 0;
+  let updatedCount = 0;
 
   for (const location of locations) {
-    await (prisma as any).location.create({
-      data: location,
+    // Check if location exists by matching name and city
+    const existing = await (prisma as any).location.findFirst({
+      where: {
+        name: location.name,
+        city: location.city,
+      },
     });
-    console.log(`✓ Created location: ${location.name} - ${location.city}`);
+
+    if (existing) {
+      await (prisma as any).location.update({
+        where: { id: existing.id },
+        data: location,
+      });
+      updatedCount++;
+      console.log(`✓ Updated location: ${location.name} - ${location.city}`);
+    } else {
+      await (prisma as any).location.create({
+        data: location,
+      });
+      createdCount++;
+      console.log(`✓ Created location: ${location.name} - ${location.city}`);
+    }
   }
 
-  console.log(`\n✓ Total locations created: ${locations.length}\n`);
+  console.log(`\n✓ Locations processed: ${createdCount} created, ${updatedCount} updated\n`);
 }
 
 async function seedCompanyProfile() {
@@ -150,22 +211,40 @@ async function seedCompanyProfile() {
 async function seedAdmins() {
   console.log('Seeding admin users...');
 
-  // Clear existing admins
-  await prisma.admin.deleteMany({});
-  console.log('Cleared existing admins');
+  let createdCount = 0;
+  let updatedCount = 0;
 
   for (const admin of admins) {
-    const hashedPassword = await hashPassword(admin.password);
-    await prisma.admin.create({
-      data: {
-        ...admin,
-        password: hashedPassword,
-      },
-    });
-    console.log(`✓ Created admin: ${admin.username} (${admin.role})`);
+    const existing = await prisma.admin.findUnique({ where: { username: admin.username } });
+    
+    if (existing) {
+      // Update existing admin but keep the existing password if not explicitly changing it
+      await prisma.admin.update({
+        where: { username: admin.username },
+        data: {
+          email: admin.email,
+          name: admin.name,
+          role: admin.role,
+          isActive: admin.isActive,
+        },
+      });
+      updatedCount++;
+      console.log(`✓ Updated admin: ${admin.username} (${admin.role}) - password unchanged`);
+    } else {
+      // Create new admin with hashed password
+      const hashedPassword = await hashPassword(admin.password);
+      await prisma.admin.create({
+        data: {
+          ...admin,
+          password: hashedPassword,
+        },
+      });
+      createdCount++;
+      console.log(`✓ Created admin: ${admin.username} (${admin.role})`);
+    }
   }
 
-  console.log(`\n✓ Total admins created: ${admins.length}\n`);
+  console.log(`\n✓ Admins processed: ${createdCount} created, ${updatedCount} updated\n`);
 }
 
 async function seed() {

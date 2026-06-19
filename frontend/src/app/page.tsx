@@ -6,9 +6,6 @@ import { Article } from '@/types';
 import HeroSection from '@/components/home/HeroSection';
 import HeroSection2 from '@/components/home/HeroSection2';
 import HeroSection3 from '@/components/home/HeroSection3';
-import HeroSection4 from '@/components/home/HeroSection4';
-import HeroSection5 from '@/components/home/HeroSection5';
-import HeroSection6 from '@/components/home/HeroSection6';
 
 export default function Home() {
   const [tindakanMedisArticles, setTindakanMedisArticles] = useState<Article[]>([]);
@@ -45,14 +42,7 @@ export default function Home() {
       {/* Hero Section 3 */}
       <HeroSection3 />
 
-      {/* Hero Section 4 - Testimonials */}
-      <HeroSection4 />
 
-      {/* Hero Section 5 - Tindakan Medis Articles */}
-      <HeroSection5 articles={tindakanMedisArticles} />
-
-      {/* Hero Section 6 - Solusi yang Kami Gunakan */}
-      <HeroSection6 />
     </div>
   );
 }

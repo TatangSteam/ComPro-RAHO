@@ -4,6 +4,10 @@ import { uploadToMinio, deleteFromMinio } from '../utils/fileUpload';
 
 const prisma = new PrismaClient();
 
+// ============================================================================
+// Company Profile Endpoints
+// ============================================================================
+
 export const getCompanyProfile = async (req: Request, res: Response): Promise<void> => {
   try {
     const profile = await prisma.companyProfile.findFirst();
@@ -75,5 +79,377 @@ export const updateCompanyProfile = async (req: Request, res: Response): Promise
     res.json(profile);
   } catch (error) {
     res.status(500).json({ error: (error as Error).message });
+  }
+};
+
+// ============================================================================
+// Location Management Endpoints
+// ============================================================================
+
+/**
+ * Get all locations
+ * Superadmin: All locations
+ * Other roles: Only their assigned location
+ */
+export const getLocations = async (req: Request, res: Response): Promise<void> => {
+  try {
+    const user = (req as any).user;
+    
+    // Build where clause based on user role
+    const where: any = {};
+    
+    // If not superadmin, filter by user's locationId
+    if (user?.role !== 'superadmin' && user?.locationId) {
+      where.id = user.locationId;
+    }
+    
+    const locations = await prisma.location.findMany({
+      where,
+      include: {
+        _count: {
+          select: { admins: true }, // Count admins per location
+        },
+      },
+      orderBy: {
+        city: 'asc',
+      },
+    });
+
+    res.json({
+      success: true,
+      locations,
+    });
+  } catch (error) {
+    console.error('Get locations error:', error);
+    res.status(500).json({ 
+      success: false,
+      error: 'Failed to fetch locations' 
+    });
+  }
+};
+
+/**
+ * Get single location by ID
+ */
+export const getLocationById = async (req: Request, res: Response): Promise<void> => {
+  try {
+    const { id } = req.params;
+    const user = (req as any).user;
+
+    // Check access permission
+    if (user?.role !== 'superadmin' && user?.locationId !== id) {
+      res.status(403).json({
+        success: false,
+        error: 'Access denied',
+      });
+      return;
+    }
+
+    const location = await prisma.location.findUnique({
+      where: { id },
+      include: {
+        admins: {
+          select: {
+            id: true,
+            username: true,
+            name: true,
+            email: true,
+            role: true,
+            isActive: true,
+          },
+        },
+      },
+    });
+
+    if (!location) {
+      res.status(404).json({
+        success: false,
+        error: 'Location not found',
+      });
+      return;
+    }
+
+    res.json({
+      success: true,
+      location,
+    });
+  } catch (error) {
+    console.error('Get location error:', error);
+    res.status(500).json({
+      success: false,
+      error: 'Failed to fetch location',
+    });
+  }
+};
+
+/**
+ * Create new location (superadmin only)
+ */
+export const createLocation = async (req: Request, res: Response): Promise<void> => {
+  try {
+    const user = (req as any).user;
+
+    // Only superadmin can create locations
+    if (user?.role !== 'superadmin') {
+      res.status(403).json({
+        success: false,
+        error: 'Only superadmin can create locations',
+      });
+      return;
+    }
+
+    const { name, city, address, phone, mapUrl } = req.body;
+
+    if (!name || !city || !address) {
+      res.status(400).json({
+        success: false,
+        error: 'Name, city, and address are required',
+      });
+      return;
+    }
+
+    const location = await prisma.location.create({
+      data: {
+        name,
+        city,
+        address,
+        phone,
+        mapUrl,
+      },
+    });
+
+    res.status(201).json({
+      success: true,
+      message: 'Location created successfully',
+      location,
+    });
+  } catch (error) {
+    console.error('Create location error:', error);
+    res.status(500).json({
+      success: false,
+      error: 'Failed to create location',
+    });
+  }
+};
+
+/**
+ * Update location (superadmin only)
+ */
+export const updateLocation = async (req: Request, res: Response): Promise<void> => {
+  try {
+    const { id } = req.params;
+    const user = (req as any).user;
+
+    // Only superadmin can update locations
+    if (user?.role !== 'superadmin') {
+      res.status(403).json({
+        success: false,
+        error: 'Only superadmin can update locations',
+      });
+      return;
+    }
+
+    const { name, city, address, phone, mapUrl } = req.body;
+
+    const location = await prisma.location.update({
+      where: { id },
+      data: {
+        ...(name && { name }),
+        ...(city && { city }),
+        ...(address && { address }),
+        ...(phone !== undefined && { phone }),
+        ...(mapUrl !== undefined && { mapUrl }),
+      },
+    });
+
+    res.json({
+      success: true,
+      message: 'Location updated successfully',
+      location,
+    });
+  } catch (error) {
+    console.error('Update location error:', error);
+    res.status(500).json({
+      success: false,
+      error: 'Failed to update location',
+    });
+  }
+};
+
+/**
+ * Delete location (superadmin only)
+ */
+export const deleteLocation = async (req: Request, res: Response): Promise<void> => {
+  try {
+    const { id } = req.params;
+    const user = (req as any).user;
+
+    // Only superadmin can delete locations
+    if (user?.role !== 'superadmin') {
+      res.status(403).json({
+        success: false,
+        error: 'Only superadmin can delete locations',
+      });
+      return;
+    }
+
+    // Check if location has admins
+    const location = await prisma.location.findUnique({
+      where: { id },
+      include: {
+        _count: {
+          select: { admins: true },
+        },
+      },
+    });
+
+    if (!location) {
+      res.status(404).json({
+        success: false,
+        error: 'Location not found',
+      });
+      return;
+    }
+
+    if (location._count.admins > 0) {
+      res.status(400).json({
+        success: false,
+        error: `Cannot delete location with ${location._count.admins} assigned admin(s)`,
+        message: 'Please reassign or remove admins first',
+      });
+      return;
+    }
+
+    await prisma.location.delete({
+      where: { id },
+    });
+
+    res.json({
+      success: true,
+      message: 'Location deleted successfully',
+    });
+  } catch (error) {
+    console.error('Delete location error:', error);
+    res.status(500).json({
+      success: false,
+      error: 'Failed to delete location',
+    });
+  }
+};
+
+// ============================================================================
+// Admin Management with Location Assignment
+// ============================================================================
+
+/**
+ * Get all admins (superadmin only)
+ */
+export const getAdmins = async (req: Request, res: Response): Promise<void> => {
+  try {
+    const user = (req as any).user;
+
+    // Only superadmin can view all admins
+    if (user?.role !== 'superadmin') {
+      res.status(403).json({
+        success: false,
+        error: 'Only superadmin can view all admins',
+      });
+      return;
+    }
+
+    const admins = await prisma.admin.findMany({
+      select: {
+        id: true,
+        username: true,
+        name: true,
+        email: true,
+        role: true,
+        isActive: true,
+        locationId: true,
+        location: true,
+        createdAt: true,
+        updatedAt: true,
+      },
+      orderBy: {
+        createdAt: 'desc',
+      },
+    });
+
+    res.json({
+      success: true,
+      admins,
+    });
+  } catch (error) {
+    console.error('Get admins error:', error);
+    res.status(500).json({
+      success: false,
+      error: 'Failed to fetch admins',
+    });
+  }
+};
+
+/**
+ * Assign location to admin (superadmin only)
+ */
+export const assignLocationToAdmin = async (req: Request, res: Response): Promise<void> => {
+  try {
+    const { adminId } = req.params;
+    const { locationId } = req.body;
+    const user = (req as any).user;
+
+    // Only superadmin can assign locations
+    if (user?.role !== 'superadmin') {
+      res.status(403).json({
+        success: false,
+        error: 'Only superadmin can assign locations to admins',
+      });
+      return;
+    }
+
+    // Validate location exists if locationId provided
+    if (locationId) {
+      const location = await prisma.location.findUnique({
+        where: { id: locationId },
+      });
+
+      if (!location) {
+        res.status(404).json({
+          success: false,
+          error: 'Location not found',
+        });
+        return;
+      }
+    }
+
+    // Update admin's location
+    const admin = await prisma.admin.update({
+      where: { id: adminId },
+      data: {
+        locationId: locationId || null, // null for no location (superadmin)
+      },
+      select: {
+        id: true,
+        username: true,
+        name: true,
+        email: true,
+        role: true,
+        locationId: true,
+        location: true,
+      },
+    });
+
+    res.json({
+      success: true,
+      message: locationId 
+        ? 'Location assigned successfully' 
+        : 'Location unassigned successfully',
+      admin,
+    });
+  } catch (error) {
+    console.error('Assign location error:', error);
+    res.status(500).json({
+      success: false,
+      error: 'Failed to assign location',
+    });
   }
 };
