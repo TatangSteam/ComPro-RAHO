@@ -32,7 +32,9 @@ export default function MicrositePage() {
       })
       .then(data => {
         console.log('Locations loaded:', data);
-        setLocations(data);
+        // Backend returns { success: true, locations: [...] }
+        const locationData = data.locations || data;
+        setLocations(locationData);
         setLoading(false);
       })
       .catch(error => {

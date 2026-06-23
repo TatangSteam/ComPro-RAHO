@@ -19,8 +19,10 @@ export default function TentangKami() {
 
   const fetchLocations = async () => {
     try {
-      const res = await axios.get<Location[]>(`${process.env.NEXT_PUBLIC_API_URL}/locations`);
-      setLocations(res.data);
+      const res = await axios.get<any>(`${process.env.NEXT_PUBLIC_API_URL}/locations`);
+      // Backend returns { success: true, locations: [...] }
+      const locationData = res.data.locations || res.data;
+      setLocations(locationData);
     } catch (error) {
       console.error('Error fetching locations:', error);
     }
