@@ -1,3 +1,119 @@
+@import url('https://fonts.googleapis.com/css?family=Lato:300,400,700');
+
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+
+@layer components {
+  body:has(.home-scroll-snap) {
+    overflow: hidden;
+    background: #fffaf2;
+  }
+
+  .home-scroll-snap {
+    height: calc(100dvh - 5rem);
+    background: #fffaf2;
+    overflow-x: hidden;
+    overflow-y: auto;
+    overscroll-behavior-y: contain;
+    scroll-behavior: smooth;
+    scroll-padding-block-start: 0;
+    scroll-snap-type: y mandatory;
+    scrollbar-gutter: stable;
+  }
+
+  .home-snap-panel {
+    min-height: calc(100dvh - 5rem);
+    background: #fffaf2;
+    scroll-snap-align: start;
+    scroll-snap-stop: always;
+  }
+
+  .home-snap-panel > section {
+    min-height: inherit;
+  }
+
+  .home-snap-panel > footer {
+    min-height: inherit;
+  }
+
+  .home-snap-panel-footer {
+    background: #1a1a1a;
+  }
+
+  .pixel-starfield {
+    background:
+      radial-gradient(ellipse at bottom, #fff0bf 0%, #fff7df 38%, #fffaf2 74%, #fffdf8 100%);
+    font-family: "Lato", var(--font-poppins), sans-serif;
+  }
+
+  .pixel-stars {
+    position: absolute;
+    inset: 0;
+    z-index: 0;
+    pointer-events: none;
+    overflow: hidden;
+  }
+
+  .pixel-stars::before {
+    content: "";
+    position: absolute;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 220%;
+    background-repeat: repeat;
+    transform: translateY(0);
+    animation-name: animStar;
+    animation-timing-function: linear;
+    animation-iteration-count: infinite;
+    will-change: transform;
+  }
+
+  .pixel-stars-small::before {
+    opacity: 0.85;
+    background-image:
+      radial-gradient(circle, rgba(255, 255, 255, 0.96) 0 1px, transparent 1.6px),
+      radial-gradient(circle, rgba(246, 212, 107, 0.72) 0 1px, transparent 1.8px),
+      radial-gradient(circle, rgba(182, 145, 51, 0.34) 0 1px, transparent 1.7px);
+    background-size: 37px 37px, 79px 79px, 131px 131px;
+    background-position: 0 0, 23px 37px, 69px 97px;
+    animation-duration: 50s;
+  }
+
+  .pixel-stars-medium::before {
+    opacity: 0.5;
+    background-image:
+      radial-gradient(circle, rgba(255, 255, 255, 0.9) 0 1.5px, transparent 2.5px),
+      radial-gradient(circle, rgba(246, 212, 107, 0.58) 0 1.7px, transparent 2.8px);
+    background-size: 113px 113px, 197px 197px;
+    background-position: 43px 72px, 116px 28px;
+    animation-duration: 100s;
+  }
+
+  .pixel-stars-big::before {
+    opacity: 0.32;
+    background-image:
+      radial-gradient(circle, rgba(255, 255, 255, 0.86) 0 2.2px, transparent 3.8px),
+      radial-gradient(circle, rgba(214, 184, 90, 0.48) 0 2.4px, transparent 4px);
+    background-size: 223px 223px, 359px 359px;
+    background-position: 149px 36px, 71px 188px;
+    animation-duration: 150s;
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    .home-scroll-snap {
+      scroll-behavior: auto;
+    }
+  }
+}
+
+@keyframes animStar {
+  from {
+    transform: translateY(0);
+  }
+
+  to {
+    transform: translateY(-50%);
+  }
+}

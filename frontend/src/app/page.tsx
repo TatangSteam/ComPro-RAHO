@@ -4,8 +4,11 @@ import { useEffect, useState } from 'react';
 import axios from 'axios';
 import { Article } from '@/types';
 import HeroSection from '@/components/home/HeroSection';
+import NanoBubbleInfoSection from '@/components/home/NanoBubbleInfoSection';
+import NanoBubbleFeatureSection from '@/components/home/NanoBubbleFeatureSection';
 import HeroSection2 from '@/components/home/HeroSection2';
 import HeroSection3 from '@/components/home/HeroSection3';
+import Footer from '@/components/layout/Footer';
 
 export default function Home() {
   const [tindakanMedisArticles, setTindakanMedisArticles] = useState<Article[]>([]);
@@ -32,17 +35,30 @@ export default function Home() {
   };
 
   return (
-    <div className="min-h-screen bg-gray-50">
-      {/* Hero Section */}
-      <HeroSection />
+    <main className="home-scroll-snap" aria-label="Beranda">
+      <div className="home-snap-panel">
+        <HeroSection />
+      </div>
 
-      {/* Hero Section 2 */}
-      <HeroSection2 />
+      <div className="home-snap-panel">
+        <NanoBubbleInfoSection />
+      </div>
 
-      {/* Hero Section 3 */}
-      <HeroSection3 />
+      <div className="home-snap-panel">
+        <NanoBubbleFeatureSection />
+      </div>
 
+      <div className="home-snap-panel">
+        <HeroSection2 />
+      </div>
 
-    </div>
+      <div className="home-snap-panel">
+        <HeroSection3 />
+      </div>
+
+      <div className="home-snap-panel home-snap-panel-footer">
+        <Footer />
+      </div>
+    </main>
   );
 }
