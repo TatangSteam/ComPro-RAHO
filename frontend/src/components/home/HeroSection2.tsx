@@ -65,16 +65,24 @@ export default function HeroSection2() {
 
   return (
     <section 
-      className="relative py-20 md:py-28 overflow-hidden"
+      className="relative min-h-[calc(100dvh-5rem)] flex items-center overflow-visible"
       style={{
-        background: `linear-gradient(rgba(255, 255, 255, 0.40), rgba(255, 255, 255, 0.35), rgba(255, 255, 255, 0.40)), url('/assets/Hero2/HeroPart2.png')`,
-        backgroundSize: 'cover',
-        backgroundPosition: 'center',
-        backgroundRepeat: 'no-repeat',
+        background: 'transparent',
       }}
     >
-
-      <div className="relative max-w-7xl mx-auto px-6">
+      {/* SVG Background */}
+      <div 
+        className="pointer-events-none absolute inset-0 z-0"
+        style={{
+          backgroundImage: 'url(/assets/Hero/Section2,3,LokasiKmiBg.svg)',
+          backgroundSize: 'cover',
+          backgroundPosition: 'center',
+          backgroundRepeat: 'no-repeat',
+          opacity: 0.3
+        }}
+      />
+      
+      <div className="relative max-w-7xl mx-auto px-6 py-12 md:py-16 z-10 w-full">
         <div className="grid lg:grid-cols-2 gap-12 items-center">
           {/* Left Content */}
           <div className="space-y-8">
@@ -88,7 +96,7 @@ export default function HeroSection2() {
 
             {/* Main Heading */}
             <div>
-              <h2 className="text-4xl md:text-5xl lg:text-6xl font-bold text-gray-900 leading-tight mb-4">
+              <h2 className="text-3xl md:text-3xl lg:text-3xl font-bold text-gray-900 leading-tight mb-4">
                 Membangun Kesehatan Lebih Baik dengan{' '}
                 <span className="bg-gradient-to-r from-[#B69133] via-[#D6B85A] to-[#B69133] bg-clip-text text-transparent">
                   Teknologi Nano Bubble
@@ -141,13 +149,13 @@ export default function HeroSection2() {
 
           {/* Right Content - Logo with stats */}
           <div className="flex justify-center items-center">
-            <div className="relative">
+            <div className="relative w-full max-w-[800px] lg:max-w-[1000px]">
               <Image
                 src="/assets/LOGORAHO.png"
                 alt="Raho Club Premier"
-                width={600}
-                height={400}
-                className="object-contain w-full h-auto"
+                width={1500}
+                height={1000}
+                className="object-contain w-full h-auto opacity-100"
                 priority
               />
             </div>
@@ -173,29 +181,6 @@ export default function HeroSection2() {
           </div>
         </div>
 
-        {/* Partners Section */}
-        <div className="mt-12">
-          <p className="text-center text-gray-600 text-lg font-medium mb-8">
-            Dipercaya oleh berbagai partner kesehatan dan komunitas
-          </p>
-          <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-6 gap-6">
-            {partners.map((partner) => (
-              <div
-                key={partner.id}
-                className="bg-white rounded-2xl p-4 shadow-lg hover:shadow-xl transition-all duration-300 hover:-translate-y-1 border border-gray-200"
-              >
-                <div className="relative w-full aspect-video">
-                  <Image
-                    src={partner.image}
-                    alt={partner.name}
-                    fill
-                    className="object-contain"
-                  />
-                </div>
-              </div>
-            ))}
-          </div>
-        </div>
       </div>
     </section>
   );

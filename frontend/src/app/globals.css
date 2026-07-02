@@ -1,4 +1,5 @@
 @import url('https://fonts.googleapis.com/css?family=Lato:300,400,700');
+@import url('https://fonts.googleapis.com/css2?family=Abhaya+Libre:wght@400;500;600;700;800&family=Inter:wght@400;500;600;700&display=swap');
 
 @tailwind base;
 @tailwind components;
@@ -7,12 +8,12 @@
 @layer components {
   body:has(.home-scroll-snap) {
     overflow: hidden;
-    background: #fffaf2;
+    background: #ffffff;
   }
 
   .home-scroll-snap {
     height: calc(100dvh - 5rem);
-    background: #fffaf2;
+    background: #ffffff;
     overflow-x: hidden;
     overflow-y: auto;
     overscroll-behavior-y: contain;
@@ -24,7 +25,7 @@
 
   .home-snap-panel {
     min-height: calc(100dvh - 5rem);
-    background: #fffaf2;
+    background: #ffffff;
     scroll-snap-align: start;
     scroll-snap-stop: always;
   }
@@ -42,8 +43,7 @@
   }
 
   .pixel-starfield {
-    background:
-      radial-gradient(ellipse at bottom, #fff0bf 0%, #fff7df 38%, #fffaf2 74%, #fffdf8 100%);
+    background: #ffffff;
     font-family: "Lato", var(--font-poppins), sans-serif;
   }
 
@@ -115,5 +115,132 @@
 
   to {
     transform: translateY(-50%);
+  }
+}
+
+/* ── Rising Bubble Animations ── */
+@layer components {
+  .rising-bubbles {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    top: 0;
+    left: 0;
+    z-index: 0;
+    overflow: hidden;
+    pointer-events: none;
+  }
+
+  .rising-bubble {
+    position: absolute;
+    bottom: -120px;
+    border-radius: 50%;
+    opacity: 0;
+    animation: rise-bubble var(--dur, 10s) var(--delay, 0s) infinite ease-in;
+    background: radial-gradient(
+      circle at 35% 30%,
+      rgba(241, 211, 107, 0.75) 0%,
+      rgba(214, 184, 90, 0.55) 25%,
+      rgba(182, 145, 51, 0.35) 50%,
+      rgba(200, 150, 0, 0.18) 70%,
+      transparent 90%
+    );
+    border: 2.5px solid rgba(241, 211, 107, 0.7);
+    box-shadow:
+      inset 0 0 20px rgba(241, 211, 107, 0.5),
+      inset -5px -5px 25px rgba(255, 255, 255, 0.35),
+      0 0 30px rgba(241, 211, 107, 0.4),
+      0 5px 40px rgba(214, 184, 90, 0.35),
+      0 0 60px rgba(182, 145, 51, 0.2);
+  }
+
+  @keyframes rise-bubble {
+    0% {
+      bottom: -120px;
+      opacity: 0;
+      transform: translateX(0) scale(0.7);
+    }
+    8% { opacity: 0.85; }
+    15% { opacity: 0.95; }
+    50% { opacity: 1; }
+    80% { opacity: 0.9; }
+    92% { opacity: 0.5; }
+    100% {
+      bottom: 110%;
+      opacity: 0;
+      transform: translateX(var(--drift, 80px)) scale(1.2);
+    }
+  }
+
+  .rising-bubble:nth-child(1)  { width: 40px; height: 40px; left: 10%; --dur: 16s;  --delay: 0s;   --drift: 80px;   }
+  .rising-bubble:nth-child(2)  { width: 20px; height: 20px; left: 20%; --dur: 12s;  --delay: 1s;   --drift: -60px;  }
+  .rising-bubble:nth-child(3)  { width: 50px; height: 50px; left: 35%; --dur: 14s;  --delay: 2s;   --drift: 100px;  }
+  .rising-bubble:nth-child(4)  { width: 80px; height: 80px; left: 50%; --dur: 20s;  --delay: 0s;   --drift: -120px; }
+  .rising-bubble:nth-child(5)  { width: 35px; height: 35px; left: 55%; --dur: 13s;  --delay: 1s;   --drift: 80px;   }
+  .rising-bubble:nth-child(6)  { width: 45px; height: 45px; left: 65%; --dur: 15s;  --delay: 3s;   --drift: -70px;  }
+  .rising-bubble:nth-child(7)  { width: 90px; height: 90px; left: 70%; --dur: 22s;  --delay: 2s;   --drift: 140px;  }
+  .rising-bubble:nth-child(8)  { width: 25px; height: 25px; left: 80%; --dur: 13s;  --delay: 2s;   --drift: -50px;  }
+  .rising-bubble:nth-child(9)  { width: 15px; height: 15px; left: 70%; --dur: 11s;  --delay: 1s;   --drift: 60px;   }
+  .rising-bubble:nth-child(10) { width: 90px; height: 90px; left: 25%; --dur: 18s;  --delay: 4s;   --drift: -130px; }
+  .rising-bubble:nth-child(11) { width: 30px; height: 30px; left: 42%; --dur: 15s;  --delay: 3.5s; --drift: 90px;   }
+  .rising-bubble:nth-child(12) { width: 58px; height: 58px; left: 88%; --dur: 17s;  --delay: 1.5s; --drift: -80px;  }
+
+  @media (prefers-reduced-motion: reduce) {
+    .rising-bubble {
+      animation: none !important;
+      opacity: 0.15;
+    }
+  }
+}
+
+/* ── Animated Gradient Background ── */
+@property --gradient-color-1 {
+  syntax: "<color>";
+  inherits: true;
+  initial-value: #FFFEFE;
+}
+
+@property --gradient-color-2 {
+  syntax: "<color>";
+  inherits: true;
+  initial-value: #FBF2DC;
+}
+
+@property --gradient-color-3 {
+  syntax: "<color>";
+  inherits: true;
+  initial-value: #F1D36B;
+}
+
+@keyframes gradient-shift {
+  0%, 100% {
+    --gradient-color-1: #FFFFFF;
+    --gradient-color-2: #FFFFFF;
+    --gradient-color-3: #FFFFFF;
+  }
+  33% {
+    --gradient-color-1: #FFFFFF;
+    --gradient-color-2: #FFFFFF;
+    --gradient-color-3: #FFFFFF;
+  }
+  66% {
+    --gradient-color-1: #FFFFFF;
+    --gradient-color-2: #FFFFFF;
+    --gradient-color-3: #FFFFFF;
+  }
+}
+
+.animated-gold-gradient {
+  --gradient-color-1: #FFFFFF;
+  --gradient-color-2: #FFFFFF;
+  --gradient-color-3: #FFFFFF;
+  animation: gradient-shift 12s ease-in-out infinite;
+  background: #FFFFFF;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .animated-gold-gradient {
+    animation: none;
+    background: #FFFFFF;
   }
 }

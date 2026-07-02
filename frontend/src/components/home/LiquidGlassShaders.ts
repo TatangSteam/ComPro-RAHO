@@ -122,11 +122,11 @@ void main(){
   bgCA.b = texture2D(uBg, refractedUV - vec2(caStr, caStr * 0.5)).b;
 
   float depth = smoothstep(thr, thr + 3.0, field);
-  vec3  tint  = mix(vec3(1.0), vec3(1.0, 0.90, 0.58), depth * 0.28);
+  vec3  tint  = mix(vec3(1.0), vec3(1.0, 0.98, 0.92), depth * 0.15);  // Much lighter tint, less gold
 
   vec3 glassColor = bgCA * tint * (0.92 + 0.08 * diff)
                   + vec3(1.0) * spec * 0.85
-                  + vec3(1.0, 0.86, 0.42) * rim * 0.24
+                  + vec3(1.0, 0.95, 0.85) * rim * 0.15  // Lighter rim, less gold, reduced intensity
                   + vec3(1.0) * fresnel * 0.10;
 
   float shadowField = smoothstep(thr - 0.35, thr - 0.05, field);
@@ -204,22 +204,22 @@ export function drawBackgroundTexture(
 ) {
   const { showTitle = true } = options;
   const grd = ctx.createLinearGradient(0, 0, width * 0.78, height);
-  grd.addColorStop(0, '#fffdf8');
-  grd.addColorStop(0.32, '#fff4cf');
-  grd.addColorStop(0.68, '#f1d982');
-  grd.addColorStop(1, '#b69133');
+  grd.addColorStop(0, '#ffffff');      // Pure white
+  grd.addColorStop(0.32, '#fffef8');   // Very light cream
+  grd.addColorStop(0.68, '#fff9e8');   // Light cream (much lighter than before)
+  grd.addColorStop(1, '#f5ead0');      // Subtle warm beige (much lighter than #b69133)
   ctx.fillStyle = grd;
   ctx.fillRect(0, 0, width, height);
 
   ctx.save();
-  ctx.globalAlpha = 0.38;
+  ctx.globalAlpha = 0.18;  // Reduced from 0.38 to make overlays more subtle
   for (let i = 0; i < 5; i++) {
     const cx = width * (0.2 + i * 0.18);
     const cy = height * (0.3 + Math.sin(i * 1.3) * 0.25);
     const rg = ctx.createRadialGradient(cx, cy, 0, cx, cy, width * 0.35);
-    const hue = 36 + i * 8;
-    rg.addColorStop(0, `hsla(${hue}, 95%, 82%, 0.55)`);
-    rg.addColorStop(1, `hsla(${hue}, 75%, 54%, 0)`);
+    const hue = 40 + i * 5;  // Slightly adjusted hue range
+    rg.addColorStop(0, `hsla(${hue}, 45%, 88%, 0.35)`);  // Much lighter and less saturated
+    rg.addColorStop(1, `hsla(${hue}, 35%, 75%, 0)`);     // Lighter mid-tone
     ctx.fillStyle = rg;
     ctx.fillRect(0, 0, width, height);
   }

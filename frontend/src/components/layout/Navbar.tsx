@@ -16,20 +16,14 @@ export default function Navbar() {
   ];
 
   return (
-    <nav className="relative text-white sticky top-0 z-50">
-      {/* Background Image */}
-      <div className="absolute inset-0 w-full h-full">
-        <Image 
-          src="/assets/Navbar.png" 
-          alt="Navbar Background" 
-          fill
-          className="object-cover"
-          priority
-          quality={100}
-        />
-        {/* Dark overlay for better text contrast */}
-        <div className="absolute inset-0 bg-black/30"></div>
-      </div>
+    <nav 
+      className="relative text-white sticky top-0 z-50"
+      style={{
+        background: 'linear-gradient(135deg, #1a1a1a 0%, #2d2d2d 50%, #1a1a1a 100%)',
+      }}
+    >
+      {/* Decorative overlay for depth */}
+      <div className="absolute inset-0 bg-gradient-to-b from-transparent via-black/10 to-black/20"></div>
 
       {/* Navbar Content */}
       <div className="relative max-w-7xl mx-auto px-6">

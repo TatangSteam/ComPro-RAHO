@@ -3,12 +3,11 @@
 import { useEffect, useState } from 'react';
 import axios from 'axios';
 import { Article } from '@/types';
-import HeroSection from '@/components/home/HeroSection';
-import NanoBubbleInfoSection from '@/components/home/NanoBubbleInfoSection';
 import NanoBubbleFeatureSection from '@/components/home/NanoBubbleFeatureSection';
 import HeroSection2 from '@/components/home/HeroSection2';
 import HeroSection3 from '@/components/home/HeroSection3';
-import Footer from '@/components/layout/Footer';
+import LocationsSection from '@/components/home/LocationsSection';
+import IMICollaborationSection from '@/components/home/IMICollaborationSection';
 
 export default function Home() {
   const [tindakanMedisArticles, setTindakanMedisArticles] = useState<Article[]>([]);
@@ -35,29 +34,53 @@ export default function Home() {
   };
 
   return (
-    <main className="home-scroll-snap" aria-label="Beranda">
-      <div className="home-snap-panel">
-        <HeroSection />
+    <main 
+      className="home-scroll-snap relative" 
+      aria-label="Beranda"
+      style={{
+        background: '#ffffff',
+      }}
+    >
+      {/* Section 1-4: Unified Background Container with Animated Gradient */}
+      <div className="relative animated-gold-gradient" style={{ 
+        background: 'transparent',
+        boxShadow: '0 4px 6px -1px rgba(182, 145, 51, 0.15), 0 2px 4px -1px rgba(182, 145, 51, 0.1)'
+      }}>
+        {/* Unified Animated Background - Bubbles for Sections 1-4 */}
+        <div className="absolute inset-0 pointer-events-none" style={{ zIndex: 1 }}>
+          <div className="rising-bubbles" aria-hidden="true">
+            {Array.from({ length: 12 }).map((_, index) => (
+              <div 
+                className="rising-bubble" 
+                key={index}
+              />
+            ))}
+          </div>
+        </div>
+        {/* Section 1: Nano Bubble - Teknologi Inti */}
+        <div className="home-snap-panel relative" style={{ background: 'transparent' }}>
+          <NanoBubbleFeatureSection />
+        </div>
+
+        {/* Section 2: Produk & Layanan */}
+        <div className="home-snap-panel relative" style={{ background: 'transparent' }}>
+          <HeroSection2 />
+        </div>
+
+        {/* Section 3: Keunggulan & Manfaat */}
+        <div className="home-snap-panel relative" style={{ background: 'transparent' }}>
+          <HeroSection3 />
+        </div>
+
+        {/* Section 4: Lokasi Kami */}
+        <div className="home-snap-panel relative" style={{ background: 'transparent' }}>
+          <LocationsSection />
+        </div>
       </div>
 
-      <div className="home-snap-panel">
-        <NanoBubbleInfoSection />
-      </div>
-
-      <div className="home-snap-panel">
-        <NanoBubbleFeatureSection />
-      </div>
-
-      <div className="home-snap-panel">
-        <HeroSection2 />
-      </div>
-
-      <div className="home-snap-panel">
-        <HeroSection3 />
-      </div>
-
-      <div className="home-snap-panel home-snap-panel-footer">
-        <Footer />
+      {/* Section 5: IMI Collaboration */}
+      <div className="home-snap-panel relative" style={{ background: 'transparent' }}>
+        <IMICollaborationSection />
       </div>
     </main>
   );
