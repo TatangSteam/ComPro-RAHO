@@ -233,18 +233,20 @@ export const createLocation = async (req: Request, res: Response): Promise<void>
 };
 
 /**
- * Update location (superadmin only)
+ * Update location
+ * Superadmin: can update any location
+ * Other roles: can only update their own assigned location
  */
 export const updateLocation = async (req: Request, res: Response): Promise<void> => {
   try {
     const { id } = req.params;
     const user = (req as any).user;
 
-    // Only superadmin can update locations
-    if (user?.role !== 'superadmin') {
+    // Superadmin can update any location; other roles only their own assigned location
+    if (user?.role !== 'superadmin' && user?.locationId !== id) {
       res.status(403).json({
         success: false,
-        error: 'Only superadmin can update locations',
+        error: 'You do not have permission to update this location',
       });
       return;
     }

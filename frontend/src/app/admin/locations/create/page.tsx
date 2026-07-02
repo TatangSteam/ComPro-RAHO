@@ -21,12 +21,23 @@ export default function CreateLocation() {
     setLoading(true);
 
     try {
-      await axios.post(`${process.env.NEXT_PUBLIC_API_URL}/locations`, formData);
+      const token = localStorage.getItem('adminToken');
+      await axios.post(
+        `${process.env.NEXT_PUBLIC_API_URL}/locations`,
+        formData,
+        {
+          headers: { Authorization: `Bearer ${token}` },
+        }
+      );
       alert('Lokasi berhasil ditambahkan!');
       router.push('/admin/locations');
-    } catch (error) {
+    } catch (error: any) {
       console.error('Error creating location:', error);
-      alert('Gagal menambahkan lokasi');
+      if (error.response?.status === 403) {
+        alert('Anda tidak memiliki izin untuk menambah lokasi. Hanya superadmin yang dapat menambah lokasi.');
+      } else {
+        alert('Gagal menambahkan lokasi');
+      }
     } finally {
       setLoading(false);
     }

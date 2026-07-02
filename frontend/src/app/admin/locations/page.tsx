@@ -46,12 +46,19 @@ export default function AdminLocations() {
     if (!confirm('Apakah Anda yakin ingin menghapus lokasi ini?')) return;
 
     try {
-      await axios.delete(`${process.env.NEXT_PUBLIC_API_URL}/locations/${id}`);
+      const token = localStorage.getItem('adminToken');
+      await axios.delete(`${process.env.NEXT_PUBLIC_API_URL}/locations/${id}`, {
+        headers: { Authorization: `Bearer ${token}` },
+      });
       setLocations(locations.filter(l => l.id !== id));
       alert('Lokasi berhasil dihapus');
-    } catch (error) {
+    } catch (error: any) {
       console.error('Error deleting location:', error);
-      alert('Gagal menghapus lokasi');
+      if (error.response?.status === 403) {
+        alert('Anda tidak memiliki izin untuk menghapus lokasi. Hanya superadmin yang dapat menghapus lokasi.');
+      } else {
+        alert('Gagal menghapus lokasi');
+      }
     }
   };
 

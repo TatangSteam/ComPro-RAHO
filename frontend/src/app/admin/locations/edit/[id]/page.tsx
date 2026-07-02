@@ -40,8 +40,14 @@ export default function EditLocation() {
 
   const fetchLocation = async () => {
     try {
-      const res = await axios.get<Location>(`${process.env.NEXT_PUBLIC_API_URL}/locations/${params.id}`);
-      const location = res.data;
+      const token = localStorage.getItem('adminToken');
+      const res = await axios.get<{ success: boolean; location: Location }>(
+        `${process.env.NEXT_PUBLIC_API_URL}/locations/${params.id}`,
+        {
+          headers: { Authorization: `Bearer ${token}` },
+        }
+      );
+      const location = res.data.location || res.data;
       setFormData({
         name: location.name,
         city: location.city,
@@ -49,9 +55,13 @@ export default function EditLocation() {
         phone: location.phone || '',
         mapUrl: location.mapUrl || '',
       });
-    } catch (error) {
+    } catch (error: any) {
       console.error('Error fetching location:', error);
-      alert('Gagal memuat lokasi');
+      if (error.response?.status === 403) {
+        alert('Anda tidak memiliki akses untuk mengedit lokasi ini');
+      } else {
+        alert('Gagal memuat lokasi');
+      }
     } finally {
       setLoading(false);
     }
@@ -62,12 +72,23 @@ export default function EditLocation() {
     setSaving(true);
 
     try {
-      await axios.put(`${process.env.NEXT_PUBLIC_API_URL}/locations/${params.id}`, formData);
+      const token = localStorage.getItem('adminToken');
+      await axios.put(
+        `${process.env.NEXT_PUBLIC_API_URL}/locations/${params.id}`,
+        formData,
+        {
+          headers: { Authorization: `Bearer ${token}` },
+        }
+      );
       alert('Lokasi berhasil diupdate!');
       router.push('/admin/locations');
-    } catch (error) {
+    } catch (error: any) {
       console.error('Error updating location:', error);
-      alert('Gagal mengupdate lokasi');
+      if (error.response?.status === 403) {
+        alert('Anda tidak memiliki izin untuk mengupdate lokasi. Hanya superadmin yang dapat mengedit lokasi.');
+      } else {
+        alert('Gagal mengupdate lokasi');
+      }
     } finally {
       setSaving(false);
     }
