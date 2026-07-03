@@ -24,6 +24,8 @@ export interface CompanyProfile {
   updatedAt: string;
 }
 
+export type LocationCategory = 'cabang' | 'partnership';
+
 export interface Location {
   id: string;
   name: string;
@@ -31,6 +33,8 @@ export interface Location {
   address: string;
   phone: string | null;
   mapUrl: string | null;
+  imageUrl: string | null;
+  category: LocationCategory;
   createdAt: string;
   updatedAt: string;
   _count?: {

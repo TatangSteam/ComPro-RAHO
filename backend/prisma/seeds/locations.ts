@@ -5,6 +5,7 @@ export const locations = [
     address: 'Jl. Lamandau IV No.8, RT.3/RW.1, Kramat Pela, Kec. Kby. Baru, Kota Jakarta Selatan, Daerah Khusus Ibukota Jakarta 12130',
     phone: '+62 21 7209 8899',
     mapUrl: 'https://maps.google.com/?q=Attya+Reverse+Aging+Jakarta+Selatan',
+    category: 'partnership',
   },
   {
     name: 'Klinik Utama 02',
@@ -12,6 +13,7 @@ export const locations = [
     address: 'Rukan No.70 blok a, RT.7/RW.2, Kamal Muara, Penjaringan, North Jakarta City, Jakarta 14470',
     phone: '+62 21 5555 1234',
     mapUrl: 'https://maps.google.com/?q=Klinik+Utama+02+Jakarta+Utara',
+    category: 'partnership',
   },
   {
     name: 'Raho Club Premier',
@@ -19,6 +21,7 @@ export const locations = [
     address: 'Komplek Duta Merlin E no. 5-6, Petojo Utara, Kecamatan Gambir, Kota Jakarta Pusat, Daerah Khusus Ibukota Jakarta 10130',
     phone: '+62 21 6385 8899',
     mapUrl: 'https://maps.google.com/?q=Raho+Club+Premier+Duta+Merlin+Jakarta',
+    category: 'partnership',
   },
   {
     name: 'Raho Club Premier',
@@ -26,6 +29,7 @@ export const locations = [
     address: 'Jl. K.H. Mas Mansyur No.Kav. 126, Karet Tengsin, Kecamatan Tanah Abang, Kota Jakarta Pusat, Daerah Khusus Ibukota Jakarta 10250',
     phone: '+62 21 5785 0088',
     mapUrl: 'https://maps.google.com/?q=Raho+Club+Premier+Menara+Batavia+Jakarta',
+    category: 'partnership',
   },
   {
     name: 'Raho Club Premier',
@@ -33,6 +37,7 @@ export const locations = [
     address: 'Jl. L. L. R.E. Martadinata No.168, Merdeka, Kec. Sumur Bandung, Kota Bandung, Jawa Barat 40113',
     phone: '+62 22 4232 1234',
     mapUrl: 'https://maps.google.com/?q=Raho+Club+Premier+Bandung',
+    category: 'partnership',
   },
   {
     name: 'Apotek Hannah',
@@ -40,6 +45,7 @@ export const locations = [
     address: 'Jl Gatot Subroto Barat no 18 a-b Kerobokan Kaja, Kuta Utara, Kab Badung, Provinsi Bali',
     phone: '+62 361 847 5678',
     mapUrl: 'https://maps.google.com/?q=Apotek+Hannah+Bali',
+    category: 'partnership',
   },
   {
     name: 'Attya Reverse Aging',
@@ -47,5 +53,6 @@ export const locations = [
     address: 'Jl. Tumpang Raya no 48, Kel. Gajah mungkur, Kec. Gajah mungkur, Kota Semarang, Jawa Tengah',
     phone: '+62 24 8624 5678',
     mapUrl: 'https://maps.google.com/?q=Attya+Reverse+Aging+Semarang',
+    category: 'partnership',
   },
 ];

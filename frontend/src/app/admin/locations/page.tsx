@@ -5,6 +5,7 @@ import { useRouter } from 'next/navigation';
 import axios from 'axios';
 import Link from 'next/link';
 import { useRequireAuth } from '@/hooks/useAuth';
+import AuthImage from '@/components/Shared/AuthImage';
 
 interface Location {
   id: string;
@@ -13,6 +14,8 @@ interface Location {
   address: string;
   phone?: string;
   mapUrl?: string;
+  imageUrl?: string;
+  category?: string;
   createdAt: string;
   updatedAt: string;
 }
@@ -124,9 +127,17 @@ export default function AdminLocations() {
             {locations.map((location) => (
               <div key={location.id} className="bg-white rounded-lg shadow-sm p-6 hover:shadow-md transition-shadow">
                 <div className="flex items-start justify-between mb-4">
-                  <div className="w-12 h-12 bg-purple-100 rounded-lg flex items-center justify-center text-2xl">
-                    🏥
-                  </div>
+                  {location.imageUrl ? (
+                    <AuthImage
+                      src={location.imageUrl}
+                      alt={location.name}
+                      className="w-12 h-12 rounded-lg object-cover"
+                    />
+                  ) : (
+                    <div className="w-12 h-12 bg-purple-100 rounded-lg flex items-center justify-center text-2xl">
+                      🏥
+                    </div>
+                  )}
                   <div className="flex gap-2">
                     <Link
                       href={`/admin/locations/edit/${location.id}`}
@@ -142,6 +153,16 @@ export default function AdminLocations() {
                     </button>
                   </div>
                 </div>
+
+                <span
+                  className={`inline-block px-2 py-0.5 rounded-full text-xs font-medium mb-2 ${
+                    location.category === 'cabang'
+                      ? 'bg-blue-100 text-blue-800'
+                      : 'bg-green-100 text-green-800'
+                  }`}
+                >
+                  {location.category === 'cabang' ? 'Cabang' : 'Partnership'}
+                </span>
 
                 <h3 className="text-lg font-bold text-gray-900 mb-2">{location.name}</h3>
                 <p className="text-sm text-gray-600 mb-3">

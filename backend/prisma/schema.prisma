@@ -41,6 +41,8 @@ model Location {
   address     String
   phone       String?
   mapUrl      String?
+  imageUrl    String?
+  category    String   @default("partnership") // "cabang" | "partnership"
   admins      Admin[]  // One location can have many admins
   createdAt   DateTime @default(now())
   updatedAt   DateTime @updatedAt

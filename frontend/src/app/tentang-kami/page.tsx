@@ -7,7 +7,7 @@ import TabNavigation from '@/components/tentang-kami/TabNavigation';
 import UmumSection from '@/components/tentang-kami/UmumSection';
 import PelayananSection from '@/components/tentang-kami/PelayananSection';
 import TeknologiSection from '@/components/tentang-kami/TeknologiSection';
-import LokasiSection from '@/components/tentang-kami/LokasiSection';
+import PartnerNetworkSection from '@/components/tentang-kami/PartnerNetworkSection';
 
 export default function TentangKami() {
   const [locations, setLocations] = useState<Location[]>([]);
@@ -49,7 +49,7 @@ export default function TentangKami() {
       <UmumSection />
       <PelayananSection />
       <TeknologiSection />
-      <LokasiSection locations={locations} />
+      <PartnerNetworkSection locations={locations} />
     </div>
   );
 }

@@ -2,6 +2,7 @@
 
 import { useState, useEffect } from 'react';
 import { ChevronLeft, ChevronRight, MapPin, Phone } from 'lucide-react';
+import AuthImage from '@/components/Shared/AuthImage';
 
 interface Location {
   id: string;
@@ -10,6 +11,8 @@ interface Location {
   address: string;
   phone?: string;
   mapUrl?: string;
+  imageUrl?: string;
+  category?: string;
 }
 
 export default function LocationsSection() {
@@ -114,25 +117,51 @@ export default function LocationsSection() {
             <div className="grid md:grid-cols-2">
               {/* Location Visual */}
               <div 
-                className="relative h-96 md:h-full flex items-center justify-center"
+                className="relative h-96 md:h-full flex items-center justify-center overflow-hidden"
                 style={{
                   background: 'linear-gradient(135deg, #B69133 0%, #D6B85A 50%, #B69133 100%)',
                 }}
               >
+                {currentLocation.imageUrl && (
+                  <AuthImage
+                    src={currentLocation.imageUrl}
+                    alt={currentLocation.name}
+                    className="absolute inset-0 w-full h-full object-cover"
+                  />
+                )}
                 <div className="absolute inset-0 bg-gradient-to-t from-black/40 to-transparent"></div>
-                <div className="relative z-10 text-center text-white p-8">
-                  <MapPin className="w-20 h-20 mx-auto mb-4 opacity-80" />
-                  <h3 className="text-4xl font-bold mb-2">{currentLocation.city}</h3>
-                  <p className="text-lg opacity-90">{currentLocation.name}</p>
-                </div>
+                {!currentLocation.imageUrl && (
+                  <div className="relative z-10 text-center text-white p-8">
+                    <MapPin className="w-20 h-20 mx-auto mb-4 opacity-80" />
+                    <h3 className="text-4xl font-bold mb-2">{currentLocation.city}</h3>
+                    <p className="text-lg opacity-90">{currentLocation.name}</p>
+                  </div>
+                )}
+                {currentLocation.imageUrl && (
+                  <div className="relative z-10 text-center text-white p-8">
+                    <h3 className="text-4xl font-bold mb-2 drop-shadow-lg">{currentLocation.city}</h3>
+                    <p className="text-lg opacity-90 drop-shadow-lg">{currentLocation.name}</p>
+                  </div>
+                )}
               </div>
 
               {/* Location Details */}
               <div className="p-8 md:p-12 flex flex-col justify-center">
                 <div className="mb-6">
-                  <span className="inline-block px-4 py-2 bg-[#B69133]/10 text-[#B69133] rounded-full text-sm font-medium mb-4">
-                    {currentIndex + 1} / {locations.length}
-                  </span>
+                  <div className="flex items-center gap-2 mb-4">
+                    <span
+                      className={`inline-flex items-center gap-1 px-3 py-1 rounded-full text-xs font-medium ${
+                        currentLocation.category === 'cabang'
+                          ? 'bg-blue-100 text-blue-700'
+                          : 'bg-green-100 text-green-700'
+                      }`}
+                    >
+                      {currentLocation.category === 'cabang' ? 'Lokasi Cabang' : 'Lokasi Partnership'}
+                    </span>
+                    <span className="inline-block px-4 py-1 bg-[#B69133]/10 text-[#B69133] rounded-full text-sm font-medium">
+                      {currentIndex + 1} / {locations.length}
+                    </span>
+                  </div>
                   <h3 className="text-3xl font-bold text-gray-900 mb-2">
                     {currentLocation.name}
                   </h3>

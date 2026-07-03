@@ -1,9 +1,27 @@
 'use client';
 
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
+import axios from 'axios';
+import { Location } from '@/types';
+import PartnerNetworkSection from '@/components/tentang-kami/PartnerNetworkSection';
 
 export default function PartnershipPage() {
   const [activeTab, setActiveTab] = useState<'dokter' | 'klinik'>('dokter');
+  const [locations, setLocations] = useState<Location[]>([]);
+
+  useEffect(() => {
+    fetchLocations();
+  }, []);
+
+  const fetchLocations = async () => {
+    try {
+      const res = await axios.get<any>(`${process.env.NEXT_PUBLIC_API_URL}/locations`);
+      const locationData = res.data.locations || res.data;
+      setLocations(locationData);
+    } catch (error) {
+      console.error('Error fetching locations:', error);
+    }
+  };
 
   return (
     <div className="min-h-screen bg-white">
@@ -177,6 +195,8 @@ export default function PartnershipPage() {
           </section>
         )}
       </div>
+
+      <PartnerNetworkSection locations={locations} />
 
     </div>
   );

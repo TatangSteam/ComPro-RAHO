@@ -12,6 +12,7 @@ interface Location {
   city: string;
   phone: string;
   mapUrl: string;
+  category?: string;
 }
 
 export default function MicrositePage() {
@@ -34,7 +35,12 @@ export default function MicrositePage() {
         console.log('Locations loaded:', data);
         // Backend returns { success: true, locations: [...] }
         const locationData = data.locations || data;
-        setLocations(locationData);
+        // Show "cabang" locations first, then partnership
+        const sortedLocations = [...locationData].sort((a, b) => {
+          if (a.category === b.category) return 0;
+          return a.category === 'cabang' ? -1 : 1;
+        });
+        setLocations(sortedLocations);
         setLoading(false);
       })
       .catch(error => {

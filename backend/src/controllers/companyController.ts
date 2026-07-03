@@ -2,6 +2,8 @@ import { Request, Response } from 'express';
 import { PrismaClient } from '@prisma/client';
 import { uploadToMinio, deleteFromMinio } from '../utils/fileUpload';
 
+const VALID_LOCATION_CATEGORIES = ['cabang', 'partnership'];
+
 const prisma = new PrismaClient();
 
 // ============================================================================
@@ -198,7 +200,7 @@ export const createLocation = async (req: Request, res: Response): Promise<void>
       return;
     }
 
-    const { name, city, address, phone, mapUrl } = req.body;
+    const { name, city, address, phone, mapUrl, category } = req.body;
 
     if (!name || !city || !address) {
       res.status(400).json({
@@ -208,6 +210,19 @@ export const createLocation = async (req: Request, res: Response): Promise<void>
       return;
     }
 
+    if (category && !VALID_LOCATION_CATEGORIES.includes(category)) {
+      res.status(400).json({
+        success: false,
+        error: `Category must be one of: ${VALID_LOCATION_CATEGORIES.join(', ')}`,
+      });
+      return;
+    }
+
+    let imageUrl: string | null = null;
+    if (req.file) {
+      imageUrl = await uploadToMinio(req.file);
+    }
+
     const location = await prisma.location.create({
       data: {
         name,
@@ -215,6 +230,8 @@ export const createLocation = async (req: Request, res: Response): Promise<void>
         address,
         phone,
         mapUrl,
+        category: category || 'partnership',
+        imageUrl,
       },
     });
 
@@ -251,7 +268,24 @@ export const updateLocation = async (req: Request, res: Response): Promise<void>
       return;
     }
 
-    const { name, city, address, phone, mapUrl } = req.body;
+    const { name, city, address, phone, mapUrl, category } = req.body;
+
+    if (category && !VALID_LOCATION_CATEGORIES.includes(category)) {
+      res.status(400).json({
+        success: false,
+        error: `Category must be one of: ${VALID_LOCATION_CATEGORIES.join(', ')}`,
+      });
+      return;
+    }
+
+    let imageUrl: string | undefined;
+    if (req.file) {
+      const existingLocation = await prisma.location.findUnique({ where: { id } });
+      if (existingLocation?.imageUrl) {
+        await deleteFromMinio(existingLocation.imageUrl);
+      }
+      imageUrl = await uploadToMinio(req.file);
+    }
 
     const location = await prisma.location.update({
       where: { id },
@@ -261,6 +295,8 @@ export const updateLocation = async (req: Request, res: Response): Promise<void>
         ...(address && { address }),
         ...(phone !== undefined && { phone }),
         ...(mapUrl !== undefined && { mapUrl }),
+        ...(category && { category }),
+        ...(imageUrl !== undefined && { imageUrl }),
       },
     });
 
@@ -320,6 +356,10 @@ export const deleteLocation = async (req: Request, res: Response): Promise<void>
         message: 'Please reassign or remove admins first',
       });
       return;
+    }
+
+    if (location.imageUrl) {
+      await deleteFromMinio(location.imageUrl);
     }
 
     await prisma.location.delete({

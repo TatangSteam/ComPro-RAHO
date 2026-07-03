@@ -4,6 +4,7 @@ import { useEffect, useState } from 'react';
 import { useRouter, useParams } from 'next/navigation';
 import axios from 'axios';
 import Link from 'next/link';
+import AuthImage from '@/components/Shared/AuthImage';
 
 interface Location {
   id: string;
@@ -12,6 +13,8 @@ interface Location {
   address: string;
   phone?: string;
   mapUrl?: string;
+  imageUrl?: string;
+  category?: string;
 }
 
 export default function EditLocation() {
@@ -19,12 +22,16 @@ export default function EditLocation() {
   const params = useParams();
   const [loading, setLoading] = useState(true);
   const [saving, setSaving] = useState(false);
+  const [imageFile, setImageFile] = useState<File | null>(null);
+  const [imagePreview, setImagePreview] = useState<string>('');
+  const [currentImageUrl, setCurrentImageUrl] = useState<string>('');
   const [formData, setFormData] = useState({
     name: '',
     city: '',
     address: '',
     phone: '',
     mapUrl: '',
+    category: 'partnership',
   });
 
   useEffect(() => {
@@ -54,7 +61,11 @@ export default function EditLocation() {
         address: location.address,
         phone: location.phone || '',
         mapUrl: location.mapUrl || '',
+        category: location.category || 'partnership',
       });
+      if (location.imageUrl) {
+        setCurrentImageUrl(location.imageUrl);
+      }
     } catch (error: any) {
       console.error('Error fetching location:', error);
       if (error.response?.status === 403) {
@@ -67,19 +78,55 @@ export default function EditLocation() {
     }
   };
 
+  const handleImageChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+    const file = e.target.files?.[0];
+    if (file) {
+      setImageFile(file);
+      const reader = new FileReader();
+      reader.onloadend = () => {
+        setImagePreview(reader.result as string);
+      };
+      reader.readAsDataURL(file);
+    }
+  };
+
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
     setSaving(true);
 
     try {
       const token = localStorage.getItem('adminToken');
-      await axios.put(
-        `${process.env.NEXT_PUBLIC_API_URL}/locations/${params.id}`,
-        formData,
-        {
-          headers: { Authorization: `Bearer ${token}` },
-        }
-      );
+
+      if (imageFile) {
+        const formDataToSend = new FormData();
+        formDataToSend.append('name', formData.name);
+        formDataToSend.append('city', formData.city);
+        formDataToSend.append('address', formData.address);
+        formDataToSend.append('phone', formData.phone);
+        formDataToSend.append('mapUrl', formData.mapUrl);
+        formDataToSend.append('category', formData.category);
+        formDataToSend.append('image', imageFile);
+
+        await axios.put(
+          `${process.env.NEXT_PUBLIC_API_URL}/locations/${params.id}`,
+          formDataToSend,
+          {
+            headers: {
+              Authorization: `Bearer ${token}`,
+              'Content-Type': 'multipart/form-data',
+            },
+          }
+        );
+      } else {
+        await axios.put(
+          `${process.env.NEXT_PUBLIC_API_URL}/locations/${params.id}`,
+          formData,
+          {
+            headers: { Authorization: `Bearer ${token}` },
+          }
+        );
+      }
+
       alert('Lokasi berhasil diupdate!');
       router.push('/admin/locations');
     } catch (error: any) {
@@ -117,6 +164,26 @@ export default function EditLocation() {
       {/* Form */}
       <main className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
         <form onSubmit={handleSubmit} className="bg-white rounded-lg shadow-sm p-6 space-y-6">
+          {/* Category */}
+          <div>
+            <label htmlFor="category" className="block text-sm font-medium text-gray-700 mb-2">
+              Kategori *
+            </label>
+            <select
+              id="category"
+              required
+              value={formData.category}
+              onChange={(e) => setFormData({ ...formData, category: e.target.value })}
+              className="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-yellow-600 focus:border-transparent outline-none"
+            >
+              <option value="partnership">Partnership</option>
+              <option value="cabang">Cabang</option>
+            </select>
+            <p className="mt-1 text-sm text-gray-500">
+              Cabang: lokasi resmi RAHO Club Premier. Partnership: klinik/mitra kesehatan.
+            </p>
+          </div>
+
           {/* Name */}
           <div>
             <label htmlFor="name" className="block text-sm font-medium text-gray-700 mb-2">
@@ -195,6 +262,47 @@ export default function EditLocation() {
             />
             <p className="mt-1 text-sm text-gray-500">
               Link Google Maps untuk lokasi ini (opsional)
+            </p>
+          </div>
+
+          {/* Current Image */}
+          {currentImageUrl && !imagePreview && (
+            <div>
+              <label className="block text-sm font-medium text-gray-700 mb-2">
+                Gambar Saat Ini
+              </label>
+              <AuthImage
+                src={currentImageUrl}
+                alt="Current"
+                className="w-full max-w-md h-48 object-cover rounded-lg"
+              />
+            </div>
+          )}
+
+          {/* Image Upload */}
+          <div>
+            <label htmlFor="image" className="block text-sm font-medium text-gray-700 mb-2">
+              {currentImageUrl ? 'Ganti Gambar' : 'Upload Gambar'}
+            </label>
+            <input
+              type="file"
+              id="image"
+              accept="image/*"
+              onChange={handleImageChange}
+              className="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-yellow-600 focus:border-transparent outline-none"
+            />
+            {imagePreview && (
+              <div className="mt-4">
+                <p className="text-sm text-gray-600 mb-2">Preview Gambar Baru:</p>
+                <img
+                  src={imagePreview}
+                  alt="Preview"
+                  className="w-full max-w-md h-48 object-cover rounded-lg"
+                />
+              </div>
+            )}
+            <p className="mt-1 text-sm text-gray-500">
+              Upload gambar baru untuk mengganti gambar lama (opsional, format: JPG, PNG)
             </p>
           </div>
 
