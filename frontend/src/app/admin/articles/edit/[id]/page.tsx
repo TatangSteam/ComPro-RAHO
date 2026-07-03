@@ -5,6 +5,8 @@ import { useRouter, useParams } from 'next/navigation';
 import axios from 'axios';
 import Link from 'next/link';
 import AuthImage from '@/components/Shared/AuthImage';
+import RichTextEditor from '@/components/Shared/RichTextEditor';
+import { toDisplayHtml } from '@/lib/sanitizeHtml';
 import { Article } from '@/types';
 
 export default function EditArticle() {
@@ -43,7 +45,10 @@ export default function EditArticle() {
       setFormData({
         title: article.title,
         slug: article.slug,
-        content: article.content,
+        // Normalize legacy plain-text/Markdown-lite content to proper HTML
+        // before loading it into the rich text editor, so re-saving doesn't
+        // collapse paragraphs/headings/lists into a single flattened block.
+        content: toDisplayHtml(article.content),
         excerpt: article.excerpt || '',
         author: article.author || '',
         category: article.category,
@@ -72,8 +77,19 @@ export default function EditArticle() {
     }
   };
 
+  const isContentEmpty = (html: string) => {
+    const stripped = html.replace(/<(.|\n)*?>/g, '').trim();
+    return stripped.length === 0;
+  };
+
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
+
+    if (isContentEmpty(formData.content)) {
+      alert('Konten artikel tidak boleh kosong');
+      return;
+    }
+
     setSaving(true);
 
     try {
@@ -292,20 +308,16 @@ export default function EditArticle() {
 
           {/* Content */}
           <div>
-            <label htmlFor="content" className="block text-sm font-medium text-gray-700 mb-2">
+            <label className="block text-sm font-medium text-gray-700 mb-2">
               Konten Artikel *
             </label>
-            <textarea
-              id="content"
-              rows={15}
-              required
+            <RichTextEditor
               value={formData.content}
-              onChange={(e) => setFormData({ ...formData, content: e.target.value })}
-              className="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-yellow-600 focus:border-transparent outline-none font-mono text-sm"
+              onChange={(content) => setFormData({ ...formData, content })}
               placeholder="Tulis konten artikel di sini..."
             />
             <p className="mt-1 text-sm text-gray-500">
-              Gunakan enter untuk paragraf baru. Format akan dipertahankan.
+              Gunakan toolbar untuk mengatur format teks (bold, heading, list, dll).
             </p>
           </div>
 

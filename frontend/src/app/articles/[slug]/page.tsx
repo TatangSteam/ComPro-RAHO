@@ -6,6 +6,7 @@ import { useParams } from 'next/navigation';
 import Link from 'next/link';
 import AuthImage from '@/components/Shared/AuthImage';
 import { Article } from '@/types';
+import { renderArticleContent } from '@/lib/sanitizeHtml';
 
 export default function ArticlePage() {
   const params = useParams();
@@ -58,9 +59,10 @@ export default function ArticlePage() {
             <p className="text-gray-500 mb-8">
               Published: {new Date(article.createdAt).toLocaleDateString()}
             </p>
-            <div className="prose prose-lg max-w-none text-gray-700 leading-relaxed">
-              {article.content}
-            </div>
+            <div
+              className="prose prose-lg max-w-none text-gray-700 leading-relaxed"
+              dangerouslySetInnerHTML={{ __html: renderArticleContent(article.content) }}
+            />
           </div>
         </article>
       </div>

@@ -8,6 +8,7 @@ import Script from 'next/script';
 import { Article } from '@/types';
 import RelatedArticlesSection from '@/components/artikel/RelatedArticlesSection';
 import AuthImage from '@/components/Shared/AuthImage';
+import { renderArticleContent, stripHtml } from '@/lib/sanitizeHtml';
 
 export default function ArtikelDetailPage() {
   const params = useParams();
@@ -67,7 +68,7 @@ export default function ArtikelDetailPage() {
     },
     datePublished: article.createdAt,
     dateModified: article.updatedAt,
-    description: article.content.substring(0, 160),
+    description: stripHtml(article.content).substring(0, 160),
     mainEntityOfPage: {
       '@type': 'WebPage',
       '@id': `https://rahopremier.id/artikel-kesehatan/${article.slug}`,
@@ -159,9 +160,10 @@ export default function ArtikelDetailPage() {
               {article.title}
             </h2>
             
-            <div className="text-gray-700 leading-relaxed space-y-4 sm:space-y-6 text-sm sm:text-base whitespace-pre-line">
-              {article.content}
-            </div>
+            <div
+              className="prose prose-sm sm:prose-base lg:prose-lg max-w-none text-gray-700 leading-relaxed [&_a]:text-yellow-600 [&_a]:underline"
+              dangerouslySetInnerHTML={{ __html: renderArticleContent(article.content) }}
+            />
           </div>
         </article>
       </div>

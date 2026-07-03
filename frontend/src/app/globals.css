@@ -1,3 +1,30 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+
+/* Rich Text Editor (Quill) */
+.rich-text-editor .ql-container {
+  min-height: 300px;
+  font-size: 0.95rem;
+  font-family: inherit;
+  border: none;
+}
+
+.rich-text-editor .ql-toolbar {
+  border: none;
+  border-bottom: 1px solid #e5e7eb;
+  border-radius: 0.5rem 0.5rem 0 0;
+}
+
+.rich-text-editor .ql-container {
+  border-radius: 0 0 0.5rem 0.5rem;
+}
+
+.rich-text-editor .ql-editor {
+  min-height: 300px;
+}
+
+.rich-text-editor .ql-editor.ql-blank::before {
+  font-style: normal;
+  color: #9ca3af;
+}

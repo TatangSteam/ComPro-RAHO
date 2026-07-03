@@ -3,6 +3,7 @@
 import { useState } from 'react';
 import Link from 'next/link';
 import { Article } from '@/types';
+import { stripHtml } from '@/lib/sanitizeHtml';
 
 interface KisahPasienSectionProps {
   articles: Article[];
@@ -20,7 +21,7 @@ export default function KisahPasienSection({ articles }: KisahPasienSectionProps
     }
     
     // Jika tidak ada excerpt atau terlalu panjang, ambil dari content
-    const content = article.content;
+    const content = stripHtml(article.content);
     
     // Coba ambil kalimat pertama
     const firstSentence = content.split(/[.!?]/)[0];

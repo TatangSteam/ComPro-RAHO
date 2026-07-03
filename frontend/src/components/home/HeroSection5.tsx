@@ -4,6 +4,7 @@ import { useState } from 'react';
 import Link from 'next/link';
 import Image from 'next/image';
 import { Article } from '@/types';
+import { stripHtml } from '@/lib/sanitizeHtml';
 
 interface HeroSection5Props {
   articles: Article[];
@@ -177,7 +178,7 @@ export default function HeroSection5({ articles }: HeroSection5Props) {
 
                       {/* Excerpt */}
                       <p className="text-sm text-gray-400 leading-relaxed line-clamp-3 mb-4 flex-1">
-                        {article.excerpt || truncateText(article.content, 120)}
+                        {article.excerpt || truncateText(stripHtml(article.content), 120)}
                       </p>
 
                       {/* Read More Link */}
