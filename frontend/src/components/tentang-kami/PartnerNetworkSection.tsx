@@ -90,9 +90,9 @@ export default function PartnerNetworkSection({ locations }: PartnerNetworkSecti
             {cabangLocations.map((location) => (
               <div
                 key={location.id}
-                className="bg-white rounded-2xl shadow-lg overflow-hidden grid md:grid-cols-2"
+                className="bg-white rounded-2xl shadow-lg overflow-hidden grid md:grid-cols-2 md:items-start"
               >
-                <div className="relative h-56 md:h-full bg-gray-100">
+                <div className="relative h-56 md:h-72 lg:h-80 bg-gray-100">
                   {location.imageUrl ? (
                     <AuthImage
                       src={location.imageUrl}
@@ -189,9 +189,16 @@ export default function PartnerNetworkSection({ locations }: PartnerNetworkSecti
                   <p className="text-sm font-medium text-[#B69133] mb-3">{location.city}</p>
 
                   {location.phone && (
-                    <div className="flex items-center gap-2 mb-4 text-xs text-gray-500">
+                    <div className="flex items-center gap-2 mb-2 text-xs text-gray-500">
                       <Phone className="w-3.5 h-3.5 text-[#B69133] flex-shrink-0" />
                       <span className="line-clamp-1">{location.phone}</span>
+                    </div>
+                  )}
+
+                  {location.address && (
+                    <div className="flex items-start gap-2 mb-4 text-xs text-gray-500">
+                      <MapPin className="w-3.5 h-3.5 text-[#B69133] flex-shrink-0 mt-0.5" />
+                      <span className="line-clamp-2">{location.address}</span>
                     </div>
                   )}
 
