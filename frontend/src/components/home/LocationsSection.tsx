@@ -33,7 +33,12 @@ export default function LocationsSection() {
       
       const data = await response.json();
       if (data.success && data.locations) {
-        setLocations(data.locations);
+        // Show "cabang" locations first, then partnership
+        const sorted = [...data.locations].sort((a, b) => {
+          if (a.category === b.category) return 0;
+          return a.category === 'cabang' ? -1 : 1;
+        });
+        setLocations(sorted);
       }
     } catch (err) {
       console.error('Error fetching locations:', err);
