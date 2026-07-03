@@ -6,6 +6,17 @@ import { Article } from '@/types';
 import HeroSection from '@/components/home/HeroSection';
 import HeroSection2 from '@/components/home/HeroSection2';
 import HeroSection3 from '@/components/home/HeroSection3';
+import PagePreloader from '@/components/Shared/PagePreloader';
+
+// Heavy background assets rendered via CSS backgroundImage (not covered by
+// next/image), preloaded so the page doesn't reveal with backgrounds
+// popping in one by one.
+const PRELOAD_IMAGES = [
+  '/assets/Hero/Hero-Section.png',
+  '/assets/Hero/Hero-Section.gif',
+  '/assets/Hero2/HeroPart2.png',
+  '/assets/beranda3/Beranda3BG.png',
+];
 
 export default function Home() {
   const [tindakanMedisArticles, setTindakanMedisArticles] = useState<Article[]>([]);
@@ -33,6 +44,8 @@ export default function Home() {
 
   return (
     <div className="min-h-screen bg-gray-50">
+      <PagePreloader images={PRELOAD_IMAGES} />
+
       {/* Hero Section */}
       <HeroSection />
 
