@@ -104,7 +104,7 @@ export default function LocationsSection() {
             </span>
           </h2>
           <p className="text-gray-600 text-lg">
-            Temukan kantor kami di berbagai kota di Indonesia
+            Temukan kami di berbagai kota di Indonesia
           </p>
         </div>
 
