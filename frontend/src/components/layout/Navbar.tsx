@@ -19,7 +19,10 @@ export default function Navbar() {
     <nav 
       className="relative text-white sticky top-0 z-50"
       style={{
-        background: 'linear-gradient(135deg, #1a1a1a 0%, #2d2d2d 50%, #1a1a1a 100%)',
+        backgroundImage: 'url(/assets/Navbar.png)',
+        backgroundSize: 'cover',
+        backgroundPosition: 'center',
+        backgroundRepeat: 'no-repeat',
       }}
     >
       {/* Decorative overlay for depth */}

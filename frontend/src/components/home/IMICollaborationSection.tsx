@@ -97,7 +97,7 @@ export default function IMICollaborationSection() {
             {!imiLogoError ? (
               <div className="relative h-24 w-52 md:h-28 md:w-60">
                 <Image
-                  src="/assets/imi-logo.png"
+                  src="/assets/logo-imi-new.png"
                   alt="IMI - Inovasi Molekuler Indonesia"
                   fill
                   className="object-contain"
@@ -216,7 +216,7 @@ export default function IMICollaborationSection() {
               <div className="mb-8">
                 {!imiLogoError ? (
                   <Image
-                    src="/assets/imi-logo.png"
+                    src="/assets/logo-imi-new.png"
                     alt="IMI - Inovasi Molekuler Indonesia"
                     width={96}
                     height={52}

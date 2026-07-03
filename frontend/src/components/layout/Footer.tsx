@@ -3,8 +3,17 @@ import Image from 'next/image';
 
 export default function Footer() {
   return (
-    <footer className="bg-[#1a1a1a] text-white">
-      <div className="max-w-7xl mx-auto px-4 py-12">
+    <footer
+      className="relative text-white"
+      style={{
+        backgroundImage: 'url("/assets/Footer Section.png")',
+        backgroundSize: 'cover',
+        backgroundPosition: 'center',
+        backgroundRepeat: 'no-repeat',
+        backgroundColor: '#1a1a1a',
+      }}
+    >
+      <div className="relative max-w-7xl mx-auto px-4 py-12">
         <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-5 gap-8">
           {/* Logo & Description */}
           <div className="sm:col-span-2 lg:col-span-1">
