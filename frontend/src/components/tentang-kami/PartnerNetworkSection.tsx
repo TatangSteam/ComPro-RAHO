@@ -4,6 +4,7 @@ import { useMemo, useState } from 'react';
 import { MapPin, Phone, Search, ChevronLeft, ChevronRight, Star } from 'lucide-react';
 import AuthImage from '@/components/Shared/AuthImage';
 import { Location } from '@/types';
+import { sortLocationsForDisplay } from '@/lib/locationSort';
 
 interface PartnerNetworkSectionProps {
   locations: Location[];
@@ -31,12 +32,12 @@ export default function PartnerNetworkSection({ locations }: PartnerNetworkSecti
   };
 
   const cabangLocations = useMemo(
-    () => locations.filter((l) => l.category === 'cabang' && matchesSearch(l)),
+    () => sortLocationsForDisplay(locations.filter((l) => l.category === 'cabang' && matchesSearch(l))),
     [locations, search]
   );
 
   const partnershipLocations = useMemo(
-    () => locations.filter((l) => l.category !== 'cabang' && matchesSearch(l)),
+    () => sortLocationsForDisplay(locations.filter((l) => l.category !== 'cabang' && matchesSearch(l))),
     [locations, search]
   );
 

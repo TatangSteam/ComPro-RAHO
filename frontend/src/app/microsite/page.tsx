@@ -4,6 +4,7 @@ import { useState, useEffect } from 'react';
 import Image from 'next/image';
 import Link from 'next/link';
 import { FaInstagram, FaTiktok, FaLinkedin, FaEnvelope, FaGlobe, FaMapMarkerAlt, FaChevronRight, FaPhone, FaWhatsapp } from 'react-icons/fa';
+import { sortLocationsForDisplay } from '@/lib/locationSort';
 
 interface Location {
   id: string;
@@ -35,12 +36,7 @@ export default function MicrositePage() {
         console.log('Locations loaded:', data);
         // Backend returns { success: true, locations: [...] }
         const locationData = data.locations || data;
-        // Show "cabang" locations first, then partnership
-        const sortedLocations = [...locationData].sort((a, b) => {
-          if (a.category === b.category) return 0;
-          return a.category === 'cabang' ? -1 : 1;
-        });
-        setLocations(sortedLocations);
+        setLocations(sortLocationsForDisplay(locationData));
         setLoading(false);
       })
       .catch(error => {
