@@ -15,6 +15,7 @@ interface Location {
   mapUrl?: string;
   imageUrl?: string;
   category?: string;
+  sortOrder?: number;
 }
 
 export default function EditLocation() {
@@ -32,6 +33,7 @@ export default function EditLocation() {
     phone: '',
     mapUrl: '',
     category: 'partnership',
+    sortOrder: '0',
   });
 
   useEffect(() => {
@@ -62,6 +64,7 @@ export default function EditLocation() {
         phone: location.phone || '',
         mapUrl: location.mapUrl || '',
         category: location.category || 'partnership',
+        sortOrder: String(location.sortOrder ?? 0),
       });
       if (location.imageUrl) {
         setCurrentImageUrl(location.imageUrl);
@@ -105,6 +108,7 @@ export default function EditLocation() {
         formDataToSend.append('phone', formData.phone);
         formDataToSend.append('mapUrl', formData.mapUrl);
         formDataToSend.append('category', formData.category);
+        formDataToSend.append('sortOrder', formData.sortOrder);
         formDataToSend.append('image', imageFile);
 
         await axios.put(
@@ -181,6 +185,24 @@ export default function EditLocation() {
             </select>
             <p className="mt-1 text-sm text-gray-500">
               Cabang: lokasi resmi RAHO Club Premier. Partnership: klinik/mitra kesehatan.
+            </p>
+          </div>
+
+          {/* Sort Order */}
+          <div>
+            <label htmlFor="sortOrder" className="block text-sm font-medium text-gray-700 mb-2">
+              Urutan Tampil
+            </label>
+            <input
+              type="number"
+              id="sortOrder"
+              value={formData.sortOrder}
+              onChange={(e) => setFormData({ ...formData, sortOrder: e.target.value })}
+              className="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-yellow-600 focus:border-transparent outline-none"
+              placeholder="0"
+            />
+            <p className="mt-1 text-sm text-gray-500">
+              Angka lebih kecil ditampilkan lebih dulu di dalam kategori yang sama (opsional, default 0).
             </p>
           </div>
 

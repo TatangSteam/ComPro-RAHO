@@ -16,6 +16,7 @@ interface Location {
   mapUrl?: string;
   imageUrl?: string;
   category?: string;
+  sortOrder?: number;
   createdAt: string;
   updatedAt: string;
 }
@@ -154,15 +155,18 @@ export default function AdminLocations() {
                   </div>
                 </div>
 
-                <span
-                  className={`inline-block px-2 py-0.5 rounded-full text-xs font-medium mb-2 ${
-                    location.category === 'cabang'
-                      ? 'bg-blue-100 text-blue-800'
-                      : 'bg-green-100 text-green-800'
-                  }`}
-                >
-                  {location.category === 'cabang' ? 'Cabang' : 'Partnership'}
-                </span>
+                <div className="flex items-center gap-2 mb-2">
+                  <span
+                    className={`inline-block px-2 py-0.5 rounded-full text-xs font-medium ${
+                      location.category === 'cabang'
+                        ? 'bg-blue-100 text-blue-800'
+                        : 'bg-green-100 text-green-800'
+                    }`}
+                  >
+                    {location.category === 'cabang' ? 'Cabang' : 'Partnership'}
+                  </span>
+                  <span className="text-xs text-gray-400">Urutan: {location.sortOrder ?? 0}</span>
+                </div>
 
                 <h3 className="text-lg font-bold text-gray-900 mb-2">{location.name}</h3>
                 <p className="text-sm text-gray-600 mb-3">

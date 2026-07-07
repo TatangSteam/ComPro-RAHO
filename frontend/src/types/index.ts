@@ -35,6 +35,7 @@ export interface Location {
   mapUrl: string | null;
   imageUrl: string | null;
   category: LocationCategory;
+  sortOrder: number;
   createdAt: string;
   updatedAt: string;
   _count?: {

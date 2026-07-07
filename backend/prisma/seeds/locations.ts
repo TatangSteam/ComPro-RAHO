@@ -6,6 +6,7 @@ export const locations = [
     phone: '+62 21 7209 8899',
     mapUrl: 'https://maps.google.com/?q=Attya+Reverse+Aging+Jakarta+Selatan',
     category: 'partnership',
+    sortOrder: 10,
   },
   {
     name: 'Klinik Utama 02',
@@ -14,6 +15,7 @@ export const locations = [
     phone: '+62 21 5555 1234',
     mapUrl: 'https://maps.google.com/?q=Klinik+Utama+02+Jakarta+Utara',
     category: 'partnership',
+    sortOrder: 20,
   },
   {
     name: 'Raho Club Premier',
@@ -22,6 +24,7 @@ export const locations = [
     phone: '+62 21 6385 8899',
     mapUrl: 'https://maps.google.com/?q=Raho+Club+Premier+Duta+Merlin+Jakarta',
     category: 'partnership',
+    sortOrder: 30,
   },
   {
     name: 'Raho Club Premier',
@@ -30,6 +33,7 @@ export const locations = [
     phone: '+62 21 5785 0088',
     mapUrl: 'https://maps.google.com/?q=Raho+Club+Premier+Menara+Batavia+Jakarta',
     category: 'partnership',
+    sortOrder: 0, // Displayed first among partnership locations
   },
   {
     name: 'Raho Club Premier',
@@ -38,6 +42,7 @@ export const locations = [
     phone: '+62 22 4232 1234',
     mapUrl: 'https://maps.google.com/?q=Raho+Club+Premier+Bandung',
     category: 'partnership',
+    sortOrder: 40,
   },
   {
     name: 'Apotek Hannah',
@@ -46,6 +51,7 @@ export const locations = [
     phone: '+62 361 847 5678',
     mapUrl: 'https://maps.google.com/?q=Apotek+Hannah+Bali',
     category: 'partnership',
+    sortOrder: 50,
   },
   {
     name: 'Attya Reverse Aging',
@@ -54,5 +60,6 @@ export const locations = [
     phone: '+62 24 8624 5678',
     mapUrl: 'https://maps.google.com/?q=Attya+Reverse+Aging+Semarang',
     category: 'partnership',
+    sortOrder: 60,
   },
 ];

@@ -43,6 +43,7 @@ model Location {
   mapUrl      String?
   imageUrl    String?
   category    String   @default("partnership") // "cabang" | "partnership"
+  sortOrder   Int      @default(0) // Lower numbers display first within each category
   admins      Admin[]  // One location can have many admins
   createdAt   DateTime @default(now())
   updatedAt   DateTime @updatedAt

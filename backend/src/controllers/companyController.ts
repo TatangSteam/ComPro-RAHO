@@ -112,9 +112,11 @@ export const getLocations = async (req: Request, res: Response): Promise<void> =
           select: { admins: true }, // Count admins per location
         },
       },
-      orderBy: {
-        city: 'asc',
-      },
+      orderBy: [
+        { category: 'asc' }, // "cabang" before "partnership" alphabetically
+        { sortOrder: 'asc' },
+        { city: 'asc' },
+      ],
     });
 
     res.json({
@@ -200,7 +202,7 @@ export const createLocation = async (req: Request, res: Response): Promise<void>
       return;
     }
 
-    const { name, city, address, phone, mapUrl, category } = req.body;
+    const { name, city, address, phone, mapUrl, category, sortOrder } = req.body;
 
     if (!name || !city || !address) {
       res.status(400).json({
@@ -218,6 +220,15 @@ export const createLocation = async (req: Request, res: Response): Promise<void>
       return;
     }
 
+    const parsedSortOrder = sortOrder !== undefined ? parseInt(sortOrder, 10) : 0;
+    if (sortOrder !== undefined && Number.isNaN(parsedSortOrder)) {
+      res.status(400).json({
+        success: false,
+        error: 'sortOrder must be a number',
+      });
+      return;
+    }
+
     let imageUrl: string | null = null;
     if (req.file) {
       imageUrl = await uploadToMinio(req.file);
@@ -231,6 +242,7 @@ export const createLocation = async (req: Request, res: Response): Promise<void>
         phone,
         mapUrl,
         category: category || 'partnership',
+        sortOrder: parsedSortOrder,
         imageUrl,
       },
     });
@@ -268,7 +280,7 @@ export const updateLocation = async (req: Request, res: Response): Promise<void>
       return;
     }
 
-    const { name, city, address, phone, mapUrl, category } = req.body;
+    const { name, city, address, phone, mapUrl, category, sortOrder } = req.body;
 
     if (category && !VALID_LOCATION_CATEGORIES.includes(category)) {
       res.status(400).json({
@@ -276,6 +288,18 @@ export const updateLocation = async (req: Request, res: Response): Promise<void>
         error: `Category must be one of: ${VALID_LOCATION_CATEGORIES.join(', ')}`,
       });
       return;
+    }
+
+    let parsedSortOrder: number | undefined;
+    if (sortOrder !== undefined) {
+      parsedSortOrder = parseInt(sortOrder, 10);
+      if (Number.isNaN(parsedSortOrder)) {
+        res.status(400).json({
+          success: false,
+          error: 'sortOrder must be a number',
+        });
+        return;
+      }
     }
 
     let imageUrl: string | undefined;
@@ -296,6 +320,7 @@ export const updateLocation = async (req: Request, res: Response): Promise<void>
         ...(phone !== undefined && { phone }),
         ...(mapUrl !== undefined && { mapUrl }),
         ...(category && { category }),
+        ...(parsedSortOrder !== undefined && { sortOrder: parsedSortOrder }),
         ...(imageUrl !== undefined && { imageUrl }),
       },
     });

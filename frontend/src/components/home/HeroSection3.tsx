@@ -117,50 +117,6 @@ export default function HeroSection3() {
           ))}
         </div>
 
-        {/* Additional Value Proposition Section */}
-        <div className="bg-white/80 backdrop-blur-sm rounded-3xl shadow-xl p-10 mb-12 border border-gray-200">
-          <div className="grid md:grid-cols-3 gap-8">
-            {/* Value 1 */}
-            <div className="text-center">
-              <div className="inline-flex items-center justify-center w-20 h-20 rounded-full bg-gradient-to-br from-[#B69133] to-[#D6B85A] mb-4">
-                <svg className="w-10 h-10 text-white" fill="currentColor" viewBox="0 0 24 24">
-                  <path d="M12 2L2 7l10 5 10-5-10-5zM2 17l10 5 10-5M2 12l10 5 10-5"/>
-                </svg>
-              </div>
-              <h4 className="text-xl font-bold text-gray-900 mb-3">Sistem Terintegrasi</h4>
-              <p className="text-gray-600 leading-relaxed">
-                Platform lengkap yang menghubungkan produk, edukasi, dan komunitas dalam satu ekosistem yang mudah diakses.
-              </p>
-            </div>
-
-            {/* Value 2 */}
-            <div className="text-center">
-              <div className="inline-flex items-center justify-center w-20 h-20 rounded-full bg-gradient-to-br from-[#B69133] to-[#D6B85A] mb-4">
-                <svg className="w-10 h-10 text-white" fill="currentColor" viewBox="0 0 24 24">
-                  <path d="M16 11c1.66 0 2.99-1.34 2.99-3S17.66 5 16 5c-1.66 0-3 1.34-3 3s1.34 3 3 3zm-8 0c1.66 0 2.99-1.34 2.99-3S9.66 5 8 5C6.34 5 5 6.34 5 8s1.34 3 3 3zm0 2c-2.33 0-7 1.17-7 3.5V19h14v-2.5c0-2.33-4.67-3.5-7-3.5zm8 0c-.29 0-.62.02-.97.05 1.16.84 1.97 1.97 1.97 3.45V19h6v-2.5c0-2.33-4.67-3.5-7-3.5z"/>
-                </svg>
-              </div>
-              <h4 className="text-xl font-bold text-gray-900 mb-3">Dukungan Profesional</h4>
-              <p className="text-gray-600 leading-relaxed">
-                Tim ahli kami siap membantu Anda dalam pengembangan praktik, strategi bisnis, dan implementasi teknologi terkini.
-              </p>
-            </div>
-
-            {/* Value 3 */}
-            <div className="text-center">
-              <div className="inline-flex items-center justify-center w-20 h-20 rounded-full bg-gradient-to-br from-[#B69133] to-[#D6B85A] mb-4">
-                <svg className="w-10 h-10 text-white" fill="currentColor" viewBox="0 0 24 24">
-                  <path d="M19 3H5c-1.1 0-2 .9-2 2v14c0 1.1.9 2 2 2h14c1.1 0 2-.9 2-2V5c0-1.1-.9-2-2-2zm-5 14H7v-2h7v2zm3-4H7v-2h10v2zm0-4H7V7h10v2z"/>
-                </svg>
-              </div>
-              <h4 className="text-xl font-bold text-gray-900 mb-3">Konten Berkualitas</h4>
-              <p className="text-gray-600 leading-relaxed">
-                Akses ke library konten edukasi, riset terbaru, dan material promosi yang dapat langsung Anda gunakan untuk komunitas.
-              </p>
-            </div>
-          </div>
-        </div>
-
         {/* Bottom Section - Badge with CTA */}
         <div className="bg-white/90 backdrop-blur-sm rounded-3xl shadow-2xl p-8 border-2 border-[#B69133]">
           <div className="flex flex-col md:flex-row items-center justify-between gap-6">

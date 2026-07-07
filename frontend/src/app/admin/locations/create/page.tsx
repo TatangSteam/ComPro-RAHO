@@ -17,6 +17,7 @@ export default function CreateLocation() {
     phone: '',
     mapUrl: '',
     category: 'partnership',
+    sortOrder: '0',
   });
 
   const handleImageChange = (e: React.ChangeEvent<HTMLInputElement>) => {
@@ -46,6 +47,7 @@ export default function CreateLocation() {
         formDataToSend.append('phone', formData.phone);
         formDataToSend.append('mapUrl', formData.mapUrl);
         formDataToSend.append('category', formData.category);
+        formDataToSend.append('sortOrder', formData.sortOrder);
         formDataToSend.append('image', imageFile);
 
         await axios.post(
@@ -114,6 +116,24 @@ export default function CreateLocation() {
             </select>
             <p className="mt-1 text-sm text-gray-500">
               Cabang: lokasi resmi RAHO Club Premier. Partnership: klinik/mitra kesehatan.
+            </p>
+          </div>
+
+          {/* Sort Order */}
+          <div>
+            <label htmlFor="sortOrder" className="block text-sm font-medium text-gray-700 mb-2">
+              Urutan Tampil
+            </label>
+            <input
+              type="number"
+              id="sortOrder"
+              value={formData.sortOrder}
+              onChange={(e) => setFormData({ ...formData, sortOrder: e.target.value })}
+              className="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-yellow-600 focus:border-transparent outline-none"
+              placeholder="0"
+            />
+            <p className="mt-1 text-sm text-gray-500">
+              Angka lebih kecil ditampilkan lebih dulu di dalam kategori yang sama (opsional, default 0).
             </p>
           </div>
 
