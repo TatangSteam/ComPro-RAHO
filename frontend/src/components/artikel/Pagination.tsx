@@ -1,7 +1,31 @@
+import { ChevronLeft, ChevronRight } from 'lucide-react';
+
 interface PaginationProps {
   currentPage: number;
   totalPages: number;
   onPageChange: (page: number) => void;
+}
+
+type PageItem = number | 'start-ellipsis' | 'end-ellipsis';
+
+function getVisiblePages(currentPage: number, totalPages: number): PageItem[] {
+  if (totalPages <= 5) {
+    return Array.from({ length: totalPages }, (_, index) => index + 1);
+  }
+
+  const pages = new Set([1, totalPages, currentPage - 1, currentPage, currentPage + 1]);
+  const sortedPages = Array.from(pages)
+    .filter((page) => page >= 1 && page <= totalPages)
+    .sort((a, b) => a - b);
+
+  return sortedPages.reduce<PageItem[]>((items, page, index) => {
+    const previousPage = sortedPages[index - 1];
+    if (previousPage && page - previousPage > 1) {
+      items.push(previousPage === 1 ? 'start-ellipsis' : 'end-ellipsis');
+    }
+    items.push(page);
+    return items;
+  }, []);
 }
 
 export default function Pagination({ currentPage, totalPages, onPageChange }: PaginationProps) {
@@ -9,56 +33,60 @@ export default function Pagination({ currentPage, totalPages, onPageChange }: Pa
     return null;
   }
 
+  const visiblePages = getVisiblePages(currentPage, totalPages);
+
   return (
-    <div className="flex justify-center items-center gap-2 sm:gap-3">
-      {/* Previous Button */}
-      <button
-        onClick={() => onPageChange(currentPage - 1)}
-        disabled={currentPage === 1}
-        className={`w-9 h-9 sm:w-10 sm:h-10 rounded-full flex items-center justify-center transition-colors ${
-          currentPage === 1
-            ? 'bg-gray-200 text-gray-400 cursor-not-allowed'
-            : 'bg-white border-2 border-gray-300 text-gray-700 hover:border-yellow-600'
-        }`}
-        aria-label="Previous page"
-      >
-        <svg className="w-4 h-4 sm:w-5 sm:h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-          <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M15 19l-7-7 7-7" />
-        </svg>
-      </button>
+    <nav className="flex justify-center" aria-label="Navigasi artikel">
+      <div className="inline-flex items-center gap-2 rounded-xl border border-gray-200 bg-white p-2 shadow-sm">
+        <button
+          onClick={() => onPageChange(currentPage - 1)}
+          disabled={currentPage === 1}
+          className={`flex h-10 w-10 items-center justify-center rounded-lg transition-colors ${
+            currentPage === 1
+              ? 'cursor-not-allowed text-gray-300'
+              : 'text-gray-700 hover:bg-[#fff8e6] hover:text-[#B69133]'
+          }`}
+          aria-label="Halaman sebelumnya"
+        >
+          <ChevronLeft className="h-5 w-5" />
+        </button>
 
-      {/* Page Numbers */}
-      <div className="flex gap-1.5 sm:gap-2">
-        {Array.from({ length: totalPages }, (_, i) => i + 1).map((page) => (
-          <button
-            key={page}
-            onClick={() => onPageChange(page)}
-            className={`w-9 h-9 sm:w-10 sm:h-10 rounded-full font-medium transition-all text-sm sm:text-base ${
-              currentPage === page
-                ? 'bg-yellow-600 text-white'
-                : 'bg-white border-2 border-gray-300 text-gray-700 hover:border-yellow-600'
-            }`}
-          >
-            {page}
-          </button>
-        ))}
+        <div className="flex items-center gap-1">
+          {visiblePages.map((page) =>
+            typeof page === 'number' ? (
+              <button
+                key={page}
+                onClick={() => onPageChange(page)}
+                className={`h-10 min-w-[2.5rem] rounded-lg px-3 text-sm font-semibold transition-all ${
+                  currentPage === page
+                    ? 'bg-[#171717] text-white shadow-md'
+                    : 'text-gray-700 hover:bg-[#fff8e6] hover:text-[#B69133]'
+                }`}
+                aria-current={currentPage === page ? 'page' : undefined}
+              >
+                {page}
+              </button>
+            ) : (
+              <span key={page} className="px-2 text-sm font-semibold text-gray-400">
+                ...
+              </span>
+            ),
+          )}
+        </div>
+
+        <button
+          onClick={() => onPageChange(currentPage + 1)}
+          disabled={currentPage === totalPages}
+          className={`flex h-10 w-10 items-center justify-center rounded-lg transition-colors ${
+            currentPage === totalPages
+              ? 'cursor-not-allowed text-gray-300'
+              : 'text-gray-700 hover:bg-[#fff8e6] hover:text-[#B69133]'
+          }`}
+          aria-label="Halaman berikutnya"
+        >
+          <ChevronRight className="h-5 w-5" />
+        </button>
       </div>
-
-      {/* Next Button */}
-      <button
-        onClick={() => onPageChange(currentPage + 1)}
-        disabled={currentPage === totalPages}
-        className={`w-9 h-9 sm:w-10 sm:h-10 rounded-full flex items-center justify-center transition-colors ${
-          currentPage === totalPages
-            ? 'bg-gray-200 text-gray-400 cursor-not-allowed'
-            : 'bg-white border-2 border-gray-300 text-gray-700 hover:border-yellow-600'
-        }`}
-        aria-label="Next page"
-      >
-        <svg className="w-4 h-4 sm:w-5 sm:h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-          <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5l7 7-7 7" />
-        </svg>
-      </button>
-    </div>
+    </nav>
   );
 }

@@ -5,50 +5,112 @@ import axios from 'axios';
 import { useParams } from 'next/navigation';
 import Link from 'next/link';
 import Script from 'next/script';
+import {
+  ArrowLeft,
+  BookOpen,
+  CalendarDays,
+  Clock,
+  MessageCircle,
+  Tag,
+  User,
+} from 'lucide-react';
 import { Article } from '@/types';
 import RelatedArticlesSection from '@/components/artikel/RelatedArticlesSection';
 import AuthImage from '@/components/Shared/AuthImage';
-import { renderArticleContent, stripHtml } from '@/lib/sanitizeHtml';
+import { renderArticleContent } from '@/lib/sanitizeHtml';
+import {
+  formatArticleDate,
+  getArticleSummary,
+  getCategoryLabel,
+  getReadingTime,
+} from '@/lib/articleMeta';
 
 export default function ArtikelDetailPage() {
   const params = useParams();
+  const slug = Array.isArray(params.slug) ? params.slug[0] : params.slug;
   const [article, setArticle] = useState<Article | null>(null);
   const [relatedArticles, setRelatedArticles] = useState<Article[]>([]);
+  const [isLoading, setIsLoading] = useState(true);
+  const [errorMessage, setErrorMessage] = useState<string | null>(null);
 
   useEffect(() => {
-    if (params.slug) {
-      fetchArticle();
+    if (slug) {
+      fetchArticle(slug);
       fetchRelatedArticles();
     }
-  }, [params.slug]);
+  }, [slug]);
 
-  const fetchArticle = async () => {
+  const fetchArticle = async (articleSlug: string) => {
     try {
-      const res = await axios.get<Article>(`${process.env.NEXT_PUBLIC_API_URL}/articles/${params.slug}`);
+      setIsLoading(true);
+      setErrorMessage(null);
+      const res = await axios.get<Article>(`${process.env.NEXT_PUBLIC_API_URL}/articles/${articleSlug}`);
       setArticle(res.data);
     } catch (error) {
       console.error('Error fetching article:', error);
+      setErrorMessage('Artikel tidak dapat dimuat. Silakan kembali ke daftar artikel.');
+    } finally {
+      setIsLoading(false);
     }
   };
 
   const fetchRelatedArticles = async () => {
     try {
       const res = await axios.get<Article[]>(`${process.env.NEXT_PUBLIC_API_URL}/articles`);
-      setRelatedArticles(res.data.filter(a => a.published));
+      setRelatedArticles(res.data.filter((item) => item.published));
     } catch (error) {
       console.error('Error fetching related articles:', error);
     }
   };
 
-  if (!article) {
+  if (isLoading) {
     return (
-      <div className="min-h-screen bg-white flex items-center justify-center">
-        <div className="text-xl text-gray-600">Loading...</div>
-      </div>
+      <main className="min-h-screen bg-[#f8f6f1]">
+        <section className="bg-[#171717] px-4 py-16 text-white sm:px-6 lg:px-8">
+          <div className="mx-auto max-w-5xl animate-pulse">
+            <div className="mb-6 h-9 w-40 rounded-lg bg-white/15" />
+            <div className="mb-5 h-5 w-48 rounded bg-white/15" />
+            <div className="mb-4 h-12 w-full max-w-3xl rounded bg-white/20" />
+            <div className="h-12 w-2/3 rounded bg-white/10" />
+          </div>
+        </section>
+        <div className="mx-auto grid max-w-7xl grid-cols-1 gap-8 px-4 py-12 sm:px-6 lg:grid-cols-[280px_minmax(0,1fr)] lg:px-8">
+          <div className="h-64 animate-pulse rounded-lg bg-white" />
+          <div className="h-[520px] animate-pulse rounded-lg bg-white" />
+        </div>
+      </main>
     );
   }
 
-  // Schema.org Article structured data for SEO
+  if (!article || errorMessage) {
+    return (
+      <main className="flex min-h-screen items-center justify-center bg-[#f8f6f1] px-4 py-16">
+        <div className="max-w-lg rounded-lg border border-[#eadfca] bg-white p-8 text-center shadow-sm">
+          <div className="mx-auto mb-4 flex h-12 w-12 items-center justify-center rounded-lg bg-[#fff8e6] text-[#B69133]">
+            <BookOpen className="h-6 w-6" />
+          </div>
+          <h1 className="text-2xl font-bold text-gray-950">Artikel belum ditemukan</h1>
+          <p className="mt-3 text-sm leading-6 text-gray-500">
+            {errorMessage ?? 'Konten yang Anda cari belum tersedia atau sudah dipindahkan.'}
+          </p>
+          <Link
+            href="/artikel-kesehatan"
+            className="mt-6 inline-flex items-center gap-2 rounded-lg bg-[#171717] px-5 py-2.5 text-sm font-semibold text-white transition-colors hover:bg-[#8B6F2E]"
+          >
+            <ArrowLeft className="h-4 w-4" />
+            Kembali ke Artikel
+          </Link>
+        </div>
+      </main>
+    );
+  }
+
+  const summary = getArticleSummary(article);
+  const readingTime = getReadingTime(article.content);
+  const categoryLabel = getCategoryLabel(article.category);
+  const publishedDate = formatArticleDate(article.createdAt);
+  const updatedDate = formatArticleDate(article.updatedAt);
+
   const articleJsonLd = {
     '@context': 'https://schema.org',
     '@type': 'Article',
@@ -68,7 +130,7 @@ export default function ArtikelDetailPage() {
     },
     datePublished: article.createdAt,
     dateModified: article.updatedAt,
-    description: stripHtml(article.content).substring(0, 160),
+    description: summary.substring(0, 160),
     mainEntityOfPage: {
       '@type': 'WebPage',
       '@id': `https://rahopremier.id/artikel-kesehatan/${article.slug}`,
@@ -77,98 +139,137 @@ export default function ArtikelDetailPage() {
 
   return (
     <>
-      {/* Schema.org Article Structured Data */}
       <Script
         id="article-json-ld"
         type="application/ld+json"
         dangerouslySetInnerHTML={{ __html: JSON.stringify(articleJsonLd) }}
       />
-      
-      <div className="min-h-screen bg-white">
-        {/* Breadcrumb */}
-        <div className="bg-gray-50 py-4 border-b">
-          <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
-            <Link 
-              href="/artikel-kesehatan" 
-              className="inline-flex items-center text-yellow-600 hover:text-yellow-700 font-medium text-sm sm:text-base"
-            >
-              <svg className="w-4 h-4 sm:w-5 sm:h-5 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M15 19l-7-7 7-7" />
-              </svg>
-              Kembali
-            </Link>
-          </div>
-        </div>
 
-        {/* Article Content */}
-        <article className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 py-8 sm:py-12">
-          {/* Title */}
-          <h1 className="text-3xl sm:text-4xl md:text-5xl font-bold text-gray-900 mb-6 sm:mb-8 leading-tight">
-            {article.title}
-          </h1>
-
-          {/* Featured Image */}
+      <main className="min-h-screen bg-[#f8f6f1]">
+        <section className="relative overflow-hidden bg-[#171717] text-white">
           {article.imageUrl && (
-            <div className="rounded-2xl overflow-hidden mb-8 sm:mb-12 shadow-lg">
-              <AuthImage
-                src={article.imageUrl}
-                alt={article.title}
-                className="w-full h-64 sm:h-96 md:h-[500px] object-cover"
-              />
-            </div>
-          )}
-
-          {/* Meta Info */}
-          <div className="flex flex-wrap items-center gap-4 sm:gap-6 mb-8 sm:mb-12 pb-6 sm:pb-8 border-b">
-            {/* Author */}
-            <div className="flex items-center gap-3">
-              <div className="w-10 h-10 sm:w-12 sm:h-12 rounded-full bg-yellow-600 flex items-center justify-center text-white font-medium">
-                {article.author.charAt(0).toUpperCase()}
-              </div>
-              <div>
-                <p className="text-sm text-gray-500">Author</p>
-                <p className="font-medium text-gray-900">{article.author}</p>
-              </div>
-            </div>
-
-            {/* Date */}
-            <div className="flex items-center gap-2 text-gray-600">
-              <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M8 7V3m8 4V3m-9 8h10M5 21h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z" />
-              </svg>
-              <span className="text-sm sm:text-base">
-                {new Date(article.createdAt).toLocaleDateString('id-ID', { 
-                  day: 'numeric', 
-                  month: 'long', 
-                  year: 'numeric' 
-                })}
-              </span>
-            </div>
-
-            {/* Reading Time */}
-            <div className="flex items-center gap-2 text-gray-600">
-              <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z" />
-              </svg>
-              <span className="text-sm sm:text-base">5 min read</span>
-            </div>
-          </div>
-
-          {/* Article Body */}
-          <div className="prose prose-sm sm:prose-base lg:prose-lg max-w-none">
-            <h2 className="text-2xl sm:text-3xl font-bold text-gray-900 mb-4 sm:mb-6">
-              {article.title}
-            </h2>
-            
-            <div
-              className="prose prose-sm sm:prose-base lg:prose-lg max-w-none text-gray-700 leading-relaxed [&_a]:text-yellow-600 [&_a]:underline"
-              dangerouslySetInnerHTML={{ __html: renderArticleContent(article.content) }}
+            <AuthImage
+              src={article.imageUrl}
+              alt=""
+              className="absolute inset-0 h-full w-full object-cover opacity-25"
             />
-          </div>
-        </article>
-      </div>
+          )}
+          <div className="absolute inset-0 bg-gradient-to-r from-black via-black/85 to-black/50" />
 
-      {/* Related Articles Section */}
+          <div className="relative mx-auto max-w-7xl px-4 py-10 sm:px-6 sm:py-14 lg:px-8 lg:py-16">
+            <Link
+              href="/artikel-kesehatan"
+              className="mb-8 inline-flex items-center gap-2 rounded-lg border border-white/15 bg-white/10 px-4 py-2 text-sm font-semibold text-white/85 backdrop-blur transition-colors hover:text-[#F4D98A]"
+            >
+              <ArrowLeft className="h-4 w-4" />
+              Artikel Kesehatan
+            </Link>
+
+            <div className="max-w-4xl">
+              <div className="mb-5 flex flex-wrap items-center gap-3">
+                <span className="inline-flex items-center gap-2 rounded-lg bg-[#F4D98A] px-3 py-1.5 text-sm font-bold text-[#171717]">
+                  <Tag className="h-4 w-4" />
+                  {categoryLabel}
+                </span>
+                <span className="inline-flex items-center gap-2 rounded-lg bg-white/10 px-3 py-1.5 text-sm font-semibold text-white/80 backdrop-blur">
+                  <Clock className="h-4 w-4 text-[#F4D98A]" />
+                  {readingTime} menit baca
+                </span>
+              </div>
+
+              <h1 className="text-3xl font-bold leading-tight sm:text-5xl lg:text-6xl">
+                {article.title}
+              </h1>
+
+              {summary && (
+                <p className="mt-6 max-w-3xl text-base leading-7 text-white/75 sm:text-lg">
+                  {summary}
+                </p>
+              )}
+
+              <div className="mt-8 flex flex-wrap gap-3 text-sm text-white/75">
+                <span className="inline-flex items-center gap-2 rounded-lg border border-white/10 bg-white/10 px-3 py-2 backdrop-blur">
+                  <User className="h-4 w-4 text-[#F4D98A]" />
+                  {article.author}
+                </span>
+                <span className="inline-flex items-center gap-2 rounded-lg border border-white/10 bg-white/10 px-3 py-2 backdrop-blur">
+                  <CalendarDays className="h-4 w-4 text-[#F4D98A]" />
+                  {publishedDate}
+                </span>
+              </div>
+            </div>
+          </div>
+        </section>
+
+        <section className="py-10 sm:py-14">
+          <div className="mx-auto grid max-w-7xl grid-cols-1 gap-8 px-4 sm:px-6 lg:grid-cols-[280px_minmax(0,1fr)] lg:px-8">
+            <aside className="order-2 lg:order-1 lg:sticky lg:top-28 lg:self-start">
+              <div className="rounded-lg border border-[#eadfca] bg-white p-5 shadow-sm">
+                <p className="text-sm font-semibold uppercase tracking-[0.18em] text-[#B69133]">
+                  Info Artikel
+                </p>
+                <dl className="mt-5 space-y-4 text-sm">
+                  <div>
+                    <dt className="text-gray-500">Kategori</dt>
+                    <dd className="mt-1 font-semibold text-gray-950">{categoryLabel}</dd>
+                  </div>
+                  <div>
+                    <dt className="text-gray-500">Penulis</dt>
+                    <dd className="mt-1 font-semibold text-gray-950">{article.author}</dd>
+                  </div>
+                  <div>
+                    <dt className="text-gray-500">Dipublikasikan</dt>
+                    <dd className="mt-1 font-semibold text-gray-950">{publishedDate}</dd>
+                  </div>
+                  <div>
+                    <dt className="text-gray-500">Diperbarui</dt>
+                    <dd className="mt-1 font-semibold text-gray-950">{updatedDate}</dd>
+                  </div>
+                </dl>
+
+                <div className="mt-6 rounded-lg bg-[#171717] p-4 text-white">
+                  <div className="mb-3 flex h-10 w-10 items-center justify-center rounded-lg bg-[#F4D98A] text-[#171717]">
+                    <MessageCircle className="h-5 w-5" />
+                  </div>
+                  <p className="font-semibold">Butuh arahan lebih lanjut?</p>
+                  <p className="mt-2 text-sm leading-6 text-white/65">
+                    Diskusikan kondisi Anda bersama tim RAHO Premier.
+                  </p>
+                  <a
+                    href="https://wa.link/h2uyet"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="mt-4 inline-flex items-center gap-2 rounded-lg bg-[#F4D98A] px-4 py-2 text-sm font-bold text-[#171717] transition-colors hover:bg-[#D6B85A]"
+                  >
+                    Konsultasi Gratis
+                    <MessageCircle className="h-4 w-4" />
+                  </a>
+                </div>
+              </div>
+            </aside>
+
+            <article className="order-1 overflow-hidden rounded-lg border border-[#eadfca] bg-white shadow-sm lg:order-2">
+              {article.imageUrl && (
+                <figure className="border-b border-[#eadfca] bg-[#f4efe4]">
+                  <AuthImage
+                    src={article.imageUrl}
+                    alt={article.title}
+                    className="h-64 w-full object-cover sm:h-96 lg:h-[480px]"
+                  />
+                </figure>
+              )}
+
+              <div className="px-5 py-8 sm:p-8 lg:p-10">
+                <div
+                  className="prose prose-base max-w-none text-gray-700 prose-headings:font-bold prose-headings:text-gray-950 prose-h2:mt-10 prose-h2:text-3xl prose-h3:mt-8 prose-h3:text-2xl prose-p:leading-8 prose-a:text-[#B69133] prose-a:no-underline prose-strong:text-gray-950 prose-blockquote:border-l-[#B69133] prose-blockquote:bg-[#fff8e6] prose-blockquote:px-5 prose-blockquote:py-3 prose-blockquote:not-italic prose-li:marker:text-[#B69133] sm:prose-lg [&_a:hover]:text-[#8B6F2E]"
+                  dangerouslySetInnerHTML={{ __html: renderArticleContent(article.content) }}
+                />
+              </div>
+            </article>
+          </div>
+        </section>
+      </main>
+
       <RelatedArticlesSection articles={relatedArticles} currentArticleId={article.id} />
     </>
   );
