@@ -22,12 +22,7 @@ function SectionBadge({
 
 export default function UmumSection() {
   return (
-    <section id="umum" className="relative overflow-hidden bg-[#fff7e8] py-14 md:py-16 lg:py-20">
-      <div className="absolute inset-0 bg-[radial-gradient(circle_at_8%_20%,rgba(214,184,90,0.18)_0,rgba(214,184,90,0)_26%),radial-gradient(circle_at_92%_18%,rgba(182,145,51,0.12)_0,rgba(182,145,51,0)_26%),linear-gradient(180deg,rgba(255,255,255,0.88)_0%,rgba(255,247,232,0.96)_45%,rgba(255,255,255,0.92)_100%)]" />
-      <div className="absolute right-0 top-24 hidden h-[360px] w-[34%] opacity-25 lg:block">
-        <div className="h-full w-full bg-[radial-gradient(circle,rgba(182,145,51,0.24)_1px,transparent_1.8px)] bg-[length:18px_18px]" />
-      </div>
-
+    <section id="umum" className="relative overflow-hidden py-14 md:py-16 lg:py-20">
       <div className="relative mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
         <div className="grid items-center gap-10 lg:grid-cols-[0.88fr_1fr] lg:gap-16">
           <div className="rounded-[2rem] bg-white/80 p-3 shadow-xl shadow-black/10 ring-1 ring-white">
