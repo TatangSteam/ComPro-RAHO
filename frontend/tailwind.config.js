@@ -9,6 +9,7 @@ module.exports = {
     extend: {
       fontFamily: {
         sans: ['var(--font-poppins)', 'system-ui', 'sans-serif'],
+        display: ['"Abhaya Libre"', 'Georgia', 'serif'],
       },
     },
   },
