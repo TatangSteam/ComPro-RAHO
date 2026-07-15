@@ -5,6 +5,7 @@ import axios from 'axios';
 import { Location } from '@/types';
 import TabNavigation from '@/components/tentang-kami/TabNavigation';
 import UmumSection from '@/components/tentang-kami/UmumSection';
+import PartnershipOverviewSection from '@/components/tentang-kami/PartnershipOverviewSection';
 import PartnerNetworkSection from '@/components/tentang-kami/PartnerNetworkSection';
 
 export default function TentangKami() {
@@ -54,6 +55,7 @@ export default function TentangKami() {
         <div className="relative">
           <TabNavigation activeTab={activeTab} onTabClick={scrollToSection} />
           <UmumSection />
+          <PartnershipOverviewSection />
           <PartnerNetworkSection locations={locations} />
         </div>
       </div>
