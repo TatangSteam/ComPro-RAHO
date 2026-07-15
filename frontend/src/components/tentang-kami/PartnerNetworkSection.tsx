@@ -57,7 +57,7 @@ export default function PartnerNetworkSection({ locations }: PartnerNetworkSecti
   }
 
   return (
-    <section id="partner-network" className="relative py-16 md:py-20 bg-gradient-to-br from-[#fdf9f0] via-white to-[#faf3e3] overflow-hidden">
+    <section id="partner-network" className="relative overflow-hidden py-16 md:py-20">
       <div className="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         {/* Header */}
         <div className="text-center mb-10">

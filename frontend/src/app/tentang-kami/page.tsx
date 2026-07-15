@@ -5,8 +5,6 @@ import axios from 'axios';
 import { Location } from '@/types';
 import TabNavigation from '@/components/tentang-kami/TabNavigation';
 import UmumSection from '@/components/tentang-kami/UmumSection';
-import PelayananSection from '@/components/tentang-kami/PelayananSection';
-import TeknologiSection from '@/components/tentang-kami/TeknologiSection';
 import PartnerNetworkSection from '@/components/tentang-kami/PartnerNetworkSection';
 
 export default function TentangKami() {
@@ -56,11 +54,9 @@ export default function TentangKami() {
         <div className="relative">
           <TabNavigation activeTab={activeTab} onTabClick={scrollToSection} />
           <UmumSection />
+          <PartnerNetworkSection locations={locations} />
         </div>
       </div>
-      <PelayananSection />
-      <TeknologiSection />
-      <PartnerNetworkSection locations={locations} />
     </div>
   );
 }
