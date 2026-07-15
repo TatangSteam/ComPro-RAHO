@@ -4,7 +4,11 @@ const ALLOWED_TAGS = [
   'p', 'br', 'strong', 'em', 'u', 's', 'a', 'ul', 'ol', 'li',
   'blockquote', 'h2', 'h3', 'span',
 ];
-const ALLOWED_ATTR = ['href', 'target', 'rel', 'class', 'style'];
+const ALLOWED_ATTR = ['href', 'target', 'rel', 'class'];
+
+function normalizeRichTextWhitespace(html: string): string {
+  return html.replace(/&nbsp;/gi, ' ').replace(/\u00a0/g, ' ');
+}
 
 /**
  * Sanitize HTML content produced by the rich text editor before rendering
@@ -13,17 +17,20 @@ const ALLOWED_ATTR = ['href', 'target', 'rel', 'class', 'style'];
  * — React will still escape untrusted output on the client re-render.
  */
 export function sanitizeHtml(html: string): string {
+  const normalizedHtml = normalizeRichTextWhitespace(html);
+
   if (typeof window === 'undefined') {
-    return html;
+    return normalizedHtml;
   }
-  return DOMPurify.sanitize(html, { ALLOWED_TAGS, ALLOWED_ATTR });
+
+  return DOMPurify.sanitize(normalizedHtml, { ALLOWED_TAGS, ALLOWED_ATTR });
 }
 
 /**
  * Strip HTML tags to produce a plain-text excerpt from rich text content.
  */
 export function stripHtml(html: string): string {
-  return html.replace(/<(.|\n)*?>/g, ' ').replace(/\s+/g, ' ').trim();
+  return normalizeRichTextWhitespace(html).replace(/<(.|\n)*?>/g, ' ').replace(/\s+/g, ' ').trim();
 }
 
 function escapeHtml(text: string): string {

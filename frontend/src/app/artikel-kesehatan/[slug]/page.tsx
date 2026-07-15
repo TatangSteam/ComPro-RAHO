@@ -261,7 +261,7 @@ export default function ArtikelDetailPage() {
 
               <div className="min-w-0 px-5 py-8 sm:p-8 lg:p-10">
                 <div
-                  className="prose prose-base max-w-none min-w-0 text-gray-700 prose-headings:font-bold prose-headings:text-gray-950 prose-h2:mt-10 prose-h2:text-3xl prose-h3:mt-8 prose-h3:text-2xl prose-p:leading-8 prose-a:text-[#B69133] prose-a:no-underline prose-strong:text-gray-950 prose-blockquote:border-l-[#B69133] prose-blockquote:bg-[#fff8e6] prose-blockquote:px-5 prose-blockquote:py-3 prose-blockquote:not-italic prose-li:marker:text-[#B69133] sm:prose-lg [&_*]:max-w-full [&_a:hover]:text-[#8B6F2E] [&_h2]:!whitespace-normal [&_h2]:break-words [&_h2]:[overflow-wrap:anywhere] [&_h3]:!whitespace-normal [&_h3]:break-words [&_h3]:[overflow-wrap:anywhere] [&_li]:!whitespace-normal [&_li]:break-words [&_li]:[overflow-wrap:anywhere] [&_p]:!whitespace-normal [&_p]:break-words [&_p]:[overflow-wrap:anywhere]"
+                  className="prose prose-base max-w-none min-w-0 text-gray-700 prose-headings:font-bold prose-headings:text-gray-950 prose-h2:mt-10 prose-h2:text-3xl prose-h3:mt-8 prose-h3:text-2xl prose-p:leading-8 prose-a:text-[#B69133] prose-a:no-underline prose-strong:text-gray-950 prose-blockquote:border-l-[#B69133] prose-blockquote:bg-[#fff8e6] prose-blockquote:px-5 prose-blockquote:py-3 prose-blockquote:not-italic prose-li:marker:text-[#B69133] sm:prose-lg [&_*]:max-w-full [&_*]:!whitespace-normal [&_*]:break-words [&_*]:[overflow-wrap:anywhere] [&_*]:[word-break:break-word] [&_a:hover]:text-[#8B6F2E]"
                   dangerouslySetInnerHTML={{ __html: renderArticleContent(article.content) }}
                 />
               </div>
