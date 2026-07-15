@@ -1,4 +1,3 @@
-import Link from 'next/link';
 import { Handshake, MapPin, Sparkles } from 'lucide-react';
 
 interface TabNavigationProps {
@@ -8,6 +7,7 @@ interface TabNavigationProps {
 
 export default function TabNavigation({ activeTab, onTabClick }: TabNavigationProps) {
   const isTentangActive = activeTab === 'umum';
+  const isPartnershipActive = activeTab === 'partnership-overview';
   const isLokasiActive = activeTab === 'partner-network' || activeTab === 'lokasi';
 
   return (
@@ -44,13 +44,17 @@ export default function TabNavigation({ activeTab, onTabClick }: TabNavigationPr
             Tentang Kami
           </button>
 
-          <Link
-            href="/partnership"
-            className="inline-flex min-h-[58px] w-full max-w-[220px] items-center justify-center gap-2 rounded-full border border-[#B69133] bg-white/50 px-8 text-base font-semibold text-[#B69133] shadow-sm transition-all duration-300 hover:bg-[#fff5dc]"
+          <button
+            onClick={() => onTabClick('partnership-overview')}
+            className={`inline-flex min-h-[58px] w-full max-w-[220px] items-center justify-center gap-2 rounded-full border border-[#B69133] px-8 text-base font-semibold shadow-sm transition-all duration-300 ${
+              isPartnershipActive
+                ? 'bg-gradient-to-r from-[#B69133] to-[#D6B85A] text-white shadow-[#B69133]/20'
+                : 'bg-white/50 text-[#B69133] hover:bg-[#fff5dc]'
+            }`}
           >
             <Handshake className="h-4 w-4" />
             Partnership
-          </Link>
+          </button>
 
           <button
             onClick={() => onTabClick('partner-network')}

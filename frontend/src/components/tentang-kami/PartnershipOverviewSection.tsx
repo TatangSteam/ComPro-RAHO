@@ -1,4 +1,3 @@
-import Link from 'next/link';
 import {
   ArrowRight,
   BookOpenCheck,
@@ -8,6 +7,8 @@ import {
   Tags,
   UsersRound,
 } from 'lucide-react';
+
+const WHATSAPP_URL = 'https://wa.link/h2uyet';
 
 const benefitCards = [
   {
@@ -121,14 +122,16 @@ export default function PartnershipOverviewSection() {
                   institusi kesehatan, dan praktisi yang ingin mengembangkan layanan kesehatan
                   berbasis edukasi, wellness modern, dan inovasi teknologi.
                 </p>
-                <Link
-                  href="/partnership"
+                <a
+                  href={WHATSAPP_URL}
+                  target="_blank"
+                  rel="noopener noreferrer"
                   className="mt-7 inline-flex min-h-[52px] items-center justify-center gap-3 rounded-full bg-[#EF2626] px-8 text-sm font-semibold text-white shadow-lg shadow-red-500/20 transition-all duration-300 hover:-translate-y-0.5 hover:bg-[#d91f1f]"
                 >
                   <HeartHandshake className="h-5 w-5" />
                   Gabung Partnership
                   <ArrowRight className="h-5 w-5" />
-                </Link>
+                </a>
               </div>
             </div>
           </div>
