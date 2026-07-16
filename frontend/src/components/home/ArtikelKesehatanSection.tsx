@@ -30,12 +30,12 @@ export default function ArtikelKesehatanSection({ articles }: ArtikelKesehatanSe
 
   const getCategoryLabel = (category: string) => {
     const labels: { [key: string]: string } = {
-      'penyakit': 'Health Tips',
-      'tindakan-medis': 'Medical Procedure',
-      'kisah-pasien': 'Patient Story',
-      'umum': 'Health Tips',
+      'penyakit': 'Kesehatan',
+      'tindakan-medis': 'Teknologi',
+      'kisah-pasien': 'Kisah Inspiratif',
+      'umum': 'Kesehatan',
     };
-    return labels[category] || 'Health Tips';
+    return labels[category] || 'Kesehatan';
   };
 
   return (

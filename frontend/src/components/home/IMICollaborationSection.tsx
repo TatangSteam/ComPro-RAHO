@@ -259,12 +259,12 @@ export default function IMICollaborationSection() {
               <ul className="space-y-5">
                 <li>
                   <Link href="/artikel-kesehatan" className="text-[15px] text-white/60 transition-colors hover:text-[#D6B85A]">
-                    Topik Kesehatan
+                    Kesehatan
                   </Link>
                 </li>
                 <li>
                   <Link href="/artikel-kesehatan" className="text-[15px] text-white/60 transition-colors hover:text-[#D6B85A]">
-                    Teknologi Inovasi
+                    Teknologi
                   </Link>
                 </li>
                 <li>

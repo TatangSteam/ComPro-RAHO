@@ -51,9 +51,9 @@ export default function AdminArticles() {
 
   const getCategoryLabel = (category: string) => {
     const labels: { [key: string]: string } = {
-      'penyakit': 'Penyakit',
-      'tindakan-medis': 'Tindakan Medis',
-      'kisah-pasien': 'Kisah Pasien',
+      'penyakit': 'Kesehatan',
+      'tindakan-medis': 'Teknologi',
+      'kisah-pasien': 'Kisah Inspiratif',
     };
     return labels[category] || category;
   };
@@ -129,7 +129,7 @@ export default function AdminArticles() {
                   : 'bg-gray-100 text-gray-700 hover:bg-gray-200'
               }`}
             >
-              Penyakit ({articles.filter(a => a.category === 'penyakit').length})
+              Kesehatan ({articles.filter(a => a.category === 'penyakit').length})
             </button>
             <button
               onClick={() => setFilter('tindakan-medis')}
@@ -139,7 +139,7 @@ export default function AdminArticles() {
                   : 'bg-gray-100 text-gray-700 hover:bg-gray-200'
               }`}
             >
-              Tindakan Medis ({articles.filter(a => a.category === 'tindakan-medis').length})
+              Teknologi ({articles.filter(a => a.category === 'tindakan-medis').length})
             </button>
             <button
               onClick={() => setFilter('kisah-pasien')}
@@ -149,7 +149,7 @@ export default function AdminArticles() {
                   : 'bg-gray-100 text-gray-700 hover:bg-gray-200'
               }`}
             >
-              Kisah Pasien ({articles.filter(a => a.category === 'kisah-pasien').length})
+              Kisah Inspiratif ({articles.filter(a => a.category === 'kisah-pasien').length})
             </button>
           </div>
         </div>

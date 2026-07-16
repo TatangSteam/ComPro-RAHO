@@ -98,18 +98,18 @@ export default function Footer() {
             <h3 className="font-bold text-lg mb-4">Artikel Kesehatan</h3>
             <ul className="space-y-2 text-gray-400 text-sm">
               <li>
-                <Link href="/artikel-kesehatan?category=tindakan-medis" className="hover:text-yellow-500 transition-colors">
-                  Tindakan Medis
+                <Link href="/artikel-kesehatan?category=penyakit" className="hover:text-yellow-500 transition-colors">
+                  Kesehatan
                 </Link>
               </li>
               <li>
-                <Link href="/artikel-kesehatan?category=penyakit" className="hover:text-yellow-500 transition-colors">
-                  Penyakit
+                <Link href="/artikel-kesehatan?category=tindakan-medis" className="hover:text-yellow-500 transition-colors">
+                  Teknologi
                 </Link>
               </li>
               <li>
                 <Link href="/artikel-kesehatan?category=kisah-pasien" className="hover:text-yellow-500 transition-colors">
-                  Kisah Pasien
+                  Kisah Inspiratif
                 </Link>
               </li>
             </ul>

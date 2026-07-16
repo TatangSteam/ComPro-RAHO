@@ -146,7 +146,7 @@ function ArtikelKesehatanContent() {
               Artikel Kesehatan untuk Keputusan yang Lebih Tenang
             </h1>
             <p className="mt-5 max-w-2xl text-base leading-7 text-white/75 sm:text-lg">
-              Temukan insight kesehatan, tindakan medis, dan kisah pasien yang disusun agar mudah
+              Temukan insight kesehatan, teknologi, dan kisah inspiratif yang disusun agar mudah
               dipahami tanpa kehilangan konteks medis yang penting.
             </p>
           </div>

@@ -211,9 +211,9 @@ export default function CreateArticle() {
               onChange={(e) => setFormData({ ...formData, category: e.target.value })}
               className="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-yellow-600 focus:border-transparent outline-none"
             >
-              <option value="penyakit">Penyakit</option>
-              <option value="tindakan-medis">Tindakan Medis</option>
-              <option value="kisah-pasien">Kisah Pasien</option>
+              <option value="penyakit">Kesehatan</option>
+              <option value="tindakan-medis">Teknologi</option>
+              <option value="kisah-pasien">Kisah Inspiratif</option>
             </select>
           </div>
 

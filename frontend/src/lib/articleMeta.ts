@@ -8,18 +8,18 @@ export const ARTICLE_CATEGORIES = [
   },
   {
     value: 'penyakit',
-    label: 'Penyakit',
-    description: 'Gejala, penyebab, dan pencegahan',
+    label: 'Kesehatan',
+    description: 'Insight kesehatan dan pencegahan',
   },
   {
     value: 'tindakan-medis',
-    label: 'Tindakan Medis',
-    description: 'Informasi prosedur dan terapi',
+    label: 'Teknologi',
+    description: 'Inovasi dan teknologi kesehatan',
   },
   {
     value: 'kisah-pasien',
-    label: 'Kisah Pasien',
-    description: 'Cerita pemulihan dan pengalaman pasien',
+    label: 'Kisah Inspiratif',
+    description: 'Cerita pemulihan dan pengalaman inspiratif',
   },
 ] as const;
 
@@ -27,9 +27,9 @@ export type CategoryFilterType = (typeof ARTICLE_CATEGORIES)[number]['value'];
 
 const ARTICLE_CATEGORY_LABELS: Record<string, string> = {
   semua: 'Semua',
-  penyakit: 'Penyakit',
-  'tindakan-medis': 'Tindakan Medis',
-  'kisah-pasien': 'Kisah Pasien',
+  penyakit: 'Kesehatan',
+  'tindakan-medis': 'Teknologi',
+  'kisah-pasien': 'Kisah Inspiratif',
   umum: 'Umum',
 };
 
