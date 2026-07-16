@@ -15,6 +15,22 @@ export default function Navbar() {
     { href: '/artikel-kesehatan', label: 'Artikel Kesehatan' },
   ];
 
+  const isActiveLink = (href: string) => {
+    if (href === '/') {
+      return pathname === '/';
+    }
+
+    return pathname === href || pathname?.startsWith(`${href}/`);
+  };
+
+  const handleNavClick = (href: string) => {
+    setIsMobileMenuOpen(false);
+
+    if (href === '/' && pathname === '/') {
+      window.scrollTo({ top: 0, behavior: 'smooth' });
+    }
+  };
+
   return (
     <nav 
       className="relative text-white sticky top-0 z-50"
@@ -32,7 +48,7 @@ export default function Navbar() {
       <div className="relative max-w-7xl mx-auto px-6">
         <div className="flex items-center justify-between h-20">
           {/* Logo */}
-          <Link href="/" className="flex items-center py-2 z-10">
+          <Link href="/" onClick={() => handleNavClick('/')} className="flex items-center py-2 z-10">
             <Image 
               src="/assets/LOGORAHO.png" 
               alt="RAHO CLUB" 
@@ -49,12 +65,13 @@ export default function Navbar() {
               <Link
                 key={link.href}
                 href={link.href}
+                onClick={() => handleNavClick(link.href)}
                 className={`text-sm font-medium transition-all duration-300 hover:text-[#D6B85A] relative ${
-                  pathname === link.href ? 'text-[#D6B85A]' : 'text-gray-100'
+                  isActiveLink(link.href) ? 'text-[#D6B85A]' : 'text-gray-100'
                 }`}
               >
                 {link.label}
-                {pathname === link.href && (
+                {isActiveLink(link.href) && (
                   <span className="absolute -bottom-1 left-0 w-full h-0.5 bg-[#D6B85A]"></span>
                 )}
               </Link>
@@ -101,9 +118,9 @@ export default function Navbar() {
                   <Link
                     key={link.href}
                     href={link.href}
-                    onClick={() => setIsMobileMenuOpen(false)}
+                    onClick={() => handleNavClick(link.href)}
                     className={`text-sm font-medium transition-colors hover:text-[#D6B85A] py-2 px-3 rounded-lg hover:bg-white/5 ${
-                      pathname === link.href ? 'text-[#D6B85A] bg-white/10' : 'text-gray-100'
+                      isActiveLink(link.href) ? 'text-[#D6B85A] bg-white/10' : 'text-gray-100'
                     }`}
                   >
                     {link.label}

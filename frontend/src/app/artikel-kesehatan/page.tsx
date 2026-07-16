@@ -143,11 +143,12 @@ function ArtikelKesehatanContent() {
               Pusat Edukasi Kesehatan RAHO
             </div>
             <h1 className="text-4xl font-bold leading-tight sm:text-5xl lg:text-6xl">
-              Artikel Kesehatan untuk Keputusan yang Lebih Tenang
+              Kesehatan, Teknologi, dan Kisah Inspiratif
             </h1>
             <p className="mt-5 max-w-2xl text-base leading-7 text-white/75 sm:text-lg">
-              Temukan insight kesehatan, teknologi, dan kisah inspiratif yang disusun agar mudah
-              dipahami tanpa kehilangan konteks medis yang penting.
+              Jelajahi artikel tentang berbagai penyakit, perkembangan teknologi Nano Bubble, serta
+              kisah inspiratif dari para member yang membagikan pengalaman mereka dalam perjalanan
+              menuju hidup yang lebih sehat.
             </p>
           </div>
 
