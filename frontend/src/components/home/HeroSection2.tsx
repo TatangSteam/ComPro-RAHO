@@ -155,7 +155,10 @@ export default function HeroSection2() {
                 alt="Raho Club Premier"
                 width={1500}
                 height={1000}
-                className="object-contain w-full h-auto opacity-100"
+                data-lightbox-image="true"
+                data-lightbox-src="/assets/LOGORAHO.png"
+                data-lightbox-title="Raho Club Premier"
+                className="object-contain w-full h-auto cursor-zoom-in opacity-100"
                 priority
               />
             </div>

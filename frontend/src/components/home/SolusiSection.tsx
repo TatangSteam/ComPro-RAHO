@@ -98,7 +98,9 @@ export default function SolusiSection({ articles }: SolusiSectionProps) {
                       src={firstArticle.imageUrl} 
                       alt={firstArticle.title}
                       loading="lazy"
-                      className="w-full h-full object-cover"
+                      data-lightbox-image="true"
+                      data-lightbox-title={firstArticle.title}
+                      className="w-full h-full cursor-zoom-in object-cover"
                     />
                   </div>
                 )}

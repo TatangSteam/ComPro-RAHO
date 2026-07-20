@@ -39,7 +39,7 @@ const benefitCards = [
 
 export default function PartnershipOverviewSection() {
   return (
-    <section id="partnership-overview" className="relative overflow-hidden py-8 md:py-12">
+    <section id="partnership-overview" className="relative scroll-mt-24 overflow-hidden py-8 md:py-12">
       <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
         <div className="relative overflow-hidden rounded-2xl bg-white/[0.82] p-5 shadow-xl shadow-black/5 ring-1 ring-[#eadfca] sm:p-8 lg:p-10">
           <div className="pointer-events-none absolute inset-0 bg-[radial-gradient(circle_at_8%_8%,rgba(239,38,38,0.1)_0,rgba(239,38,38,0)_24%),radial-gradient(circle_at_96%_92%,rgba(214,184,90,0.16)_0,rgba(214,184,90,0)_28%)]" />
@@ -87,7 +87,9 @@ export default function PartnershipOverviewSection() {
                       src={image}
                       alt={title}
                       loading="lazy"
-                      className="h-24 w-full object-cover transition-transform duration-500 group-hover:scale-105"
+                      data-lightbox-image="true"
+                      data-lightbox-title={title}
+                      className="h-24 w-full cursor-zoom-in object-cover transition-transform duration-500 group-hover:scale-105"
                     />
                   </div>
                 </div>
@@ -101,7 +103,9 @@ export default function PartnershipOverviewSection() {
                     src="/assets/team-doctors.png"
                     alt="Kolaborasi partner Raho Premier"
                     loading="lazy"
-                    className="h-72 w-full object-cover sm:h-80 lg:h-[340px]"
+                    data-lightbox-image="true"
+                    data-lightbox-title="Kolaborasi partner Raho Premier"
+                    className="h-72 w-full cursor-zoom-in object-cover sm:h-80 lg:h-[340px]"
                   />
                 </div>
               </div>

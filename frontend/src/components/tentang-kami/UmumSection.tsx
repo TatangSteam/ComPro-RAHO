@@ -31,7 +31,9 @@ export default function UmumSection() {
                 src="/assets/building.png"
                 alt="Raho Club Premier"
                 loading="lazy"
-                className="h-72 w-full object-cover sm:h-80 lg:h-[330px]"
+                data-lightbox-image="true"
+                data-lightbox-title="Raho Club Premier"
+                className="h-72 w-full cursor-zoom-in object-cover sm:h-80 lg:h-[330px]"
               />
             </div>
           </div>
@@ -115,7 +117,9 @@ export default function UmumSection() {
                   src="/assets/team-doctors.png"
                   alt="Program edukasi kesehatan Raho Premier"
                   loading="lazy"
-                  className="absolute bottom-0 right-0 h-[86%] w-[62%] object-cover object-center opacity-95 transition-transform duration-500 group-hover:scale-105"
+                  data-lightbox-image="true"
+                  data-lightbox-title="Program edukasi kesehatan Raho Premier"
+                  className="absolute bottom-0 right-0 h-[86%] w-[62%] cursor-zoom-in object-cover object-center opacity-95 transition-transform duration-500 group-hover:scale-105"
                 />
               </div>
             </a>
@@ -129,7 +133,9 @@ export default function UmumSection() {
                 src="/assets/technology.png"
                 alt="Teknologi Nano Bubble"
                 loading="lazy"
-                className="h-72 w-full object-cover sm:h-80 lg:h-[330px]"
+                data-lightbox-image="true"
+                data-lightbox-title="Teknologi Nano Bubble"
+                className="h-72 w-full cursor-zoom-in object-cover sm:h-80 lg:h-[330px]"
               />
               <div className="absolute inset-0 bg-gradient-to-br from-sky-100/10 via-transparent to-[#D6B85A]/10" />
             </div>

@@ -108,7 +108,10 @@ export default function HeroSection6() {
                 src={mainSolution.image}
                 alt={mainSolution.title}
                 fill
-                className="object-cover"
+                data-lightbox-image="true"
+                data-lightbox-src={mainSolution.image}
+                data-lightbox-title={mainSolution.title}
+                className="cursor-zoom-in object-cover"
               />
             </div>
           </div>
@@ -147,7 +150,10 @@ export default function HeroSection6() {
                     src={solution.image}
                     alt={solution.title}
                     fill
-                    className="object-cover"
+                    data-lightbox-image="true"
+                    data-lightbox-src={solution.image}
+                    data-lightbox-title={solution.title}
+                    className="cursor-zoom-in object-cover"
                   />
                 </div>
               </div>

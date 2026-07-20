@@ -204,7 +204,10 @@ export default function MicrositePage() {
               alt="RAHO Club Premier"
               width={340}
               height={170}
-              className="mx-auto"
+              data-lightbox-image="true"
+              data-lightbox-src="/assets/LOGORAHO.png"
+              data-lightbox-title="RAHO Club Premier"
+              className="mx-auto cursor-zoom-in"
               priority
               quality={100}
               style={{ filter: 'contrast(1.05) brightness(1.02)' }}

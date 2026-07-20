@@ -118,7 +118,11 @@ export default function LocationsSection() {
             <div className="grid md:grid-cols-2">
               {/* Location Visual */}
               <div 
-                className="relative h-96 md:h-full flex items-center justify-center overflow-hidden"
+                data-lightbox-image={currentLocation.imageUrl ? 'true' : undefined}
+                data-lightbox-title={currentLocation.name}
+                className={`relative h-96 md:h-full flex items-center justify-center overflow-hidden ${
+                  currentLocation.imageUrl ? 'cursor-zoom-in' : ''
+                }`}
                 style={{
                   background: 'linear-gradient(135deg, #B69133 0%, #D6B85A 50%, #B69133 100%)',
                 }}

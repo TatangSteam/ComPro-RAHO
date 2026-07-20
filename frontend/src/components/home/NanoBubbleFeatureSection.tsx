@@ -126,7 +126,10 @@ export default function NanoBubbleFeatureSection() {
               alt="Nano Bubble Visualization"
               width={512}
               height={512}
-              className="w-full h-[133.33%] object-cover"
+              data-lightbox-image="true"
+              data-lightbox-src="/assets/Hero/Hero-Section.gif"
+              data-lightbox-title="Nano Bubble Visualization"
+              className="w-full h-[133.33%] cursor-zoom-in object-cover"
               style={{ 
                 marginTop: '-15%',
               }}

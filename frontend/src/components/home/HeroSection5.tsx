@@ -151,7 +151,10 @@ export default function HeroSection5({ articles }: HeroSection5Props) {
                           src={article.imageUrl}
                           alt={article.title}
                           fill
-                          className="object-cover group-hover:scale-110 transition-transform duration-300"
+                          data-lightbox-image="true"
+                          data-lightbox-src={article.imageUrl}
+                          data-lightbox-title={article.title}
+                          className="cursor-zoom-in object-cover transition-transform duration-300 group-hover:scale-110"
                         />
                       </div>
                     ) : (

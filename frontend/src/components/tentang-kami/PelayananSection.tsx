@@ -22,7 +22,9 @@ export default function PelayananSection() {
               src="/assets/homecare.png" 
               alt="Homecare Service"
               loading="lazy"
-              className="w-full h-64 md:h-80 lg:h-96 object-cover"
+              data-lightbox-image="true"
+              data-lightbox-title="Homecare Service"
+              className="w-full h-64 cursor-zoom-in object-cover md:h-80 lg:h-96"
             />
           </div>
         </div>

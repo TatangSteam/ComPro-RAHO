@@ -100,7 +100,10 @@ export default function IMICollaborationSection() {
                   src="/assets/logo-imi-new.png"
                   alt="IMI - Inovasi Molekuler Indonesia"
                   fill
-                  className="object-contain"
+                  data-lightbox-image="true"
+                  data-lightbox-src="/assets/logo-imi-new.png"
+                  data-lightbox-title="IMI - Inovasi Molekuler Indonesia"
+                  className="cursor-zoom-in object-contain"
                   priority
                   onError={() => setImiLogoError(true)}
                 />
@@ -242,12 +245,12 @@ export default function IMICollaborationSection() {
                   </Link>
                 </li>
                 <li>
-                  <Link href="/partnership" className="text-white/65 transition-colors hover:text-[#D6B85A]">
+                  <Link href="/tentang-kami#partnership-overview" className="text-white/65 transition-colors hover:text-[#D6B85A]">
                     Partnership
                   </Link>
                 </li>
                 <li>
-                  <Link href="/#locations" className="text-white/65 transition-colors hover:text-[#D6B85A]">
+                  <Link href="/tentang-kami#partner-network" className="text-white/65 transition-colors hover:text-[#D6B85A]">
                     Lokasi
                   </Link>
                 </li>

@@ -50,7 +50,9 @@ export default function ArticlePage() {
             <AuthImage
               src={article.imageUrl}
               alt={article.title}
-              className="w-full h-96 object-cover"
+              data-lightbox-image="true"
+              data-lightbox-title={article.title}
+              className="w-full h-96 cursor-zoom-in object-cover"
             />
           )}
           

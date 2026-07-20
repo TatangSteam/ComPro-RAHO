@@ -97,7 +97,9 @@ export default function PartnershipPage() {
                     src="/assets/building.jpg"
                     alt="Partnership untuk Dokter"
                     loading="lazy"
-                    className="w-full h-64 sm:h-80 md:h-96 object-cover"
+                    data-lightbox-image="true"
+                    data-lightbox-title="Partnership untuk Dokter"
+                    className="w-full h-64 cursor-zoom-in object-cover sm:h-80 md:h-96"
                   />
                 </div>
               </div>
@@ -140,7 +142,9 @@ export default function PartnershipPage() {
                       src="/assets/UntukKlinik.png"
                       alt="Partnership untuk Klinik"
                       loading="lazy"
-                      className="w-full h-64 sm:h-80 md:h-96 object-cover"
+                      data-lightbox-image="true"
+                      data-lightbox-title="Partnership untuk Klinik"
+                      className="w-full h-64 cursor-zoom-in object-cover sm:h-80 md:h-96"
                     />
                   </div>
                 </div>
@@ -187,7 +191,9 @@ export default function PartnershipPage() {
                     src="/assets/UntukKlinik.png"
                     alt="Partnership untuk Klinik"
                     loading="lazy"
-                    className="w-full h-64 sm:h-80 object-contain"
+                    data-lightbox-image="true"
+                    data-lightbox-title="Partnership untuk Klinik"
+                    className="w-full h-64 cursor-zoom-in object-contain sm:h-80"
                   />
                 </div>
               </div>

@@ -33,8 +33,11 @@ export default function NanoBubbleInfoSection() {
             alt="Animasi Nano Bubble"
             width={1200}
             height={680}
+            data-lightbox-image="true"
+            data-lightbox-src="/assets/Hero/Hero-Section.gif"
+            data-lightbox-title="Animasi Nano Bubble"
             unoptimized
-            className="mx-auto h-auto max-h-[clamp(16rem,50vh,34rem)] w-full object-contain drop-shadow-[0_2rem_3rem_rgba(128,88,20,0.18)]"
+            className="mx-auto h-auto max-h-[clamp(16rem,50vh,34rem)] w-full cursor-zoom-in object-contain drop-shadow-[0_2rem_3rem_rgba(128,88,20,0.18)]"
           />
         </div>
       </div>

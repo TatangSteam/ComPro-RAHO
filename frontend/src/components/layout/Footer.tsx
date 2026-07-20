@@ -95,12 +95,12 @@ export default function Footer() {
                 </Link>
               </li>
               <li>
-                <Link href="/partnership" className="text-white/65 transition-colors hover:text-[#D6B85A]">
+                <Link href="/tentang-kami#partnership-overview" className="text-white/65 transition-colors hover:text-[#D6B85A]">
                   Partnership
                 </Link>
               </li>
               <li>
-                <Link href="/#locations" className="text-white/65 transition-colors hover:text-[#D6B85A]">
+                <Link href="/tentang-kami#partner-network" className="text-white/65 transition-colors hover:text-[#D6B85A]">
                   Lokasi
                 </Link>
               </li>

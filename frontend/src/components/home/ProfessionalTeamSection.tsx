@@ -13,7 +13,10 @@ export default function ProfessionalTeamSection() {
                 alt="Professional Medical Team"
                 width={600}
                 height={400}
-                className="object-cover w-full h-64 md:h-80 lg:h-[400px]"
+                data-lightbox-image="true"
+                data-lightbox-src="/assets/team-doctors.png"
+                data-lightbox-title="Professional Medical Team"
+                className="object-cover w-full h-64 cursor-zoom-in md:h-80 lg:h-[400px]"
               />
             </div>
           </div>

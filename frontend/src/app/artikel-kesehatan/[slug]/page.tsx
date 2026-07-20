@@ -254,7 +254,9 @@ export default function ArtikelDetailPage() {
                   <AuthImage
                     src={article.imageUrl}
                     alt={article.title}
-                    className="h-64 w-full object-cover sm:h-96 lg:h-[480px]"
+                    data-lightbox-image="true"
+                    data-lightbox-title={article.title}
+                    className="h-64 w-full cursor-zoom-in object-cover sm:h-96 lg:h-[480px]"
                   />
                 </figure>
               )}

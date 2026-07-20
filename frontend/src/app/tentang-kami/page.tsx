@@ -16,6 +16,32 @@ export default function TentangKami() {
     fetchLocations();
   }, []);
 
+  useEffect(() => {
+    const syncHashToSection = () => {
+      const hash = window.location.hash.replace('#', '');
+      if (!hash) return;
+
+      const sectionId = hash === 'lokasi' ? 'partner-network' : hash;
+      if (sectionId !== 'umum' && sectionId !== 'partnership-overview' && sectionId !== 'partner-network') {
+        return;
+      }
+
+      setActiveTab(sectionId);
+
+      window.setTimeout(() => {
+        const element = document.getElementById(sectionId);
+        element?.scrollIntoView({ behavior: 'smooth', block: 'start' });
+      }, 100);
+    };
+
+    syncHashToSection();
+    window.addEventListener('hashchange', syncHashToSection);
+
+    return () => {
+      window.removeEventListener('hashchange', syncHashToSection);
+    };
+  }, [locations.length]);
+
   const fetchLocations = async () => {
     try {
       const res = await axios.get<any>(`${process.env.NEXT_PUBLIC_API_URL}/locations`);

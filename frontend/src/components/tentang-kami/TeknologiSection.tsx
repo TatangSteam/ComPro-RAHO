@@ -8,7 +8,9 @@ export default function TeknologiSection() {
               src="/assets/technology.png" 
               alt="Nano Bubble Technology"
               loading="lazy"
-              className="w-full h-64 md:h-80 lg:h-96 object-cover"
+              data-lightbox-image="true"
+              data-lightbox-title="Nano Bubble Technology"
+              className="w-full h-64 cursor-zoom-in object-cover md:h-80 lg:h-96"
             />
           </div>
           <div className="order-1 lg:order-2">

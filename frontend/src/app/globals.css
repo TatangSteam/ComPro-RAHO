@@ -32,6 +32,10 @@
   color: #9ca3af;
 }
 
+.prose img {
+  cursor: zoom-in;
+}
+
 @layer components {
   body:has(.home-scroll-snap) {
     overflow: hidden;

@@ -4,6 +4,7 @@ import { usePathname } from 'next/navigation';
 import Navbar from './Navbar';
 import CTASection from './CTASection';
 import Footer from './Footer';
+import ImageLightbox from '@/components/Shared/ImageLightbox';
 
 export default function LayoutContent({ children }: { children: React.ReactNode }) {
   const pathname = usePathname();
@@ -13,7 +14,12 @@ export default function LayoutContent({ children }: { children: React.ReactNode 
 
   // Microsite: no navbar, no CTA, no footer
   if (isMicrosite) {
-    return <>{children}</>;
+    return (
+      <>
+        {children}
+        <ImageLightbox />
+      </>
+    );
   }
 
   // Admin pages: no CTA section
@@ -33,6 +39,7 @@ export default function LayoutContent({ children }: { children: React.ReactNode 
       <>
         <Navbar />
         {children}
+        <ImageLightbox />
       </>
     );
   }
@@ -44,6 +51,7 @@ export default function LayoutContent({ children }: { children: React.ReactNode 
       {children}
       <CTASection />
       <Footer />
+      <ImageLightbox />
     </>
   );
 }

@@ -72,7 +72,9 @@ export default function ArtikelKesehatanSection({ articles }: ArtikelKesehatanSe
                       <AuthImage
                         src={article.imageUrl}
                         alt={article.title}
-                        className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-300"
+                        data-lightbox-image="true"
+                        data-lightbox-title={article.title}
+                        className="w-full h-full cursor-zoom-in object-cover transition-transform duration-300 group-hover:scale-105"
                       />
                     ) : (
                       <div className="w-full h-full flex items-center justify-center bg-gradient-to-br from-yellow-100 to-yellow-200">

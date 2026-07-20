@@ -57,7 +57,7 @@ export default function PartnerNetworkSection({ locations }: PartnerNetworkSecti
   }
 
   return (
-    <section id="partner-network" className="relative overflow-hidden py-16 md:py-20">
+    <section id="partner-network" className="relative scroll-mt-24 overflow-hidden py-16 md:py-20">
       <div className="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         {/* Header */}
         <div className="text-center mb-10">
@@ -93,7 +93,13 @@ export default function PartnerNetworkSection({ locations }: PartnerNetworkSecti
                 key={location.id}
                 className="bg-white rounded-2xl shadow-lg overflow-hidden grid md:grid-cols-2 md:items-start"
               >
-                <div className="relative h-56 md:h-72 lg:h-80 bg-gray-100">
+                <div
+                  data-lightbox-image={location.imageUrl ? 'true' : undefined}
+                  data-lightbox-title={location.name}
+                  className={`relative h-56 md:h-72 lg:h-80 bg-gray-100 ${
+                    location.imageUrl ? 'cursor-zoom-in' : ''
+                  }`}
+                >
                   {location.imageUrl ? (
                     <AuthImage
                       src={location.imageUrl}
@@ -172,7 +178,11 @@ export default function PartnerNetworkSection({ locations }: PartnerNetworkSecti
                 key={location.id}
                 className="bg-white rounded-2xl border border-gray-100 shadow-sm hover:shadow-lg transition-shadow overflow-hidden"
               >
-                <div className="relative h-40 bg-gray-100">
+                <div
+                  data-lightbox-image={location.imageUrl ? 'true' : undefined}
+                  data-lightbox-title={location.name}
+                  className={`relative h-40 bg-gray-100 ${location.imageUrl ? 'cursor-zoom-in' : ''}`}
+                >
                   {location.imageUrl ? (
                     <AuthImage
                       src={location.imageUrl}
