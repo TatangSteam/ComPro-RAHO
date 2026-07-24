@@ -293,7 +293,7 @@ export default function MicrositePage() {
 
             {/* TikTok */}
             <a
-              href="https://www.tiktok.com/@rahopremier?_r=1&_t=ZS-96s3j7lRpHb"
+              href="https://www.tiktok.com/@rahopremier_?is_from_webapp=1&sender_device=pc"
               target="_blank"
               rel="noopener noreferrer"
               className="group flex items-center justify-between px-6 h-[60px] rounded-[20px] transition-all duration-300"

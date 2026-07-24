@@ -14,7 +14,7 @@ const socialLinks = [
     Icon: FaInstagram,
   },
   {
-    href: 'https://www.tiktok.com/@rahopremier?_r=1&_t=ZS-96s3j7lRpHb',
+    href: 'https://www.tiktok.com/@rahopremier_?is_from_webapp=1&sender_device=pc',
     label: 'TikTok',
     Icon: FaTiktok,
   },
