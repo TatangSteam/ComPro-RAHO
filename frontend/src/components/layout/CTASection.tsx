@@ -30,7 +30,7 @@ export default function CTASection() {
             Hubungi Kami
           </a>
           <a
-            href="https://wa.link/h2uyet"
+            href="https://rahopremier.id/tentang-kami"
             target="_blank"
             rel="noopener noreferrer"
             className="bg-transparent hover:bg-white/10 text-white px-8 py-3 rounded-full font-medium transition-colors border-2 border-white flex items-center justify-center gap-2"

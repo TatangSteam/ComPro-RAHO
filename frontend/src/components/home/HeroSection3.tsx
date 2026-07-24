@@ -139,7 +139,7 @@ export default function HeroSection3() {
 
             {/* Right - CTA Button */}
             <a
-              href="https://wa.link/h2uyet"
+              href="https://wa.link/tuwrxr"
               target="_blank"
               rel="noopener noreferrer"
               className="inline-flex items-center gap-2 bg-gradient-to-r from-[#B69133] to-[#D6B85A] hover:from-[#D6B85A] hover:to-[#B69133] text-white px-8 py-4 rounded-full text-base font-medium transition-all duration-300 shadow-xl hover:shadow-2xl hover:scale-105 whitespace-nowrap"

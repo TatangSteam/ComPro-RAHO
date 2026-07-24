@@ -110,7 +110,7 @@ export default function HeroSection2() {
             {/* CTA Buttons */}
             <div className="flex flex-wrap gap-4">
               <a
-                href="https://wa.link/h2uyet"
+                href="https://wa.link/tuwrxr"
                 target="_blank"
                 rel="noopener noreferrer"
                 className="inline-flex items-center gap-2 bg-gradient-to-r from-[#B69133] to-[#D6B85A] hover:from-[#D6B85A] hover:to-[#B69133] text-white px-8 py-4 rounded-full text-base font-medium transition-all duration-300 shadow-xl hover:shadow-2xl hover:scale-105"
@@ -121,7 +121,9 @@ export default function HeroSection2() {
                 Gabung Partnership
               </a>
               <a
-                href="#nano-bubble"
+                href="https://rahopremier.id/artikel-kesehatan?category=tindakan-medis"
+                target="_blank"
+                rel="noopener noreferrer"
                 className="inline-flex items-center gap-2 bg-white hover:bg-gray-50 text-gray-900 px-8 py-4 rounded-full text-base font-medium transition-all duration-300 border-2 border-[#B69133] shadow-lg hover:shadow-xl"
               >
                 <svg className="w-5 h-5 text-[#B69133]" fill="currentColor" viewBox="0 0 24 24">

@@ -302,7 +302,7 @@ export default function PartnerNetworkSection({ locations }: PartnerNetworkSecti
           </div>
           <div className="flex gap-3 flex-shrink-0">
             <a
-              href="https://wa.link/h2uyet"
+              href="https://wa.link/pa1lub"
               target="_blank"
               rel="noopener noreferrer"
               className="inline-flex items-center gap-2 bg-white border-2 border-[#B69133] text-[#B69133] hover:bg-[#B69133]/5 px-5 py-2.5 rounded-full text-sm font-medium transition-colors whitespace-nowrap"
@@ -310,7 +310,9 @@ export default function PartnerNetworkSection({ locations }: PartnerNetworkSecti
               Ajukan Permintaan
             </a>
             <a
-              href="/partnership"
+              href="https://wa.link/tuwrxr"
+              target="_blank"
+              rel="noopener noreferrer"
               className="inline-flex items-center gap-2 bg-gradient-to-r from-[#B69133] to-[#D6B85A] hover:from-[#D6B85A] hover:to-[#B69133] text-white px-5 py-2.5 rounded-full text-sm font-medium transition-all shadow whitespace-nowrap"
             >
               Gabung Partnership

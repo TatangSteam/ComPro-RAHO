@@ -8,7 +8,7 @@ import {
   UsersRound,
 } from 'lucide-react';
 
-const WHATSAPP_URL = 'https://wa.link/h2uyet';
+const WHATSAPP_URL = 'https://wa.link/tuwrxr';
 
 const benefitCards = [
   {

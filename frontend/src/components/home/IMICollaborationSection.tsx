@@ -150,7 +150,7 @@ export default function IMICollaborationSection() {
 
           <div className="flex flex-col items-center justify-center gap-6 sm:flex-row">
             <a
-              href="https://wa.link/h2uyet"
+              href="https://wa.link/tuwrxr"
               target="_blank"
               rel="noopener noreferrer"
               className="inline-flex min-w-[288px] items-center justify-center gap-3 rounded-full bg-gradient-to-r from-[#C59B2F] to-[#D7AF36] px-8 py-4 text-lg font-medium text-white shadow-xl transition-all duration-300 hover:scale-105 hover:from-[#D6B85A] hover:to-[#B69133] hover:shadow-2xl"

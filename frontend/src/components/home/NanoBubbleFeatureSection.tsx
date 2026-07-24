@@ -169,7 +169,7 @@ export default function NanoBubbleFeatureSection() {
         {/* CTA Button */}
         <div className="mt-12 flex justify-center sm:mt-16">
           <a
-            href="https://wa.link/h2uyet"
+            href="https://rahopremier.id/artikel-kesehatan?category=tindakan-medis"
             target="_blank"
             rel="noopener noreferrer"
             className="inline-flex items-center gap-3 rounded-full bg-gradient-to-r from-[#A67319] via-[#D6B85A] to-[#F1D36B] px-8 py-4 text-base font-bold text-[#2b1804] shadow-xl shadow-amber-900/20 transition-all duration-300 hover:scale-105 hover:from-[#F1D36B] hover:via-[#D6B85A] hover:to-[#A67319] hover:shadow-2xl hover:shadow-amber-900/30 sm:text-lg"

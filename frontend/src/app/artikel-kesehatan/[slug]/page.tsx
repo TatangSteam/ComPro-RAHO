@@ -236,7 +236,7 @@ export default function ArtikelDetailPage() {
                     Diskusikan kondisi Anda bersama tim RAHO Premier.
                   </p>
                   <a
-                    href="https://wa.link/h2uyet"
+                    href="https://wa.link/7hzabn"
                     target="_blank"
                     rel="noopener noreferrer"
                     className="mt-4 inline-flex items-center gap-2 rounded-lg bg-[#F4D98A] px-4 py-2 text-sm font-bold text-[#171717] transition-colors hover:bg-[#D6B85A]"

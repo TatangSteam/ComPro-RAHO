@@ -155,7 +155,7 @@ export default function UmumSection() {
               teknologi, dan inovasi.
             </p>
             <Link
-              href="/artikel-kesehatan/terapi-nano-bubble-teknologi-revolusioner"
+              href="https://rahopremier.id/artikel-kesehatan/apa-itu-nanobubble-teknologi-cerdas-untuk-mengantarkan-oksigen-hingga-ke-tingkat-mikro"
               className="mt-7 inline-flex min-h-[52px] items-center justify-center gap-3 rounded-full bg-gradient-to-r from-[#B69133] to-[#D6B85A] px-8 text-sm font-semibold text-white shadow-lg shadow-[#B69133]/20 transition-all duration-300 hover:-translate-y-0.5 hover:from-[#D6B85A] hover:to-[#B69133]"
             >
               Pelajari Nano Bubble

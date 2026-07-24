@@ -216,7 +216,7 @@ export default function HeroSection4() {
 
             {/* Right - CTA Button */}
             <a
-              href="https://wa.link/h2uyet"
+              href="https://wa.link/tuwrxr"
               target="_blank"
               rel="noopener noreferrer"
               className="inline-flex items-center gap-2 bg-red-600 hover:bg-red-700 text-white px-8 py-3 rounded-full text-base font-medium transition-all duration-300 shadow-lg hover:shadow-xl hover:scale-105 whitespace-nowrap"
