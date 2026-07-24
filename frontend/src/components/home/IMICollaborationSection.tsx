@@ -158,13 +158,15 @@ export default function IMICollaborationSection() {
               <Users className="h-6 w-6" />
               Gabung Partnership
             </a>
-            <Link
-              href="/hubungi-kami"
+            <a
+              href="https://api.whatsapp.com/send?phone=6285136222772&text=Halo%2C%20saya%20mendapatkan%20informasi%20tentang%20Raho%20Premier%20dari%20website.%20Saya%20tertarik%20untuk%20mengetahui%20lebih%20lanjut%20mengenai%20layanan%20yang%20tersedia.%20Bisa%20dibantu%20penjelasannya%3F"
+              target="_blank"
+              rel="noopener noreferrer"
               className="inline-flex min-w-[258px] items-center justify-center gap-4 rounded-full border border-[#F8D977] bg-white/5 px-8 py-4 text-lg font-medium text-white shadow-lg transition-all duration-300 hover:bg-white/10"
             >
               Hubungi Kami
               <ArrowRight className="h-5 w-5" />
-            </Link>
+            </a>
           </div>
         </div>
       </div>
