@@ -103,7 +103,7 @@ services:
       MINIO_BUCKET: raho-uploads
       MINIO_PUBLIC_URL: http://raho-minio:9000
       MINIO_USE_SSL: "false"
-      CORS_ORIGIN: ${CORS_ORIGIN:-https://rahopremier.id,http://38.147.122.167}
+      CORS_ORIGIN: ${CORS_ORIGIN:-https://rahopremier.id}
       JWT_ACCESS_EXPIRES: 15m
       JWT_REFRESH_EXPIRES: 7d
       RATE_LIMIT_WINDOW_MS: 60000
