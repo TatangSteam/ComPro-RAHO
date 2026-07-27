@@ -13,10 +13,29 @@ const poppins = Poppins({
 
 export const metadata: Metadata = {
   metadataBase: new URL('https://rahopremier.id'),
-  title: 'RAHO Club Premier - Ekosistem Riset Kesehatan & Pemulihan Seluler',
+  title: {
+    default: 'RAHO Premier - Ekosistem Riset Kesehatan & Pemulihan Seluler',
+    template: '%s | RAHO Premier',
+  },
   description: 'RAHO Club Premier adalah ekosistem riset kesehatan & pemulihan seluler berbasis bioteknologi molekuler dengan Teknologi Nano Bubble untuk aging sehat & regenerasi tubuh alami.',
   keywords: ['RAHO Club', 'terapi nano bubble', 'pemulihan seluler', 'bioteknologi', 'kesehatan', 'regenerasi tubuh', 'wellness'],
   authors: [{ name: 'RAHO Club Premier' }],
+  creator: 'RAHO Premier',
+  publisher: 'RAHO Premier',
+  alternates: {
+    canonical: 'https://rahopremier.id',
+  },
+  robots: {
+    index: true,
+    follow: true,
+    googleBot: {
+      index: true,
+      follow: true,
+      'max-image-preview': 'large',
+      'max-snippet': -1,
+      'max-video-preview': -1,
+    },
+  },
   icons: {
     icon: '/assets/icon.png',
     apple: '/assets/LOGORAHO.png',
@@ -28,10 +47,10 @@ export const metadata: Metadata = {
     siteName: 'RAHO Club Premier',
     images: [
       {
-        url: '/assets/LOGORAHO.png',
+        url: '/assets/cta-background.jpg',
         width: 1200,
         height: 630,
-        alt: 'RAHO Club Premier Logo',
+        alt: 'RAHO Premier',
       },
     ],
     locale: 'id_ID',
@@ -41,7 +60,7 @@ export const metadata: Metadata = {
     card: 'summary_large_image',
     title: 'RAHO Club Premier',
     description: 'Ekosistem riset kesehatan & pemulihan seluler berbasis bioteknologi molekuler',
-    images: ['/assets/LOGORAHO.png'],
+    images: ['/assets/cta-background.jpg'],
   },
 };
 
@@ -52,24 +71,40 @@ export default function RootLayout({
 }) {
   const jsonLd = {
     '@context': 'https://schema.org',
-    '@type': 'Organization',
-    name: 'RAHO Club Premier',
-    description: 'Ekosistem riset kesehatan & pemulihan seluler berbasis bioteknologi molekuler dengan Teknologi Nano Bubble',
-    url: 'https://rahopremier.id',
-    logo: 'https://rahopremier.id/assets/LOGORAHO.png',
-    image: 'https://rahopremier.id/assets/LOGORAHO.png',
-    contactPoint: {
-      '@type': 'ContactPoint',
-      telephone: '+62-812-3456-7890',
-      contactType: 'customer service',
-      areaServed: 'ID',
-      availableLanguage: ['id', 'en']
-    },
-    sameAs: [
-      'https://www.linkedin.com/company/raho-premier/',
-      'https://www.instagram.com/rahopremier/',
-      'https://www.tiktok.com/@rahopremier?_r=1&_t=ZS-96s3j7lRpHb'
-    ]
+    '@graph': [
+      {
+        '@type': 'Organization',
+        '@id': 'https://rahopremier.id/#organization',
+        name: 'RAHO Premier',
+        description:
+          'Ekosistem riset kesehatan dan pemulihan seluler berbasis bioteknologi molekuler dengan Teknologi Nano Bubble.',
+        url: 'https://rahopremier.id',
+        logo: {
+          '@type': 'ImageObject',
+          url: 'https://rahopremier.id/assets/LOGORAHO.png',
+        },
+        contactPoint: {
+          '@type': 'ContactPoint',
+          telephone: '+62-851-3622-2772',
+          contactType: 'customer service',
+          areaServed: 'ID',
+          availableLanguage: ['id'],
+        },
+        sameAs: [
+          'https://www.linkedin.com/company/raho-premier/',
+          'https://www.instagram.com/rahopremier/',
+          'https://www.tiktok.com/@rahopremier_?is_from_webapp=1&sender_device=pc',
+        ],
+      },
+      {
+        '@type': 'WebSite',
+        '@id': 'https://rahopremier.id/#website',
+        url: 'https://rahopremier.id',
+        name: 'RAHO Premier',
+        inLanguage: 'id-ID',
+        publisher: { '@id': 'https://rahopremier.id/#organization' },
+      },
+    ],
   };
 
   return (

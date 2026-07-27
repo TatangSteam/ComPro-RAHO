@@ -1,52 +1,63 @@
 import { MetadataRoute } from 'next';
+import { absoluteImageUrl, getPublishedArticles, SITE_URL } from '@/lib/seo';
 
-export default function sitemap(): MetadataRoute.Sitemap {
-  const baseUrl = 'https://rahopremier.id';
-  
-  // Static pages with high priority
+export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
+  const articles = await getPublishedArticles();
+  const latestArticleUpdate = articles.reduce<Date | undefined>((latest, article) => {
+    const updatedAt = new Date(article.updatedAt);
+    return !latest || updatedAt > latest ? updatedAt : latest;
+  }, undefined);
+
   const staticPages: MetadataRoute.Sitemap = [
     {
-      url: baseUrl,
-      lastModified: new Date(),
-      changeFrequency: 'daily',
+      url: SITE_URL,
+      lastModified: latestArticleUpdate,
+      changeFrequency: 'weekly',
       priority: 1.0,
     },
     {
-      url: `${baseUrl}/tentang-kami`,
-      lastModified: new Date(),
+      url: `${SITE_URL}/tentang-kami`,
       changeFrequency: 'weekly',
       priority: 0.9,
     },
     {
-      url: `${baseUrl}/artikel-kesehatan`,
-      lastModified: new Date(),
+      url: `${SITE_URL}/artikel-kesehatan`,
+      lastModified: latestArticleUpdate,
       changeFrequency: 'daily',
       priority: 0.9,
     },
     {
-      url: `${baseUrl}/lokasi`,
-      lastModified: new Date(),
+      url: `${SITE_URL}/artikel-kesehatan?category=penyakit`,
+      lastModified: latestArticleUpdate,
+      changeFrequency: 'weekly',
+      priority: 0.7,
+    },
+    {
+      url: `${SITE_URL}/artikel-kesehatan?category=tindakan-medis`,
+      lastModified: latestArticleUpdate,
       changeFrequency: 'weekly',
       priority: 0.8,
     },
     {
-      url: `${baseUrl}/partnership`,
-      lastModified: new Date(),
-      changeFrequency: 'monthly',
+      url: `${SITE_URL}/artikel-kesehatan?category=kisah-pasien`,
+      lastModified: latestArticleUpdate,
+      changeFrequency: 'weekly',
       priority: 0.7,
+    },
+    {
+      url: `${SITE_URL}/hubungi-kami`,
+      changeFrequency: 'monthly',
+      priority: 0.6,
     },
   ];
 
-  // Note: In production, you would fetch actual articles from your API
-  // For now, we'll just include the article listing page
-  // To add dynamic article URLs, you would do something like:
-  // const articles = await fetch(`${baseUrl}/api/articles`).then(r => r.json());
-  // const articlePages = articles.map(article => ({
-  //   url: `${baseUrl}/artikel-kesehatan/${article.slug}`,
-  //   lastModified: new Date(article.updatedAt),
-  //   changeFrequency: 'monthly' as const,
-  //   priority: 0.6,
-  // }));
+  const articlePages: MetadataRoute.Sitemap = articles.map((article) => ({
+    url: `${SITE_URL}/artikel-kesehatan/${article.slug}`,
+    lastModified: new Date(article.updatedAt),
+    changeFrequency: 'monthly',
+    priority: 0.7,
+    images: article.imageUrl ? [absoluteImageUrl(article.imageUrl)] : undefined,
+  }));
 
-  return staticPages;
+  return [...staticPages, ...articlePages];
 }
