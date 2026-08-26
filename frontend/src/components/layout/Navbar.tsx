@@ -11,7 +11,6 @@ export default function Navbar() {
 
   const navLinks = [
     { href: '/', label: 'Beranda' },
-    { href: '/tentang-kami', label: 'Tentang Kami dan Partnership' },
     { href: '/artikel-kesehatan', label: 'Artikel Kesehatan' },
   ];
 

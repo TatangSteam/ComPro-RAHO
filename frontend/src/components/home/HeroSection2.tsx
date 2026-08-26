@@ -19,7 +19,7 @@ export default function HeroSection2() {
           <path d="M12 12c2.21 0 4-1.79 4-4s-1.79-4-4-4-4 1.79-4 4 1.79 4 4 4zm0 2c-2.67 0-8 1.34-8 4v2h16v-2c0-2.66-5.33-4-8-4z"/>
         </svg>
       ),
-      value: '22.000 +',
+      value: '30.000+',
       label: 'Anggota Komunitas',
     },
     {
@@ -28,7 +28,7 @@ export default function HeroSection2() {
           <path d="M16 11c1.66 0 2.99-1.34 2.99-3S17.66 5 16 5c-1.66 0-3 1.34-3 3s1.34 3 3 3zm-8 0c1.66 0 2.99-1.34 2.99-3S9.66 5 8 5C6.34 5 5 6.34 5 8s1.34 3 3 3zm0 2c-2.33 0-7 1.17-7 3.5V19h14v-2.5c0-2.33-4.67-3.5-7-3.5zm8 0c-.29 0-.62.02-.97.05 1.16.84 1.97 1.97 1.97 3.45V19h6v-2.5c0-2.33-4.67-3.5-7-3.5z"/>
         </svg>
       ),
-      value: '10 +',
+      value: '30+',
       label: 'Partner Aktif',
     },
     {
@@ -37,7 +37,7 @@ export default function HeroSection2() {
           <path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm-2 15l-5-5 1.41-1.41L10 14.17l7.59-7.59L19 8l-9 9z"/>
         </svg>
       ),
-      value: '40+',
+      value: '100+',
       label: 'Praktisi',
     },
   ];
@@ -65,7 +65,8 @@ export default function HeroSection2() {
 
   return (
     <section 
-      className="relative min-h-[calc(100dvh-5rem)] flex items-center overflow-visible"
+      id="tentang-kami"
+      className="relative min-h-[calc(100dvh-5rem)] flex items-center overflow-visible scroll-mt-20"
       style={{
         background: 'transparent',
       }}
@@ -91,7 +92,7 @@ export default function HeroSection2() {
               <svg className="w-5 h-5 text-[#B69133]" fill="currentColor" viewBox="0 0 20 20">
                 <path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z" />
               </svg>
-              <span className="text-sm font-medium text-gray-800">Dipercaya oleh 22.000+ anggota komunitas kesehatan</span>
+              <span className="text-sm font-medium text-gray-800">Dipercaya oleh 30.000+ anggota komunitas kesehatan</span>
             </div>
 
             {/* Main Heading */}

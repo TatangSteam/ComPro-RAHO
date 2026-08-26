@@ -2,7 +2,6 @@
 
 import { usePathname } from 'next/navigation';
 import Navbar from './Navbar';
-import CTASection from './CTASection';
 import Footer from './Footer';
 import ImageLightbox from '@/components/Shared/ImageLightbox';
 
@@ -49,7 +48,6 @@ export default function LayoutContent({ children }: { children: React.ReactNode 
     <>
       <Navbar />
       {children}
-      <CTASection />
       <Footer />
       <ImageLightbox />
     </>

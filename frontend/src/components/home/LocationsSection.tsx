@@ -81,7 +81,7 @@ export default function LocationsSection() {
   return (
     <section 
       id="locations"
-      className="relative py-20 overflow-hidden"
+      className="relative scroll-mt-20 py-20 overflow-hidden"
       style={{
         background: 'transparent',
       }}

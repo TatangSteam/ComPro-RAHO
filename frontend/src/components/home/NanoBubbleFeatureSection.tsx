@@ -6,8 +6,8 @@ import Image from 'next/image';
 export default function NanoBubbleFeatureSection() {
   const features = [
     {
-      title: 'Stabilitas yang Tinggi',
-      description: 'Nano Bubble dapat bertahan lebih lama dalam cairan.',
+      title: 'Ukuran Nano',
+      description: 'Partikel atau gelembung berada pada skala nanometrik (<100 nm), memberikan luas permukaan yang sangat luas dan penetrasi yang jauh lebih presisi.',
       icon: (
         <svg className="h-12 w-12" viewBox="0 0 48 48" fill="none" xmlns="http://www.w3.org/2000/svg">
           <circle cx="24" cy="24" r="20" fill="#D6B85A" opacity="0.2" />
@@ -17,8 +17,8 @@ export default function NanoBubbleFeatureSection() {
       ),
     },
     {
-      title: 'Luas Permukaan Besar',
-      description: 'Ukuran nano memberikan area interaksi yang lebih luas dan efisien.',
+      title: 'Kavitasi',
+      description: 'Proses dinamika perubahan tekanan cairan yang memicu terbentuknya rongga atau gelembung mikro-nano secara aktif.',
       icon: (
         <svg className="h-12 w-12" viewBox="0 0 48 48" fill="none" xmlns="http://www.w3.org/2000/svg">
           <rect x="8" y="8" width="32" height="32" rx="4" fill="#D6B85A" opacity="0.2" />
@@ -32,8 +32,8 @@ export default function NanoBubbleFeatureSection() {
       ),
     },
     {
-      title: 'Potensi Pengantaran Gas',
-      description: 'Memungkinkan distribusi oksigen, hidrogen, dan gas bioaktif.',
+      title: 'Hormesis',
+      description: 'Efek pemicuan respons positif atau adaptasi biologis tubuh/seluler pada ambang batas paparan dosis rendah yang menyehatkan.',
       icon: (
         <svg className="h-12 w-12" viewBox="0 0 48 48" fill="none" xmlns="http://www.w3.org/2000/svg">
           <circle cx="24" cy="24" r="20" fill="#D6B85A" opacity="0.2" />
@@ -46,8 +46,8 @@ export default function NanoBubbleFeatureSection() {
       ),
     },
     {
-      title: 'Area Riset Berkembang',
-      description: 'Terus dieksplorasi dalam berbagai bidang kesehatan.',
+      title: 'Duet',
+      description: 'Kombinasi atau sinergi ganda dua faktor penentu (misalnya interaksi gas-cairan atau surfaktan-ko-surfaktan) untuk mencapai kestabilan optimal.',
       icon: (
         <svg className="h-12 w-12" viewBox="0 0 48 48" fill="none" xmlns="http://www.w3.org/2000/svg">
           <circle cx="20" cy="20" r="8" stroke="#A67319" strokeWidth="2.5" />
@@ -61,7 +61,7 @@ export default function NanoBubbleFeatureSection() {
   ];
 
   return (
-    <section className="rising-bubble-field relative isolate flex min-h-[calc(100dvh-5rem)] items-center overflow-hidden text-[#17120a]" style={{ background: 'transparent' }}>
+    <section id="nano-bubble" className="rising-bubble-field relative isolate flex min-h-[calc(100dvh-5rem)] scroll-mt-20 items-center overflow-hidden text-[#17120a]" style={{ background: 'transparent' }}>
       {/* SVG Background */}
       <div 
         className="pointer-events-none absolute inset-0 z-0"
@@ -79,25 +79,9 @@ export default function NanoBubbleFeatureSection() {
       <div className="pointer-events-none absolute -right-28 bottom-10 z-[1] h-80 w-80 rounded-full bg-[#b69133]/10 blur-3xl" />
 
       <div className="relative z-10 mx-auto w-full max-w-7xl px-5 py-4 sm:px-8 lg:px-10">
-        {/* Top Badge */}
         <div className="mx-auto max-w-5xl text-center">
-          <div className="pointer-events-auto flex justify-center">
-            <div className="inline-flex items-center gap-2 rounded-full border border-[#d6b85a]/45 bg-white/45 px-4 py-2 text-[#5b3708] shadow-lg shadow-amber-950/10 backdrop-blur-md sm:px-5">
-              <Image
-                src="/assets/icon.png"
-                alt=""
-                width={20}
-                height={20}
-                className="object-contain"
-              />
-              <span className="text-xs font-medium tracking-wide sm:text-sm">
-                Teknologi Inti Raho Premier
-              </span>
-            </div>
-          </div>
-
           {/* Main Heading */}
-          <h2 className="mt-3 text-4xl font-extrabold leading-tight sm:text-5xl lg:text-6xl" style={{ fontFamily: "'Abhaya Libre', serif" }}>
+          <h2 className="text-4xl font-extrabold leading-tight sm:text-5xl lg:text-6xl" style={{ fontFamily: "'Abhaya Libre', serif" }}>
             <span className="text-[#17120a]">Apa Itu </span>
             <span className="bg-gradient-to-r from-[#A67319] via-[#D6B85A] to-[#F1D36B] bg-clip-text text-transparent">
               Nano Bubble?
@@ -164,22 +148,6 @@ export default function NanoBubbleFeatureSection() {
               </div>
             </article>
           ))}
-        </div>
-
-        {/* CTA Button */}
-        <div className="mt-12 flex justify-center sm:mt-16">
-          <a
-            href="https://rahopremier.id/artikel-kesehatan?category=tindakan-medis"
-            target="_blank"
-            rel="noopener noreferrer"
-            className="inline-flex items-center gap-3 rounded-full bg-gradient-to-r from-[#A67319] via-[#D6B85A] to-[#F1D36B] px-8 py-4 text-base font-bold text-[#2b1804] shadow-xl shadow-amber-900/20 transition-all duration-300 hover:scale-105 hover:from-[#F1D36B] hover:via-[#D6B85A] hover:to-[#A67319] hover:shadow-2xl hover:shadow-amber-900/30 sm:text-lg"
-            style={{ fontFamily: "'Inter', sans-serif" }}
-          >
-            Pelajari Nano Bubble Lebih Lanjut
-            <svg className="h-5 w-5" fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true">
-              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2.5} d="M17 8l4 4m0 0l-4 4m4-4H3" />
-            </svg>
-          </a>
         </div>
       </div>
     </section>
