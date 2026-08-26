@@ -14,7 +14,6 @@ import PagePreloader from '@/components/Shared/PagePreloader';
 // next/image), preloaded so the page doesn't reveal with backgrounds
 // popping in one by one.
 const PRELOAD_IMAGES = [
-  '/assets/Hero/Hero-Section.gif',
   '/assets/Hero/Section1BG.svg',
   '/assets/Hero/Section2,3,LokasiKmiBg.svg',
   '/assets/Section5/Section5BG.png',

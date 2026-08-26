@@ -8,11 +8,15 @@ import { sortLocationsForDisplay } from '@/lib/locationSort';
 
 interface PartnerNetworkSectionProps {
   locations: Location[];
+  sectionId?: string;
 }
 
 const PARTNERS_PER_PAGE = 6;
 
-export default function PartnerNetworkSection({ locations }: PartnerNetworkSectionProps) {
+export default function PartnerNetworkSection({
+  locations,
+  sectionId = 'partner-network',
+}: PartnerNetworkSectionProps) {
   const [search, setSearch] = useState('');
   const [page, setPage] = useState(0);
 
@@ -57,7 +61,7 @@ export default function PartnerNetworkSection({ locations }: PartnerNetworkSecti
   }
 
   return (
-    <section id="partner-network" className="relative scroll-mt-24 overflow-hidden py-16 md:py-20">
+    <section id={sectionId} className="relative scroll-mt-24 overflow-hidden py-16 md:py-20">
       <div className="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         {/* Header */}
         <div className="text-center mb-10">

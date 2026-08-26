@@ -1,9 +1,50 @@
 'use client';
 
-import React from 'react';
-import Image from 'next/image';
+import React, { useEffect, useRef } from 'react';
 
 export default function NanoBubbleFeatureSection() {
+  const videoRef = useRef<HTMLVideoElement>(null);
+
+  useEffect(() => {
+    const video = videoRef.current;
+    if (!video) return;
+
+    let animationFrameId = 0;
+    let previousTimestamp = 0;
+
+    const rewind = (timestamp: number) => {
+      if (!previousTimestamp) previousTimestamp = timestamp;
+
+      const elapsedSeconds = (timestamp - previousTimestamp) / 1000;
+      previousTimestamp = timestamp;
+      video.currentTime = Math.max(0, video.currentTime - elapsedSeconds);
+
+      if (video.currentTime > 0) {
+        animationFrameId = window.requestAnimationFrame(rewind);
+        return;
+      }
+
+      previousTimestamp = 0;
+      video.currentTime = 0;
+      void video.play().catch(() => {
+        // Autoplay can be deferred by the browser until the video is visible.
+      });
+    };
+
+    const handleEnded = () => {
+      video.pause();
+      previousTimestamp = 0;
+      animationFrameId = window.requestAnimationFrame(rewind);
+    };
+
+    video.addEventListener('ended', handleEnded);
+
+    return () => {
+      video.removeEventListener('ended', handleEnded);
+      window.cancelAnimationFrame(animationFrameId);
+    };
+  }, []);
+
   const features = [
     {
       title: 'Ukuran Nano',
@@ -104,22 +145,19 @@ export default function NanoBubbleFeatureSection() {
         {/* Central Bubble Visualization */}
         <div className="mt-4 flex justify-center sm:mt-6">
           <div className="relative overflow-hidden h-72 w-96 sm:h-96 sm:w-[32rem] lg:h-[32rem] lg:w-[42rem]">
-            {/* Main Bubble - Hero Section GIF - Cropped 15% from top, bottom cut 10% total */}
-            <Image
-              src="/assets/Hero/Hero-Section.gif"
-              alt="Nano Bubble Visualization"
-              width={512}
-              height={512}
-              data-lightbox-image="true"
-              data-lightbox-src="/assets/Hero/Hero-Section.gif"
-              data-lightbox-title="Nano Bubble Visualization"
-              className="w-full h-[133.33%] cursor-zoom-in object-cover"
-              style={{ 
-                marginTop: '-15%',
-              }}
-              priority
-              unoptimized
-            />
+            <video
+              ref={videoRef}
+              autoPlay
+              muted
+              playsInline
+              preload="auto"
+              disablePictureInPicture
+              aria-label="Visualisasi Nano Bubble"
+              className="h-[133.33%] w-full object-cover"
+              style={{ marginTop: '-15%', background: 'transparent' }}
+            >
+              <source src="/assets/GIFNANOBUBBLE.mp4" type="video/mp4" />
+            </video>
           </div>
         </div>
 
