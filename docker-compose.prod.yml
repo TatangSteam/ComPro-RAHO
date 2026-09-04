@@ -145,6 +145,9 @@ services:
     environment:
       NODE_ENV: production
       PORT: 3001
+      # Server Components must call the API through Docker's internal network.
+      # NEXT_PUBLIC_API_URL remains the browser-facing address.
+      API_URL: ${WEB_API_URL:-http://backend:5000/api}
       NEXT_PUBLIC_API_URL: ${WEB_NEXT_PUBLIC_API_URL:-https://rahopremier.id/api}
       NEXT_PUBLIC_APP_NAME: ${WEB_NEXT_PUBLIC_APP_NAME:-RAHO Klinik}
       NEXT_PUBLIC_APP_VERSION: ${WEB_NEXT_PUBLIC_APP_VERSION:-1.0.0}

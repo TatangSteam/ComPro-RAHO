@@ -4,14 +4,14 @@ import { getArticleSummary } from '@/lib/articleMeta';
 
 export const SITE_URL = 'https://rahopremier.id';
 export const SITE_NAME = 'RAHO Premier';
-export const API_URL =
-  process.env.API_URL ?? process.env.NEXT_PUBLIC_API_URL ?? 'http://localhost:5000/api';
+const PUBLIC_API_URL = process.env.NEXT_PUBLIC_API_URL ?? `${SITE_URL}/api`;
+export const API_URL = process.env.API_URL ?? PUBLIC_API_URL;
 export const DEFAULT_OG_IMAGE = `${SITE_URL}/assets/cta-background.jpg`;
 
 export function absoluteImageUrl(imageUrl: string | null | undefined): string {
   if (!imageUrl) return DEFAULT_OG_IMAGE;
   if (/^https?:\/\//i.test(imageUrl)) return imageUrl;
-  return `${API_URL.replace(/\/api\/?$/, '')}${imageUrl.startsWith('/') ? '' : '/'}${imageUrl}`;
+  return `${PUBLIC_API_URL.replace(/\/api\/?$/, '')}${imageUrl.startsWith('/') ? '' : '/'}${imageUrl}`;
 }
 
 export async function getPublishedArticles(): Promise<Article[]> {
@@ -28,16 +28,17 @@ export async function getPublishedArticles(): Promise<Article[]> {
 }
 
 export async function getPublishedArticle(slug: string): Promise<Article | null> {
-  try {
-    const response = await fetch(`${API_URL}/articles/${encodeURIComponent(slug)}`, {
-      next: { revalidate: 300 },
-    });
-    if (!response.ok) return null;
-    const article = (await response.json()) as Article;
-    return article.published ? article : null;
-  } catch {
-    return null;
+  const response = await fetch(`${API_URL}/articles/${encodeURIComponent(slug)}`, {
+    next: { revalidate: 300 },
+  });
+
+  if (response.status === 404) return null;
+  if (!response.ok) {
+    throw new Error(`Gagal mengambil artikel dari API (status ${response.status})`);
   }
+
+  const article = (await response.json()) as Article;
+  return article.published ? article : null;
 }
 
 export function createPageMetadata({
