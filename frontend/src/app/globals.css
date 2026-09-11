@@ -70,7 +70,9 @@
   }
 
   .home-snap-panel-footer {
-    background: #1a1a1a;
+    /* Keep the final snap panel filled when its content is shorter than the
+       viewport; this prevents a white strip below the footer artwork. */
+    background: #232323;
   }
 
   .pixel-starfield {

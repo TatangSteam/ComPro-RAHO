@@ -10,15 +10,11 @@ import LocationsSection from '@/components/home/LocationsSection';
 import IMICollaborationSection from '@/components/home/IMICollaborationSection';
 import PagePreloader from '@/components/Shared/PagePreloader';
 
-// Heavy background assets rendered via CSS backgroundImage (not covered by
-// next/image), preloaded so the page doesn't reveal with backgrounds
-// popping in one by one.
+// Only preload the background for the first (initially visible) panel. The
+// remaining panels are loaded by the browser as the user scrolls to them;
+// preloading every large background at once caused unnecessary memory usage.
 const PRELOAD_IMAGES = [
   '/assets/Hero/Section1BG.svg',
-  '/assets/Hero/Section2,3,LokasiKmiBg.svg',
-  '/assets/Section5/Section5BG.png',
-  '/assets/FOOTER1.png',
-  '/assets/cta-background.jpg',
 ];
 
 export default function Home() {
@@ -93,7 +89,7 @@ export default function Home() {
       </div>
 
       {/* Section 5: IMI Collaboration */}
-      <div className="home-snap-panel relative" style={{ background: 'transparent' }}>
+      <div className="home-snap-panel home-snap-panel-footer relative">
         <IMICollaborationSection />
       </div>
     </main>

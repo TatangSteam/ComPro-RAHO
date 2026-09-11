@@ -26,24 +26,27 @@ export default function PartnerNetworkSection({
     return `https://www.google.com/maps/search/?api=1&query=${query}`;
   };
 
-  const matchesSearch = (location: Location) => {
-    if (!search.trim()) return true;
+  const { cabangLocations, partnershipLocations } = useMemo(() => {
     const term = search.trim().toLowerCase();
-    return (
-      location.city.toLowerCase().includes(term) ||
-      location.name.toLowerCase().includes(term)
-    );
-  };
+    const cabang: Location[] = [];
+    const partnership: Location[] = [];
 
-  const cabangLocations = useMemo(
-    () => sortLocationsForDisplay(locations.filter((l) => l.category === 'cabang' && matchesSearch(l))),
-    [locations, search]
-  );
+    for (const location of locations) {
+      const matches =
+        !term ||
+        location.city.toLowerCase().includes(term) ||
+        location.name.toLowerCase().includes(term);
 
-  const partnershipLocations = useMemo(
-    () => sortLocationsForDisplay(locations.filter((l) => l.category !== 'cabang' && matchesSearch(l))),
-    [locations, search]
-  );
+      if (!matches) continue;
+      if (location.category === 'cabang') cabang.push(location);
+      else partnership.push(location);
+    }
+
+    return {
+      cabangLocations: sortLocationsForDisplay(cabang),
+      partnershipLocations: sortLocationsForDisplay(partnership),
+    };
+  }, [locations, search]);
 
   const totalPages = Math.max(1, Math.ceil(partnershipLocations.length / PARTNERS_PER_PAGE));
   const currentPartners = partnershipLocations.slice(
