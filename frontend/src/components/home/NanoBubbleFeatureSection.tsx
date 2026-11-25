@@ -102,7 +102,7 @@ export default function NanoBubbleFeatureSection() {
   ];
 
   return (
-    <section id="nano-bubble" className="rising-bubble-field relative isolate flex min-h-[calc(100dvh-5rem)] scroll-mt-20 items-center overflow-hidden text-[#17120a]" style={{ background: 'transparent' }}>
+    <section id="nano-bubble" tabIndex={-1} className="rising-bubble-field relative isolate flex min-h-[calc(100dvh-5rem)] scroll-mt-0 items-center overflow-hidden text-[#17120a]" style={{ background: 'transparent' }}>
       {/* SVG Background */}
       <div 
         className="pointer-events-none absolute inset-0 z-0"

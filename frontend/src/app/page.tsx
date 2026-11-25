@@ -4,6 +4,7 @@ import { useEffect, useState } from 'react';
 import axios from 'axios';
 import { Article } from '@/types';
 import NanoBubbleFeatureSection from '@/components/home/NanoBubbleFeatureSection';
+import WelcomeHeroSection from '@/components/home/WelcomeHeroSection';
 import HeroSection2 from '@/components/home/HeroSection2';
 import HeroSection3 from '@/components/home/HeroSection3';
 import ProgramJourneySection from '@/components/home/ProgramJourneySection';
@@ -12,11 +13,9 @@ import KisahPasienSection from '@/components/home/KisahPasienSection';
 import IMICollaborationSection from '@/components/home/IMICollaborationSection';
 import PagePreloader from '@/components/Shared/PagePreloader';
 
-// Only preload the background for the first (initially visible) panel. The
-// remaining panels are loaded by the browser as the user scrolls to them;
-// preloading every large background at once caused unnecessary memory usage.
+// Only preload the initially visible hero; other panels load as needed.
 const PRELOAD_IMAGES = [
-  '/assets/Hero/Section1BG.svg',
+  '/assets/Hero/wellness-consultation.webp',
 ];
 
 export default function Home() {
@@ -52,6 +51,10 @@ export default function Home() {
       }}
     >
       <PagePreloader images={PRELOAD_IMAGES} />
+
+      <div className="home-snap-panel relative">
+        <WelcomeHeroSection />
+      </div>
 
       {/* Shared background for the introduction and program panels. */}
       <div className="relative animated-gold-gradient" style={{ 
