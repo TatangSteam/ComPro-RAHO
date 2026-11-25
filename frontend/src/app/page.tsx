@@ -7,6 +7,7 @@ import NanoBubbleFeatureSection from '@/components/home/NanoBubbleFeatureSection
 import HeroSection2 from '@/components/home/HeroSection2';
 import HeroSection3 from '@/components/home/HeroSection3';
 import LocationsSection from '@/components/home/LocationsSection';
+import KisahPasienSection from '@/components/home/KisahPasienSection';
 import IMICollaborationSection from '@/components/home/IMICollaborationSection';
 import PagePreloader from '@/components/Shared/PagePreloader';
 
@@ -18,7 +19,7 @@ const PRELOAD_IMAGES = [
 ];
 
 export default function Home() {
-  const [tindakanMedisArticles, setTindakanMedisArticles] = useState<Article[]>([]);
+  const [kisahPasienArticles, setKisahPasienArticles] = useState<Article[]>([]);
 
   useEffect(() => {
     fetchArticles();
@@ -29,13 +30,13 @@ export default function Home() {
       const res = await axios.get<Article[]>(`${process.env.NEXT_PUBLIC_API_URL}/articles`);
       const publishedArticles = res.data.filter(a => a.published);
       
-      // Filter artikel kategori tindakan medis (6 terbaru untuk Section 5)
-      const tindakanMedis = publishedArticles
-        .filter(a => a.category === 'tindakan-medis')
+      // Tampilkan enam kisah pasien terbaru yang sudah dipublikasikan.
+      const kisahPasien = publishedArticles
+        .filter(a => a.category === 'kisah-pasien')
         .sort((a, b) => new Date(b.createdAt).getTime() - new Date(a.createdAt).getTime())
         .slice(0, 6);
       
-      setTindakanMedisArticles(tindakanMedis);
+      setKisahPasienArticles(kisahPasien);
     } catch (error) {
       console.error('Error fetching articles:', error);
     }
@@ -88,7 +89,12 @@ export default function Home() {
         </div>
       </div>
 
-      {/* Section 5: IMI Collaboration */}
+      {/* Section 5: Kisah Pasien */}
+      <div className="home-snap-panel relative">
+        <KisahPasienSection articles={kisahPasienArticles} />
+      </div>
+
+      {/* Section 6: IMI Collaboration */}
       <div className="home-snap-panel home-snap-panel-footer relative">
         <IMICollaborationSection />
       </div>

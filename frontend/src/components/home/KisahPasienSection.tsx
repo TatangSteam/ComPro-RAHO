@@ -46,71 +46,15 @@ export default function KisahPasienSection({ articles }: KisahPasienSectionProps
     return firstSentence + '...';
   };
 
-  // Dummy data jika belum ada artikel
-  const dummyArticles: Article[] = [
-    {
-      id: '1',
-      title: 'Juwita Tri Yanti',
-      slug: 'juwita-tri-yanti',
-      content: 'Berkat terapi di RAHO Club, saya sembuh total dari kanker tiroid. Setelah menjalani terapi nano bubble selama 6 bulan, kondisi saya membaik drastis.',
-      excerpt: 'Berkat terapi di RAHO Club, saya sembuh total dari kanker tiroid.',
-      imageUrl: '/assets/patient-1.jpg',
-      category: 'kisah-pasien',
-      published: true,
-      author: 'Pasien RAHO Club',
-      createdAt: new Date().toISOString(),
-      updatedAt: new Date().toISOString(),
-    },
-    {
-      id: '2',
-      title: 'Budi Santoso',
-      slug: 'budi-santoso',
-      content: 'Setelah stroke, terapi seluler di RAHO Club membuat saya pulih total. Kini saya bisa beraktivitas normal kembali tanpa bantuan.',
-      excerpt: 'Setelah stroke, terapi seluler di RAHO Club membuat saya pulih total.',
-      imageUrl: '/assets/patient-2.jpg',
-      category: 'kisah-pasien',
-      published: true,
-      author: 'Pasien RAHO Club',
-      createdAt: new Date().toISOString(),
-      updatedAt: new Date().toISOString(),
-    },
-    {
-      id: '3',
-      title: 'Siti Nurhaliza',
-      slug: 'siti-nurhaliza',
-      content: 'Diabetes saya terkontrol dan tidak perlu insulin lagi. Gula darah stabil dan hidup lebih berkualitas.',
-      excerpt: 'Diabetes saya terkontrol dan tidak perlu insulin lagi.',
-      imageUrl: '/assets/patient-3.jpg',
-      category: 'kisah-pasien',
-      published: true,
-      author: 'Pasien RAHO Club',
-      createdAt: new Date().toISOString(),
-      updatedAt: new Date().toISOString(),
-    },
-    {
-      id: '4',
-      title: 'Ahmad Hidayat',
-      slug: 'ahmad-hidayat',
-      content: 'Kolesterol tinggi saya turun drastis setelah terapi nano bubble. Dari 280 menjadi 180 dalam 3 bulan.',
-      excerpt: 'Kolesterol tinggi saya turun drastis setelah terapi nano bubble.',
-      imageUrl: '/assets/patient-4.jpg',
-      category: 'kisah-pasien',
-      published: true,
-      createdAt: new Date().toISOString(),
-      updatedAt: new Date().toISOString(),
-      author: 'Pasien RAHO Club'
-    },
-  ];
-
-  const displayArticles = articles.length > 0 ? articles : dummyArticles;
+  const displayArticles = articles;
   const totalPages = Math.ceil(displayArticles.length / itemsPerPage);
 
   const nextSlide = () => {
-    setCurrentIndex((prev) => (prev + 1) % totalPages);
+    if (totalPages > 0) setCurrentIndex((prev) => (prev + 1) % totalPages);
   };
 
   const prevSlide = () => {
-    setCurrentIndex((prev) => (prev - 1 + totalPages) % totalPages);
+    if (totalPages > 0) setCurrentIndex((prev) => (prev - 1 + totalPages) % totalPages);
   };
 
   const currentArticles = displayArticles.slice(
@@ -137,6 +81,12 @@ export default function KisahPasienSection({ articles }: KisahPasienSectionProps
           </p>
         </div>
 
+        {displayArticles.length === 0 ? (
+          <p className="text-center text-gray-600" role="status">
+            Kisah pasien akan ditampilkan setelah artikel dipublikasikan.
+          </p>
+        ) : (
+        <>
         {/* Testimonials Carousel */}
         <div className="relative">
           <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 mb-8">
@@ -265,6 +215,8 @@ export default function KisahPasienSection({ articles }: KisahPasienSectionProps
             </div>
           </div>
         </div>
+        </>
+        )}
       </div>
     </section>
   );

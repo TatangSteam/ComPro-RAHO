@@ -135,10 +135,11 @@ export default function NanoBubbleFeatureSection() {
           </p>
 
           {/* Description */}
+          {/* Catatan penjelasan lama:
+            Nano Bubble adalah gelembung gas berukuran nano (kurang dari 200 nanometer) yang stabil dalam cairan. Teknologi ini memiliki potensi luar biasa dalam meningkatkan efektivitas pengantaran zat aktif, meningkatkan bioavailabilitas, dan membuka peluang baru dalam inovasi produk kesehatan dan kecantikan.
+          */}
           <p className="mx-auto mt-3 max-w-3xl text-base leading-relaxed text-[#4a4640] sm:text-lg" style={{ fontFamily: "'Inter', sans-serif" }}>
-            Nano Bubble adalah gelembung gas berukuran nano (kurang dari 200 nanometer) yang stabil dalam cairan. 
-            Teknologi ini memiliki potensi luar biasa dalam meningkatkan efektivitas pengantaran zat aktif, 
-            meningkatkan bioavailabilitas, dan membuka peluang baru dalam inovasi produk kesehatan dan kecantikan.
+            gelembung berukuran nano yang stabil dalam cairan dirancang untuk membantu tubuh kembali seimbang (homeostasis)
           </p>
         </div>
 

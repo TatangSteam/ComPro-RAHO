@@ -71,7 +71,7 @@ export default function IMICollaborationSection() {
   return (
     <section className="relative overflow-hidden">
       <div
-        className="relative flex min-h-[435px] items-center py-12 md:py-14"
+        className="relative flex min-h-[435px] shrink-0 items-center py-12 md:py-14"
         style={{
           backgroundImage: 'url("/assets/FOOTER1.png")',
           backgroundPosition: 'center',
@@ -119,7 +119,7 @@ export default function IMICollaborationSection() {
         </div>
       </div>
 
-      <div className="relative min-h-[451px] overflow-hidden bg-[#232323]">
+      <footer className="relative min-h-[451px] flex-1 overflow-hidden bg-[#232323]">
         <Image
           src="/assets/Footer Section.png"
           alt=""
@@ -238,7 +238,7 @@ export default function IMICollaborationSection() {
             </div>
           </div>
         </div>
-      </div>
+      </footer>
     </section>
   );
 }
