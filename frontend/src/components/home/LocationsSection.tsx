@@ -1,47 +1,41 @@
 'use client';
 
-import { useEffect, useState } from 'react';
+import { useCallback, useEffect, useState } from 'react';
 import PartnerNetworkSection from '@/components/tentang-kami/PartnerNetworkSection';
 import type { Location } from '@/types';
 
 export default function LocationsSection() {
   const [locations, setLocations] = useState<Location[]>([]);
   const [loading, setLoading] = useState(true);
+  const [error, setError] = useState(false);
+  const [attempt, setAttempt] = useState(0);
+  const retry = useCallback(() => setAttempt((value) => value + 1), []);
 
   useEffect(() => {
+    const controller = new AbortController();
     const fetchLocations = async () => {
+      setLoading(true);
+      setError(false);
       try {
         const apiUrl = process.env.NEXT_PUBLIC_API_URL || 'http://localhost:5000';
-        const response = await fetch(`${apiUrl}/locations`);
-
-        if (!response.ok) {
-          throw new Error('Failed to fetch locations');
-        }
-
+        const response = await fetch(`${apiUrl}/locations`, { signal: controller.signal });
+        if (!response.ok) throw new Error('Failed to fetch locations');
         const data = await response.json();
-        setLocations(data.locations || data);
-      } catch (error) {
-        console.error('Error fetching locations:', error);
+        const locationData = data.locations || data;
+        if (!Array.isArray(locationData)) throw new Error('Invalid locations response');
+        if (!controller.signal.aborted) setLocations(locationData);
+      } catch (fetchError) {
+        if (!controller.signal.aborted) {
+          console.error('Error fetching locations:', fetchError);
+          setError(true);
+        }
       } finally {
-        setLoading(false);
+        if (!controller.signal.aborted) setLoading(false);
       }
     };
-
     void fetchLocations();
-  }, []);
+    return () => controller.abort();
+  }, [attempt]);
 
-  if (loading) {
-    return (
-      <section id="locations" className="relative min-h-[calc(100dvh-5rem)] scroll-mt-20 py-20">
-        <div className="mx-auto max-w-7xl px-6">
-          <div className="animate-pulse text-center">
-            <div className="mx-auto mb-4 h-8 w-64 rounded bg-gray-200" />
-            <div className="mx-auto h-4 w-full max-w-96 rounded bg-gray-200" />
-          </div>
-        </div>
-      </section>
-    );
-  }
-
-  return <PartnerNetworkSection locations={locations} sectionId="locations" />;
+  return <PartnerNetworkSection locations={locations} sectionId="locations" loading={loading} error={error} onRetry={retry} />;
 }

@@ -6,6 +6,7 @@ import { Article } from '@/types';
 import NanoBubbleFeatureSection from '@/components/home/NanoBubbleFeatureSection';
 import HeroSection2 from '@/components/home/HeroSection2';
 import HeroSection3 from '@/components/home/HeroSection3';
+import ProgramJourneySection from '@/components/home/ProgramJourneySection';
 import LocationsSection from '@/components/home/LocationsSection';
 import KisahPasienSection from '@/components/home/KisahPasienSection';
 import IMICollaborationSection from '@/components/home/IMICollaborationSection';
@@ -52,12 +53,12 @@ export default function Home() {
     >
       <PagePreloader images={PRELOAD_IMAGES} />
 
-      {/* Section 1-4: Unified Background Container with Animated Gradient */}
+      {/* Shared background for the introduction and program panels. */}
       <div className="relative animated-gold-gradient" style={{ 
         background: 'transparent',
         boxShadow: '0 4px 6px -1px rgba(182, 145, 51, 0.15), 0 2px 4px -1px rgba(182, 145, 51, 0.1)'
       }}>
-        {/* Unified Animated Background - Bubbles for Sections 1-4 */}
+        {/* Unified animated background */}
         <div className="absolute inset-0 pointer-events-none" style={{ zIndex: 1 }}>
           <div className="rising-bubbles" aria-hidden="true">
             {Array.from({ length: 12 }).map((_, index) => (
@@ -83,18 +84,23 @@ export default function Home() {
           <HeroSection3 />
         </div>
 
-        {/* Section 4: Lokasi Kami */}
+        {/* Section 4: Perjalanan Program */}
+        <div className="home-snap-panel relative">
+          <ProgramJourneySection />
+        </div>
+
+        {/* Section 5: Lokasi Kami */}
         <div className="home-snap-panel relative" style={{ background: 'transparent' }}>
           <LocationsSection />
         </div>
       </div>
 
-      {/* Section 5: Kisah Pasien */}
+      {/* Section 6: Kisah Pasien */}
       <div className="home-snap-panel relative">
         <KisahPasienSection articles={kisahPasienArticles} />
       </div>
 
-      {/* Section 6: IMI Collaboration */}
+      {/* Section 7: IMI Collaboration */}
       <div className="home-snap-panel home-snap-panel-footer relative">
         <IMICollaborationSection />
       </div>
