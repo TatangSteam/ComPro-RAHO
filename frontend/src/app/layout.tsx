@@ -109,6 +109,9 @@ export default function RootLayout({
 
   return (
     <html lang="id">
+      <head>
+        <meta name="facebook-domain-verification" content="iwhdd7oseisqoby15x6ycslt6vumqu" />
+      </head>
       <body className={`${poppins.variable} font-sans`}>
         {/* Google Analytics */}
         <Script
