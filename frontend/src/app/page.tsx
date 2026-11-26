@@ -56,6 +56,11 @@ export default function Home() {
         <WelcomeHeroSection />
       </div>
 
+      {/* Testimoni setelah hero */}
+      <div className="home-snap-panel relative">
+        <KisahPasienSection articles={kisahPasienArticles} />
+      </div>
+
       {/* Shared background for the introduction and program panels. */}
       <div className="relative animated-gold-gradient" style={{ 
         background: 'transparent',
@@ -96,11 +101,6 @@ export default function Home() {
         <div className="home-snap-panel relative" style={{ background: 'transparent' }}>
           <LocationsSection />
         </div>
-      </div>
-
-      {/* Section 6: Kisah Pasien */}
-      <div className="home-snap-panel relative">
-        <KisahPasienSection articles={kisahPasienArticles} />
       </div>
 
       {/* Section 7: IMI Collaboration */}

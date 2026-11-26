@@ -9,7 +9,7 @@ export default function PelayananSection() {
               Layanan homecare RAHO Club Premier menghadirkan solusi perawatan kesehatan langsung ke rumah dengan pendekatan wellness modern dan pemulihan seluler. Termasuk dukungan teknologi seperti monitoring kesehatan dan membuka kesempatan untuk berkonsultasi, energi, dan keseimbangan tubuh. Didukung tenaga profesional, layanan ini dirancang praktis, aman, dan personal untuk membantu Anda menjaga kesehatan, mempercepat pemulihan, serta menjalani gaya hidup sehat tanpa harus ke fasilitas kesehatan.
             </p>
             <a 
-              href="https://wa.link/h2uyet"
+              href="https://api.whatsapp.com/send?phone=6287766677055&text=Halo%2C%20saya%20mendapatkan%20informasi%20tentang%20Raho%20Premier%20dari%20website.%20Saya%20tertarik%20untuk%20mengetahui%20lebih%20lanjut%20mengenai%20layanan%20yang%20tersedia.%20Bisa%20dibantu%20penjelasannya%3F"
               target="_blank"
               rel="noopener noreferrer"
               className="bg-yellow-600 hover:bg-yellow-700 text-white px-6 md:px-8 py-2.5 md:py-3 rounded-full font-medium transition-colors text-sm md:text-base"

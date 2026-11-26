@@ -39,7 +39,7 @@ export default function WelcomeHeroSection() {
 
           <div className="mt-8 flex flex-col gap-3 sm:flex-row sm:flex-wrap">
             <a
-              href="https://wa.link/h2uyet"
+              href="https://api.whatsapp.com/send?phone=6287766677055&text=Halo%2C%20saya%20mendapatkan%20informasi%20tentang%20Raho%20Premier%20dari%20website.%20Saya%20tertarik%20untuk%20mengetahui%20lebih%20lanjut%20mengenai%20layanan%20yang%20tersedia.%20Bisa%20dibantu%20penjelasannya%3F"
               target="_blank"
               rel="noopener noreferrer"
               className="inline-flex min-h-12 items-center justify-center gap-2 rounded-full bg-[#AA1734] px-6 py-3 text-sm font-semibold text-white transition-colors hover:bg-[#C02042] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#E4C477] focus-visible:ring-offset-4 focus-visible:ring-offset-[#25211B]"

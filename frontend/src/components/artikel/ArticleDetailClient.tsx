@@ -163,7 +163,7 @@ export default function ArticleDetailClient({
                     Diskusikan kondisi Anda bersama tim RAHO Premier.
                   </p>
                   <a
-                    href="https://wa.link/7hzabn"
+                    href="https://api.whatsapp.com/send?phone=6287766677055&text=Halo%2C%20saya%20mendapatkan%20informasi%20tentang%20Raho%20Premier%20dari%20website.%20Saya%20tertarik%20untuk%20mengetahui%20lebih%20lanjut%20mengenai%20layanan%20yang%20tersedia.%20Bisa%20dibantu%20penjelasannya%3F"
                     target="_blank"
                     rel="noopener noreferrer"
                     className="mt-4 inline-flex items-center gap-2 rounded-lg bg-[#F4D98A] px-4 py-2 text-sm font-bold text-[#171717] transition-colors hover:bg-[#D6B85A]"

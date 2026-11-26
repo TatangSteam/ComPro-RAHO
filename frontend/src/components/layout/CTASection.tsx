@@ -2,7 +2,7 @@ import { ArrowRight, Users } from 'lucide-react';
 
 export default function CTASection() {
   const contactUrl =
-    'https://api.whatsapp.com/send?phone=6285136222772&text=Halo%2C%20saya%20mendapatkan%20informasi%20tentang%20Raho%20Premier%20dari%20website.%20Saya%20tertarik%20untuk%20mengetahui%20lebih%20lanjut%20mengenai%20layanan%20yang%20tersedia.%20Bisa%20dibantu%20penjelasannya%3F';
+    'https://api.whatsapp.com/send?phone=6287766677055&text=Halo%2C%20saya%20mendapatkan%20informasi%20tentang%20Raho%20Premier%20dari%20website.%20Saya%20tertarik%20untuk%20mengetahui%20lebih%20lanjut%20mengenai%20layanan%20yang%20tersedia.%20Bisa%20dibantu%20penjelasannya%3F';
 
   return (
     <section
@@ -25,7 +25,7 @@ export default function CTASection() {
 
         <div className="flex flex-col items-center justify-center gap-6 sm:flex-row">
           <a
-            href="https://wa.link/tuwrxr"
+            href="https://api.whatsapp.com/send?phone=6287766677055&text=Halo%2C%20saya%20mendapatkan%20informasi%20tentang%20Raho%20Premier%20dari%20website.%20Saya%20tertarik%20untuk%20mengetahui%20lebih%20lanjut%20mengenai%20layanan%20yang%20tersedia.%20Bisa%20dibantu%20penjelasannya%3F"
             target="_blank"
             rel="noopener noreferrer"
             className="inline-flex min-w-[288px] items-center justify-center gap-3 rounded-full bg-gradient-to-r from-[#C59B2F] to-[#D7AF36] px-8 py-4 text-lg font-medium text-white shadow-xl transition-all duration-300 hover:scale-105 hover:from-[#D6B85A] hover:to-[#B69133] hover:shadow-2xl"

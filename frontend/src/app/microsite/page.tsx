@@ -232,7 +232,7 @@ export default function MicrositePage() {
           {/* Primary CTA - WhatsApp with gradient */}
           <div className="mb-8 px-3">
             <a
-              href="https://wa.link/h2uyet"
+              href="https://api.whatsapp.com/send?phone=6287766677055&text=Halo%2C%20saya%20mendapatkan%20informasi%20tentang%20Raho%20Premier%20dari%20website.%20Saya%20tertarik%20untuk%20mengetahui%20lebih%20lanjut%20mengenai%20layanan%20yang%20tersedia.%20Bisa%20dibantu%20penjelasannya%3F"
               target="_blank"
               rel="noopener noreferrer"
               className="group flex items-center justify-center gap-3 px-6 py-4 rounded-[20px] transition-all duration-300"

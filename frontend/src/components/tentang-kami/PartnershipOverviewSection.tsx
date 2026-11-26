@@ -8,7 +8,7 @@ import {
   UsersRound,
 } from 'lucide-react';
 
-const WHATSAPP_URL = 'https://wa.link/tuwrxr';
+const WHATSAPP_URL = 'https://api.whatsapp.com/send?phone=6287766677055&text=Halo%2C%20saya%20mendapatkan%20informasi%20tentang%20Raho%20Premier%20dari%20website.%20Saya%20tertarik%20untuk%20mengetahui%20lebih%20lanjut%20mengenai%20layanan%20yang%20tersedia.%20Bisa%20dibantu%20penjelasannya%3F';
 
 const benefitCards = [
   {

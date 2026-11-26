@@ -51,7 +51,7 @@ export default function UmumSection() {
               menjalani hidup lebih sehat, bertenaga, dan optimal secara berkelanjutan.
             </p>
             <a
-              href="https://wa.link/h2uyet"
+              href="https://api.whatsapp.com/send?phone=6287766677055&text=Halo%2C%20saya%20mendapatkan%20informasi%20tentang%20Raho%20Premier%20dari%20website.%20Saya%20tertarik%20untuk%20mengetahui%20lebih%20lanjut%20mengenai%20layanan%20yang%20tersedia.%20Bisa%20dibantu%20penjelasannya%3F"
               target="_blank"
               rel="noopener noreferrer"
               className="mt-7 inline-flex min-h-[52px] items-center justify-center gap-3 rounded-full bg-gradient-to-r from-[#B69133] to-[#D6B85A] px-8 text-sm font-semibold text-white shadow-lg shadow-[#B69133]/20 transition-all duration-300 hover:-translate-y-0.5 hover:from-[#D6B85A] hover:to-[#B69133]"

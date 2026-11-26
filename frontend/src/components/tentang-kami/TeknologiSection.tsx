@@ -19,7 +19,7 @@ export default function TeknologiSection() {
               Nano Bubble Treatment adalah metode terapi alternatif berbasis teknologi nano yang memanfaatkan gelembung gas berukuran sangat kecil (+300 nm) dengan stabilitas tinggi dan muatan permukaan khusus, sehingga mampu menembus kapiler dan interaksi hingga tingkat sel. Menggabungkan kombinasi oksigen, hidrogen, dan gas bermanfaat lainnya, terapi nano bubble dirancang untuk membantu meningkatkan sirkulasi darah, membukung metabolisme sel, serta mengurangi stres oksidatif sebagai bagian dari pendekatan kesehatan modern dan pemulihan tubuh secara alami.
             </p>
             <a 
-              href="https://wa.link/h2uyet"
+              href="https://api.whatsapp.com/send?phone=6287766677055&text=Halo%2C%20saya%20mendapatkan%20informasi%20tentang%20Raho%20Premier%20dari%20website.%20Saya%20tertarik%20untuk%20mengetahui%20lebih%20lanjut%20mengenai%20layanan%20yang%20tersedia.%20Bisa%20dibantu%20penjelasannya%3F"
               target="_blank"
               rel="noopener noreferrer"
               className="bg-yellow-600 hover:bg-yellow-700 text-white px-6 md:px-8 py-2.5 md:py-3 rounded-full font-medium transition-colors text-sm md:text-base"
